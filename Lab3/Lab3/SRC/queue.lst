@@ -1,0 +1,599 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.0 #5416 (Mar 22 2009) (MINGW32)
+                              4 ; This file was generated Tue Dec 11 01:29:27 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module queue
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _Push
+                             13 	.globl _Pop
+                             14 	.globl _Print
+                             15 	.globl _isEmpty
+                             16 ;--------------------------------------------------------
+                             17 ; special function registers
+                             18 ;--------------------------------------------------------
+                             19 	.area RSEG    (DATA)
+                             20 ;--------------------------------------------------------
+                             21 ; special function bits
+                             22 ;--------------------------------------------------------
+                             23 	.area RSEG    (DATA)
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+                             33 ;--------------------------------------------------------
+                             34 ; overlayable items in internal ram 
+                             35 ;--------------------------------------------------------
+                             36 	.area OSEG    (OVR,DATA)
+                             37 ;--------------------------------------------------------
+                             38 ; indirectly addressable internal ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area ISEG    (DATA)
+                             41 ;--------------------------------------------------------
+                             42 ; absolute internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area IABS    (ABS,DATA)
+                             45 	.area IABS    (ABS,DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; bit data
+                             48 ;--------------------------------------------------------
+                             49 	.area BSEG    (BIT)
+                             50 ;--------------------------------------------------------
+                             51 ; paged external ram data
+                             52 ;--------------------------------------------------------
+                             53 	.area PSEG    (PAG,XDATA)
+                             54 ;--------------------------------------------------------
+                             55 ; external ram data
+                             56 ;--------------------------------------------------------
+                             57 	.area XSEG    (XDATA)
+                             58 ;--------------------------------------------------------
+                             59 ; absolute external ram data
+                             60 ;--------------------------------------------------------
+                             61 	.area XABS    (ABS,XDATA)
+                             62 ;--------------------------------------------------------
+                             63 ; external initialized ram data
+                             64 ;--------------------------------------------------------
+                             65 	.area XISEG   (XDATA)
+                             66 	.area HOME    (CODE)
+                             67 	.area GSINIT0 (CODE)
+                             68 	.area GSINIT1 (CODE)
+                             69 	.area GSINIT2 (CODE)
+                             70 	.area GSINIT3 (CODE)
+                             71 	.area GSINIT4 (CODE)
+                             72 	.area GSINIT5 (CODE)
+                             73 	.area GSINIT  (CODE)
+                             74 	.area GSFINAL (CODE)
+                             75 	.area CSEG    (CODE)
+                             76 ;--------------------------------------------------------
+                             77 ; global & static initialisations
+                             78 ;--------------------------------------------------------
+                             79 	.area HOME    (CODE)
+                             80 	.area GSINIT  (CODE)
+                             81 	.area GSFINAL (CODE)
+                             82 	.area GSINIT  (CODE)
+                             83 ;--------------------------------------------------------
+                             84 ; Home
+                             85 ;--------------------------------------------------------
+                             86 	.area HOME    (CODE)
+                             87 	.area HOME    (CODE)
+                             88 ;--------------------------------------------------------
+                             89 ; code
+                             90 ;--------------------------------------------------------
+                             91 	.area CSEG    (CODE)
+                             92 ;------------------------------------------------------------
+                             93 ;Allocation info for local variables in function 'Push'
+                             94 ;------------------------------------------------------------
+                             95 ;value                     Allocated to stack - offset -3
+                             96 ;queue                     Allocated to stack - offset 1
+                             97 ;node                      Allocated to stack - offset 4
+                             98 ;sloc0                     Allocated to stack - offset 7
+                             99 ;------------------------------------------------------------
+                            100 ;	SRC/queue.c:11: TQueue* Push(TQueue* queue, char value)
+                            101 ;	-----------------------------------------
+                            102 ;	 function Push
+                            103 ;	-----------------------------------------
+   0000                     104 _Push:
+                    0002    105 	ar2 = 0x02
+                    0003    106 	ar3 = 0x03
+                    0004    107 	ar4 = 0x04
+                    0005    108 	ar5 = 0x05
+                    0006    109 	ar6 = 0x06
+                    0007    110 	ar7 = 0x07
+                    0000    111 	ar0 = 0x00
+                    0001    112 	ar1 = 0x01
+   0000 C0*00               113 	push	_bp
+   0002 85 81*00            114 	mov	_bp,sp
+   0005 C0 82               115 	push	dpl
+   0007 C0 83               116 	push	dph
+   0009 C0 F0               117 	push	b
+   000B 05 81               118 	inc	sp
+   000D 05 81               119 	inc	sp
+   000F 05 81               120 	inc	sp
+                            121 ;	SRC/queue.c:14: TNode* node = malloc(sizeof(TNode));
+   0011 90 00 04            122 	mov	dptr,#0x0004
+   0014 12s00r00            123 	lcall	_malloc
+   0017 AD 82               124 	mov	r5,dpl
+   0019 AE 83               125 	mov	r6,dph
+   001B E5*00               126 	mov	a,_bp
+   001D 24 04               127 	add	a,#0x04
+   001F F8                  128 	mov	r0,a
+   0020 A6 05               129 	mov	@r0,ar5
+   0022 08                  130 	inc	r0
+   0023 A6 06               131 	mov	@r0,ar6
+   0025 08                  132 	inc	r0
+   0026 76 00               133 	mov	@r0,#0x00
+                            134 ;	SRC/queue.c:16: node->value = value;
+   0028 E5*00               135 	mov	a,_bp
+   002A 24 04               136 	add	a,#0x04
+   002C F8                  137 	mov	r0,a
+   002D 86 82               138 	mov	dpl,@r0
+   002F 08                  139 	inc	r0
+   0030 86 83               140 	mov	dph,@r0
+   0032 08                  141 	inc	r0
+   0033 86 F0               142 	mov	b,@r0
+   0035 A9*00               143 	mov	r1,_bp
+   0037 19                  144 	dec	r1
+   0038 19                  145 	dec	r1
+   0039 19                  146 	dec	r1
+   003A E7                  147 	mov	a,@r1
+   003B 12s00r00            148 	lcall	__gptrput
+                            149 ;	SRC/queue.c:19: node->next = NULL;
+   003E E5*00               150 	mov	a,_bp
+   0040 24 04               151 	add	a,#0x04
+   0042 F8                  152 	mov	r0,a
+   0043 74 01               153 	mov	a,#0x01
+   0045 26                  154 	add	a,@r0
+   0046 FA                  155 	mov	r2,a
+   0047 E4                  156 	clr	a
+   0048 08                  157 	inc	r0
+   0049 36                  158 	addc	a,@r0
+   004A FB                  159 	mov	r3,a
+   004B 08                  160 	inc	r0
+   004C 86 04               161 	mov	ar4,@r0
+   004E 8A 82               162 	mov	dpl,r2
+   0050 8B 83               163 	mov	dph,r3
+   0052 8C F0               164 	mov	b,r4
+   0054 E4                  165 	clr	a
+   0055 12s00r00            166 	lcall	__gptrput
+   0058 A3                  167 	inc	dptr
+   0059 E4                  168 	clr	a
+   005A 12s00r00            169 	lcall	__gptrput
+   005D A3                  170 	inc	dptr
+   005E E4                  171 	clr	a
+   005F 12s00r00            172 	lcall	__gptrput
+                            173 ;	SRC/queue.c:22: if (queue->head!=NULL && queue->tail!=NULL)
+   0062 A8*00               174 	mov	r0,_bp
+   0064 08                  175 	inc	r0
+   0065 86 82               176 	mov	dpl,@r0
+   0067 08                  177 	inc	r0
+   0068 86 83               178 	mov	dph,@r0
+   006A 08                  179 	inc	r0
+   006B 86 F0               180 	mov	b,@r0
+   006D 12s00r00            181 	lcall	__gptrget
+   0070 FA                  182 	mov	r2,a
+   0071 A3                  183 	inc	dptr
+   0072 12s00r00            184 	lcall	__gptrget
+   0075 FB                  185 	mov	r3,a
+   0076 A3                  186 	inc	dptr
+   0077 12s00r00            187 	lcall	__gptrget
+   007A FC                  188 	mov	r4,a
+   007B BA 00 08            189 	cjne	r2,#0x00,00109$
+   007E BB 00 05            190 	cjne	r3,#0x00,00109$
+   0081 BC 00 02            191 	cjne	r4,#0x00,00109$
+   0084 80 6A               192 	sjmp	00102$
+   0086                     193 00109$:
+   0086 A8*00               194 	mov	r0,_bp
+   0088 08                  195 	inc	r0
+   0089 74 03               196 	mov	a,#0x03
+   008B 26                  197 	add	a,@r0
+   008C FA                  198 	mov	r2,a
+   008D E4                  199 	clr	a
+   008E 08                  200 	inc	r0
+   008F 36                  201 	addc	a,@r0
+   0090 FB                  202 	mov	r3,a
+   0091 08                  203 	inc	r0
+   0092 86 04               204 	mov	ar4,@r0
+   0094 8A 82               205 	mov	dpl,r2
+   0096 8B 83               206 	mov	dph,r3
+   0098 8C F0               207 	mov	b,r4
+   009A 12s00r00            208 	lcall	__gptrget
+   009D FD                  209 	mov	r5,a
+   009E A3                  210 	inc	dptr
+   009F 12s00r00            211 	lcall	__gptrget
+   00A2 FE                  212 	mov	r6,a
+   00A3 A3                  213 	inc	dptr
+   00A4 12s00r00            214 	lcall	__gptrget
+   00A7 FF                  215 	mov	r7,a
+   00A8 BD 00 08            216 	cjne	r5,#0x00,00110$
+   00AB BE 00 05            217 	cjne	r6,#0x00,00110$
+   00AE BF 00 02            218 	cjne	r7,#0x00,00110$
+   00B1 80 3D               219 	sjmp	00102$
+   00B3                     220 00110$:
+                            221 ;	SRC/queue.c:26: queue->tail->next = node;
+   00B3 0D                  222 	inc	r5
+   00B4 BD 00 01            223 	cjne	r5,#0x00,00111$
+   00B7 0E                  224 	inc	r6
+   00B8                     225 00111$:
+   00B8 8D 82               226 	mov	dpl,r5
+   00BA 8E 83               227 	mov	dph,r6
+   00BC 8F F0               228 	mov	b,r7
+   00BE E5*00               229 	mov	a,_bp
+   00C0 24 04               230 	add	a,#0x04
+   00C2 F8                  231 	mov	r0,a
+   00C3 E6                  232 	mov	a,@r0
+   00C4 12s00r00            233 	lcall	__gptrput
+   00C7 A3                  234 	inc	dptr
+   00C8 08                  235 	inc	r0
+   00C9 E6                  236 	mov	a,@r0
+   00CA 12s00r00            237 	lcall	__gptrput
+   00CD A3                  238 	inc	dptr
+   00CE 08                  239 	inc	r0
+   00CF E6                  240 	mov	a,@r0
+   00D0 12s00r00            241 	lcall	__gptrput
+                            242 ;	SRC/queue.c:28: queue->tail = node;
+   00D3 8A 82               243 	mov	dpl,r2
+   00D5 8B 83               244 	mov	dph,r3
+   00D7 8C F0               245 	mov	b,r4
+   00D9 E5*00               246 	mov	a,_bp
+   00DB 24 04               247 	add	a,#0x04
+   00DD F8                  248 	mov	r0,a
+   00DE E6                  249 	mov	a,@r0
+   00DF 12s00r00            250 	lcall	__gptrput
+   00E2 A3                  251 	inc	dptr
+   00E3 08                  252 	inc	r0
+   00E4 E6                  253 	mov	a,@r0
+   00E5 12s00r00            254 	lcall	__gptrput
+   00E8 A3                  255 	inc	dptr
+   00E9 08                  256 	inc	r0
+   00EA E6                  257 	mov	a,@r0
+   00EB 12s00r00            258 	lcall	__gptrput
+   00EE 80 49               259 	sjmp	00103$
+   00F0                     260 00102$:
+                            261 ;	SRC/queue.c:34: queue->head = queue->tail = node;
+   00F0 A8*00               262 	mov	r0,_bp
+   00F2 08                  263 	inc	r0
+   00F3 74 03               264 	mov	a,#0x03
+   00F5 26                  265 	add	a,@r0
+   00F6 FA                  266 	mov	r2,a
+   00F7 E4                  267 	clr	a
+   00F8 08                  268 	inc	r0
+   00F9 36                  269 	addc	a,@r0
+   00FA FB                  270 	mov	r3,a
+   00FB 08                  271 	inc	r0
+   00FC 86 04               272 	mov	ar4,@r0
+   00FE 8A 82               273 	mov	dpl,r2
+   0100 8B 83               274 	mov	dph,r3
+   0102 8C F0               275 	mov	b,r4
+   0104 E5*00               276 	mov	a,_bp
+   0106 24 04               277 	add	a,#0x04
+   0108 F8                  278 	mov	r0,a
+   0109 E6                  279 	mov	a,@r0
+   010A 12s00r00            280 	lcall	__gptrput
+   010D A3                  281 	inc	dptr
+   010E 08                  282 	inc	r0
+   010F E6                  283 	mov	a,@r0
+   0110 12s00r00            284 	lcall	__gptrput
+   0113 A3                  285 	inc	dptr
+   0114 08                  286 	inc	r0
+   0115 E6                  287 	mov	a,@r0
+   0116 12s00r00            288 	lcall	__gptrput
+   0119 A8*00               289 	mov	r0,_bp
+   011B 08                  290 	inc	r0
+   011C 86 82               291 	mov	dpl,@r0
+   011E 08                  292 	inc	r0
+   011F 86 83               293 	mov	dph,@r0
+   0121 08                  294 	inc	r0
+   0122 86 F0               295 	mov	b,@r0
+   0124 E5*00               296 	mov	a,_bp
+   0126 24 04               297 	add	a,#0x04
+   0128 F9                  298 	mov	r1,a
+   0129 E7                  299 	mov	a,@r1
+   012A 12s00r00            300 	lcall	__gptrput
+   012D A3                  301 	inc	dptr
+   012E 09                  302 	inc	r1
+   012F E7                  303 	mov	a,@r1
+   0130 12s00r00            304 	lcall	__gptrput
+   0133 A3                  305 	inc	dptr
+   0134 09                  306 	inc	r1
+   0135 E7                  307 	mov	a,@r1
+   0136 12s00r00            308 	lcall	__gptrput
+   0139                     309 00103$:
+                            310 ;	SRC/queue.c:37: return queue;
+   0139 A8*00               311 	mov	r0,_bp
+   013B 08                  312 	inc	r0
+   013C 86 82               313 	mov	dpl,@r0
+   013E 08                  314 	inc	r0
+   013F 86 83               315 	mov	dph,@r0
+   0141 08                  316 	inc	r0
+   0142 86 F0               317 	mov	b,@r0
+   0144 85*00 81            318 	mov	sp,_bp
+   0147 D0*00               319 	pop	_bp
+   0149 22                  320 	ret
+                            321 ;------------------------------------------------------------
+                            322 ;Allocation info for local variables in function 'Pop'
+                            323 ;------------------------------------------------------------
+                            324 ;queue                     Allocated to stack - offset 1
+                            325 ;value                     Allocated to stack - offset 7
+                            326 ;node                      Allocated to stack - offset 4
+                            327 ;sloc0                     Allocated to stack - offset 8
+                            328 ;sloc1                     Allocated to stack - offset 7
+                            329 ;------------------------------------------------------------
+                            330 ;	SRC/queue.c:41: char Pop(TQueue* queue)
+                            331 ;	-----------------------------------------
+                            332 ;	 function Pop
+                            333 ;	-----------------------------------------
+   014A                     334 _Pop:
+   014A C0*00               335 	push	_bp
+   014C 85 81*00            336 	mov	_bp,sp
+   014F C0 82               337 	push	dpl
+   0151 C0 83               338 	push	dph
+   0153 C0 F0               339 	push	b
+   0155 E5 81               340 	mov	a,sp
+   0157 24 07               341 	add	a,#0x07
+   0159 F5 81               342 	mov	sp,a
+                            343 ;	SRC/queue.c:43: unsigned char value = 0;
+   015B E5*00               344 	mov	a,_bp
+   015D 24 07               345 	add	a,#0x07
+   015F F8                  346 	mov	r0,a
+   0160 76 00               347 	mov	@r0,#0x00
+                            348 ;	SRC/queue.c:47: if (queue->head)
+   0162 A8*00               349 	mov	r0,_bp
+   0164 08                  350 	inc	r0
+   0165 86 82               351 	mov	dpl,@r0
+   0167 08                  352 	inc	r0
+   0168 86 83               353 	mov	dph,@r0
+   016A 08                  354 	inc	r0
+   016B 86 F0               355 	mov	b,@r0
+   016D 12s00r00            356 	lcall	__gptrget
+   0170 FA                  357 	mov	r2,a
+   0171 A3                  358 	inc	dptr
+   0172 12s00r00            359 	lcall	__gptrget
+   0175 FB                  360 	mov	r3,a
+   0176 A3                  361 	inc	dptr
+   0177 12s00r00            362 	lcall	__gptrget
+   017A FC                  363 	mov	r4,a
+   017B EA                  364 	mov	a,r2
+   017C 4B                  365 	orl	a,r3
+   017D 4C                  366 	orl	a,r4
+   017E 60 71               367 	jz	00102$
+                            368 ;	SRC/queue.c:50: node = queue->head;
+   0180 E5*00               369 	mov	a,_bp
+   0182 24 04               370 	add	a,#0x04
+   0184 F8                  371 	mov	r0,a
+   0185 A6 02               372 	mov	@r0,ar2
+   0187 08                  373 	inc	r0
+   0188 A6 03               374 	mov	@r0,ar3
+   018A 08                  375 	inc	r0
+   018B A6 04               376 	mov	@r0,ar4
+   018D E5*00               377 	mov	a,_bp
+   018F 24 04               378 	add	a,#0x04
+   0191 F8                  379 	mov	r0,a
+   0192 86 03               380 	mov	ar3,@r0
+   0194 08                  381 	inc	r0
+   0195 86 04               382 	mov	ar4,@r0
+   0197 08                  383 	inc	r0
+   0198 86 02               384 	mov	ar2,@r0
+                            385 ;	SRC/queue.c:52: value = node->value;
+   019A 8B 82               386 	mov	dpl,r3
+   019C 8C 83               387 	mov	dph,r4
+   019E 8A F0               388 	mov	b,r2
+   01A0 12s00r00            389 	lcall	__gptrget
+   01A3 FE                  390 	mov	r6,a
+   01A4 E5*00               391 	mov	a,_bp
+   01A6 24 07               392 	add	a,#0x07
+   01A8 F8                  393 	mov	r0,a
+   01A9 A6 06               394 	mov	@r0,ar6
+                            395 ;	SRC/queue.c:54: queue->head = queue->head->next;
+   01AB E5*00               396 	mov	a,_bp
+   01AD 24 04               397 	add	a,#0x04
+   01AF F8                  398 	mov	r0,a
+   01B0 74 01               399 	mov	a,#0x01
+   01B2 26                  400 	add	a,@r0
+   01B3 FE                  401 	mov	r6,a
+   01B4 E4                  402 	clr	a
+   01B5 08                  403 	inc	r0
+   01B6 36                  404 	addc	a,@r0
+   01B7 FF                  405 	mov	r7,a
+   01B8 08                  406 	inc	r0
+   01B9 86 05               407 	mov	ar5,@r0
+   01BB 8E 82               408 	mov	dpl,r6
+   01BD 8F 83               409 	mov	dph,r7
+   01BF 8D F0               410 	mov	b,r5
+   01C1 12s00r00            411 	lcall	__gptrget
+   01C4 FE                  412 	mov	r6,a
+   01C5 A3                  413 	inc	dptr
+   01C6 12s00r00            414 	lcall	__gptrget
+   01C9 FF                  415 	mov	r7,a
+   01CA A3                  416 	inc	dptr
+   01CB 12s00r00            417 	lcall	__gptrget
+   01CE FD                  418 	mov	r5,a
+   01CF A8*00               419 	mov	r0,_bp
+   01D1 08                  420 	inc	r0
+   01D2 86 82               421 	mov	dpl,@r0
+   01D4 08                  422 	inc	r0
+   01D5 86 83               423 	mov	dph,@r0
+   01D7 08                  424 	inc	r0
+   01D8 86 F0               425 	mov	b,@r0
+   01DA EE                  426 	mov	a,r6
+   01DB 12s00r00            427 	lcall	__gptrput
+   01DE A3                  428 	inc	dptr
+   01DF EF                  429 	mov	a,r7
+   01E0 12s00r00            430 	lcall	__gptrput
+   01E3 A3                  431 	inc	dptr
+   01E4 ED                  432 	mov	a,r5
+   01E5 12s00r00            433 	lcall	__gptrput
+                            434 ;	SRC/queue.c:56: free(node);
+   01E8 8B 82               435 	mov	dpl,r3
+   01EA 8C 83               436 	mov	dph,r4
+   01EC 8A F0               437 	mov	b,r2
+   01EE 12s00r00            438 	lcall	_free
+   01F1                     439 00102$:
+                            440 ;	SRC/queue.c:59: return value;
+   01F1 E5*00               441 	mov	a,_bp
+   01F3 24 07               442 	add	a,#0x07
+   01F5 F8                  443 	mov	r0,a
+   01F6 86 82               444 	mov	dpl,@r0
+   01F8 85*00 81            445 	mov	sp,_bp
+   01FB D0*00               446 	pop	_bp
+   01FD 22                  447 	ret
+                            448 ;------------------------------------------------------------
+                            449 ;Allocation info for local variables in function 'Print'
+                            450 ;------------------------------------------------------------
+                            451 ;queue                     Allocated to registers r2 r3 r4 
+                            452 ;str                       Allocated to stack - offset 1
+                            453 ;node                      Allocated to registers r2 r3 r4 
+                            454 ;------------------------------------------------------------
+                            455 ;	SRC/queue.c:63: void Print(TQueue* queue){
+                            456 ;	-----------------------------------------
+                            457 ;	 function Print
+                            458 ;	-----------------------------------------
+   01FE                     459 _Print:
+   01FE C0*00               460 	push	_bp
+   0200 E5 81               461 	mov	a,sp
+   0202 F5*00               462 	mov	_bp,a
+   0204 24 0A               463 	add	a,#0x0a
+   0206 F5 81               464 	mov	sp,a
+   0208 AA 82               465 	mov	r2,dpl
+   020A AB 83               466 	mov	r3,dph
+   020C AC F0               467 	mov	r4,b
+                            468 ;	SRC/queue.c:64: unsigned char str[10] = {0};
+   020E A8*00               469 	mov	r0,_bp
+   0210 08                  470 	inc	r0
+   0211 76 00               471 	mov	@r0,#0x00
+   0213 E8                  472 	mov	a,r0
+   0214 04                  473 	inc	a
+   0215 F9                  474 	mov	r1,a
+   0216 77 00               475 	mov	@r1,#0x00
+   0218 74 02               476 	mov	a,#0x02
+   021A 28                  477 	add	a,r0
+   021B F9                  478 	mov	r1,a
+   021C 77 00               479 	mov	@r1,#0x00
+   021E 74 03               480 	mov	a,#0x03
+   0220 28                  481 	add	a,r0
+   0221 F9                  482 	mov	r1,a
+   0222 77 00               483 	mov	@r1,#0x00
+   0224 74 04               484 	mov	a,#0x04
+   0226 28                  485 	add	a,r0
+   0227 F9                  486 	mov	r1,a
+   0228 77 00               487 	mov	@r1,#0x00
+   022A 74 05               488 	mov	a,#0x05
+   022C 28                  489 	add	a,r0
+   022D F9                  490 	mov	r1,a
+   022E 77 00               491 	mov	@r1,#0x00
+   0230 74 06               492 	mov	a,#0x06
+   0232 28                  493 	add	a,r0
+   0233 F9                  494 	mov	r1,a
+   0234 77 00               495 	mov	@r1,#0x00
+   0236 74 07               496 	mov	a,#0x07
+   0238 28                  497 	add	a,r0
+   0239 F9                  498 	mov	r1,a
+   023A 77 00               499 	mov	@r1,#0x00
+   023C 74 08               500 	mov	a,#0x08
+   023E 28                  501 	add	a,r0
+   023F F9                  502 	mov	r1,a
+   0240 77 00               503 	mov	@r1,#0x00
+   0242 74 09               504 	mov	a,#0x09
+   0244 28                  505 	add	a,r0
+   0245 F8                  506 	mov	r0,a
+   0246 76 00               507 	mov	@r0,#0x00
+                            508 ;	SRC/queue.c:65: TNode* node = queue->head;
+   0248 8A 82               509 	mov	dpl,r2
+   024A 8B 83               510 	mov	dph,r3
+   024C 8C F0               511 	mov	b,r4
+   024E 12s00r00            512 	lcall	__gptrget
+   0251 FA                  513 	mov	r2,a
+   0252 A3                  514 	inc	dptr
+   0253 12s00r00            515 	lcall	__gptrget
+   0256 FB                  516 	mov	r3,a
+   0257 A3                  517 	inc	dptr
+   0258 12s00r00            518 	lcall	__gptrget
+   025B FC                  519 	mov	r4,a
+                            520 ;	SRC/queue.c:69: while (node)
+   025C                     521 00101$:
+   025C EA                  522 	mov	a,r2
+   025D 4B                  523 	orl	a,r3
+   025E 4C                  524 	orl	a,r4
+   025F 60 45               525 	jz	00104$
+                            526 ;	SRC/queue.c:71: wsio(node->value);
+   0261 8A 82               527 	mov	dpl,r2
+   0263 8B 83               528 	mov	dph,r3
+   0265 8C F0               529 	mov	b,r4
+   0267 12s00r00            530 	lcall	__gptrget
+   026A F5 82               531 	mov	dpl,a
+   026C C0 02               532 	push	ar2
+   026E C0 03               533 	push	ar3
+   0270 C0 04               534 	push	ar4
+   0272 12s00r00            535 	lcall	_wsio
+                            536 ;	SRC/queue.c:72: wsio(' ');
+   0275 75 82 20            537 	mov	dpl,#0x20
+   0278 12s00r00            538 	lcall	_wsio
+   027B D0 04               539 	pop	ar4
+   027D D0 03               540 	pop	ar3
+   027F D0 02               541 	pop	ar2
+                            542 ;	SRC/queue.c:73: node=node->next;
+   0281 74 01               543 	mov	a,#0x01
+   0283 2A                  544 	add	a,r2
+   0284 FD                  545 	mov	r5,a
+   0285 E4                  546 	clr	a
+   0286 3B                  547 	addc	a,r3
+   0287 FE                  548 	mov	r6,a
+   0288 8C 07               549 	mov	ar7,r4
+   028A 8D 82               550 	mov	dpl,r5
+   028C 8E 83               551 	mov	dph,r6
+   028E 8F F0               552 	mov	b,r7
+   0290 12s00r00            553 	lcall	__gptrget
+   0293 FD                  554 	mov	r5,a
+   0294 A3                  555 	inc	dptr
+   0295 12s00r00            556 	lcall	__gptrget
+   0298 FE                  557 	mov	r6,a
+   0299 A3                  558 	inc	dptr
+   029A 12s00r00            559 	lcall	__gptrget
+   029D FF                  560 	mov	r7,a
+   029E 8D 02               561 	mov	ar2,r5
+   02A0 8E 03               562 	mov	ar3,r6
+   02A2 8F 04               563 	mov	ar4,r7
+   02A4 80 B6               564 	sjmp	00101$
+   02A6                     565 00104$:
+   02A6 85*00 81            566 	mov	sp,_bp
+   02A9 D0*00               567 	pop	_bp
+   02AB 22                  568 	ret
+                            569 ;------------------------------------------------------------
+                            570 ;Allocation info for local variables in function 'isEmpty'
+                            571 ;------------------------------------------------------------
+                            572 ;queue                     Allocated to registers r2 r3 r4 
+                            573 ;------------------------------------------------------------
+                            574 ;	SRC/queue.c:78: char isEmpty(TQueue* queue)
+                            575 ;	-----------------------------------------
+                            576 ;	 function isEmpty
+                            577 ;	-----------------------------------------
+   02AC                     578 _isEmpty:
+                            579 ;	SRC/queue.c:80: return queue->head==NULL;
+   02AC 12s00r00            580 	lcall	__gptrget
+   02AF FA                  581 	mov	r2,a
+   02B0 A3                  582 	inc	dptr
+   02B1 12s00r00            583 	lcall	__gptrget
+   02B4 FB                  584 	mov	r3,a
+   02B5 A3                  585 	inc	dptr
+   02B6 12s00r00            586 	lcall	__gptrget
+   02B9 FC                  587 	mov	r4,a
+   02BA E4                  588 	clr	a
+   02BB BA 00 07            589 	cjne	r2,#0x00,00103$
+   02BE BB 00 04            590 	cjne	r3,#0x00,00103$
+   02C1 BC 00 01            591 	cjne	r4,#0x00,00103$
+   02C4 04                  592 	inc	a
+   02C5                     593 00103$:
+   02C5 F5 82               594 	mov	dpl,a
+   02C7 22                  595 	ret
+                            596 	.area CSEG    (CODE)
+                            597 	.area CONST   (CODE)
+                            598 	.area XINIT   (CODE)
+                            599 	.area CABS    (ABS,CODE)

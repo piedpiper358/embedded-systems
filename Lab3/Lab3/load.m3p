@@ -1,0 +1,54 @@
+: WAIT
+    
+    CR
+    ." Включите питание и нажмите кнопку RESET на стенде SDK." CR 
+    ." Ожидание перезапуска... " 
+
+	BEGIN RSIO DUP EMIT 109 == UNTIL
+    // BEGIN RSIO 109 == UNTIL
+
+    ." Ok" CR CR
+;   
+
+	-- BEGIN
+
+	   TERMINATEONERROR
+		
+		-- 9600 OPENCHANNEL \\.\com30
+		OPENCHANNEL com1 -- Открытие com-порта (com1)
+		
+
+
+		WAIT 
+
+		T_RAM  -- Переключение системы для работы с RAM.
+
+		0x2100	WRITE lab3.bin
+		0x2100	JMP
+
+		
+		CLOSECHANNEL
+		-- OPENCHANNEL com1
+		-- WAIT
+		-- 6 TERM
+		
+		
+		ECHO com1_log.txt 
+		OPENCHANNEL com1 
+		-- +ECHO 
+		
+		3	TERM 
+		-- -ECHO
+		
+		-- \ECHO
+		
+		
+		-- 0 Bin mode
+		-- 1 Hex mode
+		-- 2 Dump mode
+		-- 3 Mterm mode
+		-- 4 <CR> mode
+		-- 5 <CR>\n mode
+		-- 6 tstamp mode
+	-- UNTIL
+BYE
