@@ -1,0 +1,10 @@
+-- Скрипт-файл для доставки в учебный стенд SDK-1.1 загрузочного модуля
+-- в формате Intel HEX, располагающегося в файле bin\example.hex
+
+-- Для использования другого COM-порта поменяйте
+-- параметр 'com2' на com1, com3 или com4
+9600 openchannel com1   
+                        
+-- loadhex bin\example.hex
+loadhex BIN\lab4.hex
+0 term

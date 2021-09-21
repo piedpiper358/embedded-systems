@@ -1,0 +1,699 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.0 #5416 (Mar 22 2009) (MINGW32)
+                              4 ; This file was generated Thu Jan 24 15:28:39 2019
+                              5 ;--------------------------------------------------------
+                              6 	.module eeprom
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _WriteBlockEEPROM
+                             13 	.globl _ReadBlockEEPROM
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (DATA)
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (DATA)
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable register banks
+                             24 ;--------------------------------------------------------
+                             25 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      26 	.ds 8
+                             27 ;--------------------------------------------------------
+                             28 ; overlayable bit register bank
+                             29 ;--------------------------------------------------------
+                             30 	.area BIT_BANK	(REL,OVR,DATA)
+   0000                      31 bits:
+   0000                      32 	.ds 1
+                    8000     33 	b0 = bits[0]
+                    8100     34 	b1 = bits[1]
+                    8200     35 	b2 = bits[2]
+                    8300     36 	b3 = bits[3]
+                    8400     37 	b4 = bits[4]
+                    8500     38 	b5 = bits[5]
+                    8600     39 	b6 = bits[6]
+                    8700     40 	b7 = bits[7]
+                             41 ;--------------------------------------------------------
+                             42 ; internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area DSEG    (DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; overlayable items in internal ram 
+                             47 ;--------------------------------------------------------
+                             48 	.area OSEG    (OVR,DATA)
+                             49 ;--------------------------------------------------------
+                             50 ; indirectly addressable internal ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area ISEG    (DATA)
+                             53 ;--------------------------------------------------------
+                             54 ; absolute internal ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area IABS    (ABS,DATA)
+                             57 	.area IABS    (ABS,DATA)
+                             58 ;--------------------------------------------------------
+                             59 ; bit data
+                             60 ;--------------------------------------------------------
+                             61 	.area BSEG    (BIT)
+                             62 ;--------------------------------------------------------
+                             63 ; paged external ram data
+                             64 ;--------------------------------------------------------
+                             65 	.area PSEG    (PAG,XDATA)
+                             66 ;--------------------------------------------------------
+                             67 ; external ram data
+                             68 ;--------------------------------------------------------
+                             69 	.area XSEG    (XDATA)
+                             70 ;--------------------------------------------------------
+                             71 ; absolute external ram data
+                             72 ;--------------------------------------------------------
+                             73 	.area XABS    (ABS,XDATA)
+                             74 ;--------------------------------------------------------
+                             75 ; external initialized ram data
+                             76 ;--------------------------------------------------------
+                             77 	.area XISEG   (XDATA)
+                             78 	.area HOME    (CODE)
+                             79 	.area GSINIT0 (CODE)
+                             80 	.area GSINIT1 (CODE)
+                             81 	.area GSINIT2 (CODE)
+                             82 	.area GSINIT3 (CODE)
+                             83 	.area GSINIT4 (CODE)
+                             84 	.area GSINIT5 (CODE)
+                             85 	.area GSINIT  (CODE)
+                             86 	.area GSFINAL (CODE)
+                             87 	.area CSEG    (CODE)
+                             88 ;--------------------------------------------------------
+                             89 ; global & static initialisations
+                             90 ;--------------------------------------------------------
+                             91 	.area HOME    (CODE)
+                             92 	.area GSINIT  (CODE)
+                             93 	.area GSFINAL (CODE)
+                             94 	.area GSINIT  (CODE)
+                             95 ;--------------------------------------------------------
+                             96 ; Home
+                             97 ;--------------------------------------------------------
+                             98 	.area HOME    (CODE)
+                             99 	.area HOME    (CODE)
+                            100 ;--------------------------------------------------------
+                            101 ; code
+                            102 ;--------------------------------------------------------
+                            103 	.area CSEG    (CODE)
+                            104 ;------------------------------------------------------------
+                            105 ;Allocation info for local variables in function 'WriteBlockEEPROM'
+                            106 ;------------------------------------------------------------
+                            107 ;buf                       Allocated to stack - offset -4
+                            108 ;length                    Allocated to stack - offset -5
+                            109 ;address                   Allocated to stack - offset 1
+                            110 ;try                       Allocated to registers r5 r6 
+                            111 ;pages                     Allocated to stack - offset 2
+                            112 ;i                         Allocated to registers r5 
+                            113 ;finalRemainder            Allocated to stack - offset 3
+                            114 ;initialRemainder          Allocated to stack - offset 4
+                            115 ;sloc0                     Allocated to stack - offset 5
+                            116 ;------------------------------------------------------------
+                            117 ;	SRC/eeprom.c:62: bit WriteBlockEEPROM(unsigned char address, unsigned char xdata *buf, unsigned char length)
+                            118 ;	-----------------------------------------
+                            119 ;	 function WriteBlockEEPROM
+                            120 ;	-----------------------------------------
+   0000                     121 _WriteBlockEEPROM:
+                    0002    122 	ar2 = 0x02
+                    0003    123 	ar3 = 0x03
+                    0004    124 	ar4 = 0x04
+                    0005    125 	ar5 = 0x05
+                    0006    126 	ar6 = 0x06
+                    0007    127 	ar7 = 0x07
+                    0000    128 	ar0 = 0x00
+                    0001    129 	ar1 = 0x01
+   0000 C0*00               130 	push	_bp
+   0002 85 81*00            131 	mov	_bp,sp
+   0005 C0 82               132 	push	dpl
+   0007 E5 81               133 	mov	a,sp
+   0009 24 05               134 	add	a,#0x05
+   000B F5 81               135 	mov	sp,a
+                            136 ;	SRC/eeprom.c:67: if((address + length) > EEPROM_SIZE) 
+   000D A8*00               137 	mov	r0,_bp
+   000F 08                  138 	inc	r0
+   0010 86 03               139 	mov	ar3,@r0
+   0012 7C 00               140 	mov	r4,#0x00
+   0014 E5*00               141 	mov	a,_bp
+   0016 24 FB               142 	add	a,#0xfb
+   0018 F8                  143 	mov	r0,a
+   0019 86 05               144 	mov	ar5,@r0
+   001B 7E 00               145 	mov	r6,#0x00
+   001D ED                  146 	mov	a,r5
+   001E 2B                  147 	add	a,r3
+   001F FF                  148 	mov	r7,a
+   0020 EE                  149 	mov	a,r6
+   0021 3C                  150 	addc	a,r4
+   0022 FA                  151 	mov	r2,a
+   0023 C3                  152 	clr	c
+   0024 74 80               153 	mov	a,#0x80
+   0026 9F                  154 	subb	a,r7
+   0027 74 80               155 	mov	a,#(0x00 ^ 0x80)
+   0029 8A F0               156 	mov	b,r2
+   002B 63 F0 80            157 	xrl	b,#0x80
+   002E 95 F0               158 	subb	a,b
+   0030 50 04               159 	jnc	00102$
+                            160 ;	SRC/eeprom.c:69: return 1;
+   0032 D3                  161 	setb	c
+   0033 02s02rB6            162 	ljmp	00135$
+   0036                     163 00102$:
+                            164 ;	SRC/eeprom.c:72: if(address/PAGE_SIZE == (address+length)/PAGE_SIZE){
+   0036 A8*00               165 	mov	r0,_bp
+   0038 08                  166 	inc	r0
+   0039 E6                  167 	mov	a,@r0
+   003A C4                  168 	swap	a
+   003B 23                  169 	rl	a
+   003C 54 1F               170 	anl	a,#0x1f
+   003E FA                  171 	mov	r2,a
+   003F ED                  172 	mov	a,r5
+   0040 2B                  173 	add	a,r3
+   0041 F5 82               174 	mov	dpl,a
+   0043 EE                  175 	mov	a,r6
+   0044 3C                  176 	addc	a,r4
+   0045 F5 83               177 	mov	dph,a
+   0047 C0 02               178 	push	ar2
+   0049 C0 05               179 	push	ar5
+   004B C0 06               180 	push	ar6
+   004D 74 08               181 	mov	a,#0x08
+   004F C0 E0               182 	push	acc
+   0051 E4                  183 	clr	a
+   0052 C0 E0               184 	push	acc
+   0054 12s00r00            185 	lcall	__divsint
+   0057 AB 82               186 	mov	r3,dpl
+   0059 AC 83               187 	mov	r4,dph
+   005B 15 81               188 	dec	sp
+   005D 15 81               189 	dec	sp
+   005F D0 06               190 	pop	ar6
+   0061 D0 05               191 	pop	ar5
+   0063 D0 02               192 	pop	ar2
+   0065 7F 00               193 	mov	r7,#0x00
+   0067 EA                  194 	mov	a,r2
+   0068 B5 03 12            195 	cjne	a,ar3,00104$
+   006B EF                  196 	mov	a,r7
+   006C B5 04 0E            197 	cjne	a,ar4,00104$
+                            198 ;	SRC/eeprom.c:74: initialRemainder = length /*- address % PAGE_SIZE*/;
+   006F E5*00               199 	mov	a,_bp
+   0071 24 FB               200 	add	a,#0xfb
+   0073 F8                  201 	mov	r0,a
+   0074 E5*00               202 	mov	a,_bp
+   0076 24 04               203 	add	a,#0x04
+   0078 F9                  204 	mov	r1,a
+   0079 E6                  205 	mov	a,@r0
+   007A F7                  206 	mov	@r1,a
+   007B 80 34               207 	sjmp	00105$
+   007D                     208 00104$:
+                            209 ;	SRC/eeprom.c:77: initialRemainder = (PAGE_SIZE - address % PAGE_SIZE) % PAGE_SIZE;
+   007D A8*00               210 	mov	r0,_bp
+   007F 08                  211 	inc	r0
+   0080 74 07               212 	mov	a,#0x07
+   0082 56                  213 	anl	a,@r0
+   0083 FB                  214 	mov	r3,a
+   0084 7C 00               215 	mov	r4,#0x00
+   0086 74 08               216 	mov	a,#0x08
+   0088 C3                  217 	clr	c
+   0089 9B                  218 	subb	a,r3
+   008A F5 82               219 	mov	dpl,a
+   008C E4                  220 	clr	a
+   008D 9C                  221 	subb	a,r4
+   008E F5 83               222 	mov	dph,a
+   0090 C0 05               223 	push	ar5
+   0092 C0 06               224 	push	ar6
+   0094 74 08               225 	mov	a,#0x08
+   0096 C0 E0               226 	push	acc
+   0098 E4                  227 	clr	a
+   0099 C0 E0               228 	push	acc
+   009B 12s00r00            229 	lcall	__modsint
+   009E AB 82               230 	mov	r3,dpl
+   00A0 AC 83               231 	mov	r4,dph
+   00A2 15 81               232 	dec	sp
+   00A4 15 81               233 	dec	sp
+   00A6 D0 06               234 	pop	ar6
+   00A8 D0 05               235 	pop	ar5
+   00AA E5*00               236 	mov	a,_bp
+   00AC 24 04               237 	add	a,#0x04
+   00AE F8                  238 	mov	r0,a
+   00AF A6 03               239 	mov	@r0,ar3
+   00B1                     240 00105$:
+                            241 ;	SRC/eeprom.c:79: pages = (length - initialRemainder) / PAGE_SIZE;
+   00B1 E5*00               242 	mov	a,_bp
+   00B3 24 04               243 	add	a,#0x04
+   00B5 F8                  244 	mov	r0,a
+   00B6 86 03               245 	mov	ar3,@r0
+   00B8 7C 00               246 	mov	r4,#0x00
+   00BA ED                  247 	mov	a,r5
+   00BB C3                  248 	clr	c
+   00BC 9B                  249 	subb	a,r3
+   00BD FD                  250 	mov	r5,a
+   00BE EE                  251 	mov	a,r6
+   00BF 9C                  252 	subb	a,r4
+   00C0 FE                  253 	mov	r6,a
+   00C1 C0 05               254 	push	ar5
+   00C3 C0 06               255 	push	ar6
+   00C5 74 08               256 	mov	a,#0x08
+   00C7 C0 E0               257 	push	acc
+   00C9 E4                  258 	clr	a
+   00CA C0 E0               259 	push	acc
+   00CC 8D 82               260 	mov	dpl,r5
+   00CE 8E 83               261 	mov	dph,r6
+   00D0 12s00r00            262 	lcall	__divsint
+   00D3 AB 82               263 	mov	r3,dpl
+   00D5 15 81               264 	dec	sp
+   00D7 15 81               265 	dec	sp
+   00D9 D0 06               266 	pop	ar6
+   00DB D0 05               267 	pop	ar5
+   00DD A8*00               268 	mov	r0,_bp
+   00DF 08                  269 	inc	r0
+   00E0 08                  270 	inc	r0
+   00E1 A6 03               271 	mov	@r0,ar3
+                            272 ;	SRC/eeprom.c:80: finalRemainder = (length - initialRemainder) % PAGE_SIZE;
+   00E3 74 08               273 	mov	a,#0x08
+   00E5 C0 E0               274 	push	acc
+   00E7 E4                  275 	clr	a
+   00E8 C0 E0               276 	push	acc
+   00EA 8D 82               277 	mov	dpl,r5
+   00EC 8E 83               278 	mov	dph,r6
+   00EE 12s00r00            279 	lcall	__modsint
+   00F1 AC 82               280 	mov	r4,dpl
+   00F3 AD 83               281 	mov	r5,dph
+   00F5 15 81               282 	dec	sp
+   00F7 15 81               283 	dec	sp
+   00F9 A8*00               284 	mov	r0,_bp
+   00FB 08                  285 	inc	r0
+   00FC 08                  286 	inc	r0
+   00FD 08                  287 	inc	r0
+   00FE A6 04               288 	mov	@r0,ar4
+                            289 ;	SRC/eeprom.c:99: if( initialRemainder )
+   0100 E5*00               290 	mov	a,_bp
+   0102 24 04               291 	add	a,#0x04
+   0104 F8                  292 	mov	r0,a
+   0105 E6                  293 	mov	a,@r0
+   0106 60 58               294 	jz	00114$
+                            295 ;	SRC/eeprom.c:102: while(!GetAck(EEPROM_ADDRESS))
+   0108 7D 00               296 	mov	r5,#0x00
+   010A 7E 00               297 	mov	r6,#0x00
+   010C                     298 00108$:
+   010C 75 82 A2            299 	mov	dpl,#0xA2
+   010F C0 05               300 	push	ar5
+   0111 C0 06               301 	push	ar6
+   0113 12s00r00            302 	lcall	_GetAck
+   0116 D0 06               303 	pop	ar6
+   0118 D0 05               304 	pop	ar5
+   011A 40 12               305 	jc	00110$
+                            306 ;	SRC/eeprom.c:104: if(++try > 5000)
+   011C 0D                  307 	inc	r5
+   011D BD 00 01            308 	cjne	r5,#0x00,00160$
+   0120 0E                  309 	inc	r6
+   0121                     310 00160$:
+   0121 C3                  311 	clr	c
+   0122 74 88               312 	mov	a,#0x88
+   0124 9D                  313 	subb	a,r5
+   0125 74 13               314 	mov	a,#0x13
+   0127 9E                  315 	subb	a,r6
+   0128 50 E2               316 	jnc	00108$
+                            317 ;	SRC/eeprom.c:106: return 1; //EEPROM failed to respond
+   012A D3                  318 	setb	c
+   012B 02s02rB6            319 	ljmp	00135$
+   012E                     320 00110$:
+                            321 ;	SRC/eeprom.c:110: if( TransmitBlock(EEPROM_ADDRESS, address, buf, initialRemainder) )
+   012E E5*00               322 	mov	a,_bp
+   0130 24 04               323 	add	a,#0x04
+   0132 F8                  324 	mov	r0,a
+   0133 E6                  325 	mov	a,@r0
+   0134 C0 E0               326 	push	acc
+   0136 E5*00               327 	mov	a,_bp
+   0138 24 FC               328 	add	a,#0xfc
+   013A F8                  329 	mov	r0,a
+   013B E6                  330 	mov	a,@r0
+   013C C0 E0               331 	push	acc
+   013E 08                  332 	inc	r0
+   013F E6                  333 	mov	a,@r0
+   0140 C0 E0               334 	push	acc
+   0142 A8*00               335 	mov	r0,_bp
+   0144 08                  336 	inc	r0
+   0145 E6                  337 	mov	a,@r0
+   0146 C0 E0               338 	push	acc
+   0148 75 82 A2            339 	mov	dpl,#0xA2
+   014B 12s00r00            340 	lcall	_TransmitBlock
+   014E 92 D5               341 	mov	F0,c
+   0150 E5 81               342 	mov	a,sp
+   0152 24 FC               343 	add	a,#0xfc
+   0154 F5 81               344 	mov	sp,a
+   0156 A2 D5               345 	mov	c,F0
+   0158 92*00               346 	mov	b0,c
+   015A 50 04               347 	jnc	00114$
+                            348 ;	SRC/eeprom.c:112: return 1; //Error writing
+   015C D3                  349 	setb	c
+   015D 02s02rB6            350 	ljmp	00135$
+   0160                     351 00114$:
+                            352 ;	SRC/eeprom.c:117: for(i = 0; i < pages; ++i)
+   0160 7D 00               353 	mov	r5,#0x00
+   0162 E5*00               354 	mov	a,_bp
+   0164 24 FC               355 	add	a,#0xfc
+   0166 F8                  356 	mov	r0,a
+   0167 E5*00               357 	mov	a,_bp
+   0169 24 04               358 	add	a,#0x04
+   016B F9                  359 	mov	r1,a
+   016C E7                  360 	mov	a,@r1
+   016D 26                  361 	add	a,@r0
+   016E FE                  362 	mov	r6,a
+   016F E4                  363 	clr	a
+   0170 08                  364 	inc	r0
+   0171 36                  365 	addc	a,@r0
+   0172 FF                  366 	mov	r7,a
+   0173 A8*00               367 	mov	r0,_bp
+   0175 08                  368 	inc	r0
+   0176 E5*00               369 	mov	a,_bp
+   0178 24 04               370 	add	a,#0x04
+   017A F9                  371 	mov	r1,a
+   017B E7                  372 	mov	a,@r1
+   017C 26                  373 	add	a,@r0
+   017D C0 E0               374 	push	acc
+   017F E5*00               375 	mov	a,_bp
+   0181 24 05               376 	add	a,#0x05
+   0183 F8                  377 	mov	r0,a
+   0184 D0 E0               378 	pop	acc
+   0186 F6                  379 	mov	@r0,a
+   0187 7C 00               380 	mov	r4,#0x00
+   0189                     381 00131$:
+   0189 A8*00               382 	mov	r0,_bp
+   018B 08                  383 	inc	r0
+   018C 08                  384 	inc	r0
+   018D C3                  385 	clr	c
+   018E EC                  386 	mov	a,r4
+   018F 96                  387 	subb	a,@r0
+   0190 40 03               388 	jc	00163$
+   0192 02s02r2A            389 	ljmp	00134$
+   0195                     390 00163$:
+                            391 ;	SRC/eeprom.c:120: while(!GetAck(EEPROM_ADDRESS))
+   0195 7B 00               392 	mov	r3,#0x00
+   0197 7A 00               393 	mov	r2,#0x00
+   0199                     394 00117$:
+   0199 75 82 A2            395 	mov	dpl,#0xA2
+   019C C0 02               396 	push	ar2
+   019E C0 03               397 	push	ar3
+   01A0 C0 04               398 	push	ar4
+   01A2 C0 06               399 	push	ar6
+   01A4 C0 07               400 	push	ar7
+   01A6 12s00r00            401 	lcall	_GetAck
+   01A9 D0 07               402 	pop	ar7
+   01AB D0 06               403 	pop	ar6
+   01AD D0 04               404 	pop	ar4
+   01AF D0 03               405 	pop	ar3
+   01B1 D0 02               406 	pop	ar2
+   01B3 40 12               407 	jc	00119$
+                            408 ;	SRC/eeprom.c:122: if(++try > 5000)
+   01B5 0B                  409 	inc	r3
+   01B6 BB 00 01            410 	cjne	r3,#0x00,00165$
+   01B9 0A                  411 	inc	r2
+   01BA                     412 00165$:
+   01BA C3                  413 	clr	c
+   01BB 74 88               414 	mov	a,#0x88
+   01BD 9B                  415 	subb	a,r3
+   01BE 74 13               416 	mov	a,#0x13
+   01C0 9A                  417 	subb	a,r2
+   01C1 50 D6               418 	jnc	00117$
+                            419 ;	SRC/eeprom.c:124: return 1; //EEPROM failed to respond
+   01C3 D3                  420 	setb	c
+   01C4 02s02rB6            421 	ljmp	00135$
+   01C7                     422 00119$:
+                            423 ;	SRC/eeprom.c:128: if( TransmitBlock(EEPROM_ADDRESS, address + initialRemainder + (i<<3), buf + initialRemainder + (i<<3), PAGE_SIZE) )
+   01C7 8C 02               424 	mov	ar2,r4
+   01C9 E4                  425 	clr	a
+   01CA C4                  426 	swap	a
+   01CB 03                  427 	rr	a
+   01CC 54 F8               428 	anl	a,#0xf8
+   01CE CA                  429 	xch	a,r2
+   01CF C4                  430 	swap	a
+   01D0 03                  431 	rr	a
+   01D1 CA                  432 	xch	a,r2
+   01D2 6A                  433 	xrl	a,r2
+   01D3 CA                  434 	xch	a,r2
+   01D4 54 F8               435 	anl	a,#0xf8
+   01D6 CA                  436 	xch	a,r2
+   01D7 6A                  437 	xrl	a,r2
+   01D8 FB                  438 	mov	r3,a
+   01D9 EA                  439 	mov	a,r2
+   01DA 2E                  440 	add	a,r6
+   01DB FA                  441 	mov	r2,a
+   01DC EB                  442 	mov	a,r3
+   01DD 3F                  443 	addc	a,r7
+   01DE FB                  444 	mov	r3,a
+   01DF C0 06               445 	push	ar6
+   01E1 C0 07               446 	push	ar7
+   01E3 EC                  447 	mov	a,r4
+   01E4 C4                  448 	swap	a
+   01E5 03                  449 	rr	a
+   01E6 54 F8               450 	anl	a,#0xf8
+   01E8 FE                  451 	mov	r6,a
+   01E9 E5*00               452 	mov	a,_bp
+   01EB 24 05               453 	add	a,#0x05
+   01ED F8                  454 	mov	r0,a
+   01EE EE                  455 	mov	a,r6
+   01EF 26                  456 	add	a,@r0
+   01F0 FE                  457 	mov	r6,a
+   01F1 C0 04               458 	push	ar4
+   01F3 C0 06               459 	push	ar6
+   01F5 C0 07               460 	push	ar7
+   01F7 74 08               461 	mov	a,#0x08
+   01F9 C0 E0               462 	push	acc
+   01FB C0 02               463 	push	ar2
+   01FD C0 03               464 	push	ar3
+   01FF C0 06               465 	push	ar6
+   0201 75 82 A2            466 	mov	dpl,#0xA2
+   0204 12s00r00            467 	lcall	_TransmitBlock
+   0207 92 D5               468 	mov	F0,c
+   0209 E5 81               469 	mov	a,sp
+   020B 24 FC               470 	add	a,#0xfc
+   020D F5 81               471 	mov	sp,a
+   020F D0 07               472 	pop	ar7
+   0211 D0 06               473 	pop	ar6
+   0213 D0 04               474 	pop	ar4
+   0215 A2 D5               475 	mov	c,F0
+   0217 92*00               476 	mov	b0,c
+   0219 D0 07               477 	pop	ar7
+   021B D0 06               478 	pop	ar6
+   021D 30*00 04            479 	jnb	b0,00133$
+                            480 ;	SRC/eeprom.c:130: return 1; //Error writing
+   0220 D3                  481 	setb	c
+   0221 02s02rB6            482 	ljmp	00135$
+   0224                     483 00133$:
+                            484 ;	SRC/eeprom.c:117: for(i = 0; i < pages; ++i)
+   0224 0C                  485 	inc	r4
+   0225 8C 05               486 	mov	ar5,r4
+   0227 02s01r89            487 	ljmp	00131$
+   022A                     488 00134$:
+                            489 ;	SRC/eeprom.c:134: if( finalRemainder )
+   022A A8*00               490 	mov	r0,_bp
+   022C 08                  491 	inc	r0
+   022D 08                  492 	inc	r0
+   022E 08                  493 	inc	r0
+   022F E6                  494 	mov	a,@r0
+   0230 70 03               495 	jnz	00168$
+   0232 02s02rB5            496 	ljmp	00130$
+   0235                     497 00168$:
+                            498 ;	SRC/eeprom.c:137: while(!GetAck(EEPROM_ADDRESS))
+   0235 7A 00               499 	mov	r2,#0x00
+   0237 7B 00               500 	mov	r3,#0x00
+   0239                     501 00124$:
+   0239 75 82 A2            502 	mov	dpl,#0xA2
+   023C C0 02               503 	push	ar2
+   023E C0 03               504 	push	ar3
+   0240 C0 05               505 	push	ar5
+   0242 C0 06               506 	push	ar6
+   0244 C0 07               507 	push	ar7
+   0246 12s00r00            508 	lcall	_GetAck
+   0249 D0 07               509 	pop	ar7
+   024B D0 06               510 	pop	ar6
+   024D D0 05               511 	pop	ar5
+   024F D0 03               512 	pop	ar3
+   0251 D0 02               513 	pop	ar2
+   0253 40 11               514 	jc	00126$
+                            515 ;	SRC/eeprom.c:139: if(++try > 5000)
+   0255 0A                  516 	inc	r2
+   0256 BA 00 01            517 	cjne	r2,#0x00,00170$
+   0259 0B                  518 	inc	r3
+   025A                     519 00170$:
+   025A C3                  520 	clr	c
+   025B 74 88               521 	mov	a,#0x88
+   025D 9A                  522 	subb	a,r2
+   025E 74 13               523 	mov	a,#0x13
+   0260 9B                  524 	subb	a,r3
+   0261 50 D6               525 	jnc	00124$
+                            526 ;	SRC/eeprom.c:141: return 1; //EEPROM failed to respond
+   0263 D3                  527 	setb	c
+   0264 80 50               528 	sjmp	00135$
+   0266                     529 00126$:
+                            530 ;	SRC/eeprom.c:145: if( TransmitBlock(EEPROM_ADDRESS, address + initialRemainder + (i<<3), buf + initialRemainder + (i<<3), finalRemainder) )
+   0266 8D 02               531 	mov	ar2,r5
+   0268 E4                  532 	clr	a
+   0269 C4                  533 	swap	a
+   026A 03                  534 	rr	a
+   026B 54 F8               535 	anl	a,#0xf8
+   026D CA                  536 	xch	a,r2
+   026E C4                  537 	swap	a
+   026F 03                  538 	rr	a
+   0270 CA                  539 	xch	a,r2
+   0271 6A                  540 	xrl	a,r2
+   0272 CA                  541 	xch	a,r2
+   0273 54 F8               542 	anl	a,#0xf8
+   0275 CA                  543 	xch	a,r2
+   0276 6A                  544 	xrl	a,r2
+   0277 FB                  545 	mov	r3,a
+   0278 EA                  546 	mov	a,r2
+   0279 2E                  547 	add	a,r6
+   027A FE                  548 	mov	r6,a
+   027B EB                  549 	mov	a,r3
+   027C 3F                  550 	addc	a,r7
+   027D FF                  551 	mov	r7,a
+   027E A8*00               552 	mov	r0,_bp
+   0280 08                  553 	inc	r0
+   0281 E5*00               554 	mov	a,_bp
+   0283 24 04               555 	add	a,#0x04
+   0285 F9                  556 	mov	r1,a
+   0286 E7                  557 	mov	a,@r1
+   0287 26                  558 	add	a,@r0
+   0288 FA                  559 	mov	r2,a
+   0289 ED                  560 	mov	a,r5
+   028A C4                  561 	swap	a
+   028B 03                  562 	rr	a
+   028C 54 F8               563 	anl	a,#0xf8
+   028E 2A                  564 	add	a,r2
+   028F FA                  565 	mov	r2,a
+   0290 A8*00               566 	mov	r0,_bp
+   0292 08                  567 	inc	r0
+   0293 08                  568 	inc	r0
+   0294 08                  569 	inc	r0
+   0295 E6                  570 	mov	a,@r0
+   0296 C0 E0               571 	push	acc
+   0298 C0 06               572 	push	ar6
+   029A C0 07               573 	push	ar7
+   029C C0 02               574 	push	ar2
+   029E 75 82 A2            575 	mov	dpl,#0xA2
+   02A1 12s00r00            576 	lcall	_TransmitBlock
+   02A4 92 D5               577 	mov	F0,c
+   02A6 E5 81               578 	mov	a,sp
+   02A8 24 FC               579 	add	a,#0xfc
+   02AA F5 81               580 	mov	sp,a
+   02AC A2 D5               581 	mov	c,F0
+   02AE 92*00               582 	mov	b0,c
+   02B0 50 03               583 	jnc	00130$
+                            584 ;	SRC/eeprom.c:147: return 1; //Error writing
+   02B2 D3                  585 	setb	c
+   02B3 80 01               586 	sjmp	00135$
+   02B5                     587 00130$:
+                            588 ;	SRC/eeprom.c:151: return 0;
+   02B5 C3                  589 	clr	c
+   02B6                     590 00135$:
+   02B6 85*00 81            591 	mov	sp,_bp
+   02B9 D0*00               592 	pop	_bp
+   02BB 22                  593 	ret
+                            594 ;------------------------------------------------------------
+                            595 ;Allocation info for local variables in function 'ReadBlockEEPROM'
+                            596 ;------------------------------------------------------------
+                            597 ;buf                       Allocated to stack - offset -4
+                            598 ;length                    Allocated to stack - offset -5
+                            599 ;address                   Allocated to registers r2 
+                            600 ;try                       Allocated to registers r3 r4 
+                            601 ;------------------------------------------------------------
+                            602 ;	SRC/eeprom.c:169: bit ReadBlockEEPROM(unsigned char address, unsigned char xdata *buf, unsigned char length)
+                            603 ;	-----------------------------------------
+                            604 ;	 function ReadBlockEEPROM
+                            605 ;	-----------------------------------------
+   02BC                     606 _ReadBlockEEPROM:
+   02BC C0*00               607 	push	_bp
+   02BE 85 81*00            608 	mov	_bp,sp
+   02C1 AA 82               609 	mov	r2,dpl
+                            610 ;	SRC/eeprom.c:173: if((address + length) > EEPROM_SIZE) return 1;
+   02C3 8A 03               611 	mov	ar3,r2
+   02C5 7C 00               612 	mov	r4,#0x00
+   02C7 E5*00               613 	mov	a,_bp
+   02C9 24 FB               614 	add	a,#0xfb
+   02CB F8                  615 	mov	r0,a
+   02CC 86 05               616 	mov	ar5,@r0
+   02CE 7E 00               617 	mov	r6,#0x00
+   02D0 ED                  618 	mov	a,r5
+   02D1 2B                  619 	add	a,r3
+   02D2 FB                  620 	mov	r3,a
+   02D3 EE                  621 	mov	a,r6
+   02D4 3C                  622 	addc	a,r4
+   02D5 FC                  623 	mov	r4,a
+   02D6 C3                  624 	clr	c
+   02D7 74 80               625 	mov	a,#0x80
+   02D9 9B                  626 	subb	a,r3
+   02DA 74 80               627 	mov	a,#(0x00 ^ 0x80)
+   02DC 8C F0               628 	mov	b,r4
+   02DE 63 F0 80            629 	xrl	b,#0x80
+   02E1 95 F0               630 	subb	a,b
+   02E3 50 03               631 	jnc	00114$
+   02E5 D3                  632 	setb	c
+                            633 ;	SRC/eeprom.c:176: while(!GetAck(EEPROM_ADDRESS))
+   02E6 80 57               634 	sjmp	00110$
+   02E8                     635 00114$:
+   02E8 7B 00               636 	mov	r3,#0x00
+   02EA 7C 00               637 	mov	r4,#0x00
+   02EC                     638 00105$:
+   02EC 75 82 A2            639 	mov	dpl,#0xA2
+   02EF C0 02               640 	push	ar2
+   02F1 C0 03               641 	push	ar3
+   02F3 C0 04               642 	push	ar4
+   02F5 12s00r00            643 	lcall	_GetAck
+   02F8 D0 04               644 	pop	ar4
+   02FA D0 03               645 	pop	ar3
+   02FC D0 02               646 	pop	ar2
+   02FE 40 11               647 	jc	00107$
+                            648 ;	SRC/eeprom.c:178: if(++try > 5000) // >10 мс
+   0300 0B                  649 	inc	r3
+   0301 BB 00 01            650 	cjne	r3,#0x00,00119$
+   0304 0C                  651 	inc	r4
+   0305                     652 00119$:
+   0305 C3                  653 	clr	c
+   0306 74 88               654 	mov	a,#0x88
+   0308 9B                  655 	subb	a,r3
+   0309 74 13               656 	mov	a,#0x13
+   030B 9C                  657 	subb	a,r4
+   030C 50 DE               658 	jnc	00105$
+                            659 ;	SRC/eeprom.c:179: return 1; //EEPROM failed to respond
+   030E D3                  660 	setb	c
+   030F 80 2E               661 	sjmp	00110$
+   0311                     662 00107$:
+                            663 ;	SRC/eeprom.c:182: if( ReceiveBlock(EEPROM_ADDRESS, address, buf, length) )
+   0311 E5*00               664 	mov	a,_bp
+   0313 24 FB               665 	add	a,#0xfb
+   0315 F8                  666 	mov	r0,a
+   0316 E6                  667 	mov	a,@r0
+   0317 C0 E0               668 	push	acc
+   0319 E5*00               669 	mov	a,_bp
+   031B 24 FC               670 	add	a,#0xfc
+   031D F8                  671 	mov	r0,a
+   031E E6                  672 	mov	a,@r0
+   031F C0 E0               673 	push	acc
+   0321 08                  674 	inc	r0
+   0322 E6                  675 	mov	a,@r0
+   0323 C0 E0               676 	push	acc
+   0325 C0 02               677 	push	ar2
+   0327 75 82 A2            678 	mov	dpl,#0xA2
+   032A 12s00r00            679 	lcall	_ReceiveBlock
+   032D 92 D5               680 	mov	F0,c
+   032F E5 81               681 	mov	a,sp
+   0331 24 FC               682 	add	a,#0xfc
+   0333 F5 81               683 	mov	sp,a
+   0335 A2 D5               684 	mov	c,F0
+   0337 92*00               685 	mov	b0,c
+   0339 50 03               686 	jnc	00109$
+                            687 ;	SRC/eeprom.c:184: return 1; //Error writing
+   033B D3                  688 	setb	c
+   033C 80 01               689 	sjmp	00110$
+   033E                     690 00109$:
+                            691 ;	SRC/eeprom.c:187: return 0;
+   033E C3                  692 	clr	c
+   033F                     693 00110$:
+   033F D0*00               694 	pop	_bp
+   0341 22                  695 	ret
+                            696 	.area CSEG    (CODE)
+                            697 	.area CONST   (CODE)
+                            698 	.area XINIT   (CODE)
+                            699 	.area CABS    (ABS,CODE)

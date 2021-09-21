@@ -1,0 +1,294 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.0 #5416 (Mar 22 2009) (MINGW32)
+                              4 ; This file was generated Thu Jan 24 22:14:53 2019
+                              5 ;--------------------------------------------------------
+                              6 	.module kb
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _ScanKBOnce
+                             13 	.globl _KBTable
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (DATA)
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (DATA)
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable register banks
+                             24 ;--------------------------------------------------------
+                             25 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      26 	.ds 8
+                             27 ;--------------------------------------------------------
+                             28 ; internal ram data
+                             29 ;--------------------------------------------------------
+                             30 	.area DSEG    (DATA)
+   0000                      31 _KBTable::
+   0000                      32 	.ds 17
+                             33 ;--------------------------------------------------------
+                             34 ; overlayable items in internal ram 
+                             35 ;--------------------------------------------------------
+                             36 	.area OSEG    (OVR,DATA)
+                             37 ;--------------------------------------------------------
+                             38 ; indirectly addressable internal ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area ISEG    (DATA)
+                             41 ;--------------------------------------------------------
+                             42 ; absolute internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area IABS    (ABS,DATA)
+                             45 	.area IABS    (ABS,DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; bit data
+                             48 ;--------------------------------------------------------
+                             49 	.area BSEG    (BIT)
+                             50 ;--------------------------------------------------------
+                             51 ; paged external ram data
+                             52 ;--------------------------------------------------------
+                             53 	.area PSEG    (PAG,XDATA)
+                             54 ;--------------------------------------------------------
+                             55 ; external ram data
+                             56 ;--------------------------------------------------------
+                             57 	.area XSEG    (XDATA)
+                             58 ;--------------------------------------------------------
+                             59 ; absolute external ram data
+                             60 ;--------------------------------------------------------
+                             61 	.area XABS    (ABS,XDATA)
+                             62 ;--------------------------------------------------------
+                             63 ; external initialized ram data
+                             64 ;--------------------------------------------------------
+                             65 	.area XISEG   (XDATA)
+                             66 	.area HOME    (CODE)
+                             67 	.area GSINIT0 (CODE)
+                             68 	.area GSINIT1 (CODE)
+                             69 	.area GSINIT2 (CODE)
+                             70 	.area GSINIT3 (CODE)
+                             71 	.area GSINIT4 (CODE)
+                             72 	.area GSINIT5 (CODE)
+                             73 	.area GSINIT  (CODE)
+                             74 	.area GSFINAL (CODE)
+                             75 	.area CSEG    (CODE)
+                             76 ;--------------------------------------------------------
+                             77 ; global & static initialisations
+                             78 ;--------------------------------------------------------
+                             79 	.area HOME    (CODE)
+                             80 	.area GSINIT  (CODE)
+                             81 	.area GSFINAL (CODE)
+                             82 	.area GSINIT  (CODE)
+                             83 ;	SRC/kb.c:40: char KBTable[]="147*2580369#ABCD"; //Таблица символов, соответствующих клавишам
+   0000 75*00 31             84 	mov	_KBTable,#0x31
+   0003 75*01 34             85 	mov	(_KBTable + 0x0001),#0x34
+   0006 75*02 37             86 	mov	(_KBTable + 0x0002),#0x37
+   0009 75*03 2A             87 	mov	(_KBTable + 0x0003),#0x2A
+   000C 75*04 32             88 	mov	(_KBTable + 0x0004),#0x32
+   000F 75*05 35             89 	mov	(_KBTable + 0x0005),#0x35
+   0012 75*06 38             90 	mov	(_KBTable + 0x0006),#0x38
+   0015 75*07 30             91 	mov	(_KBTable + 0x0007),#0x30
+   0018 75*08 33             92 	mov	(_KBTable + 0x0008),#0x33
+   001B 75*09 36             93 	mov	(_KBTable + 0x0009),#0x36
+   001E 75*0A 39             94 	mov	(_KBTable + 0x000a),#0x39
+   0021 75*0B 23             95 	mov	(_KBTable + 0x000b),#0x23
+   0024 75*0C 41             96 	mov	(_KBTable + 0x000c),#0x41
+   0027 75*0D 42             97 	mov	(_KBTable + 0x000d),#0x42
+   002A 75*0E 43             98 	mov	(_KBTable + 0x000e),#0x43
+   002D 75*0F 44             99 	mov	(_KBTable + 0x000f),#0x44
+   0030 75*10 00            100 	mov	(_KBTable + 0x0010),#0x00
+                            101 ;--------------------------------------------------------
+                            102 ; Home
+                            103 ;--------------------------------------------------------
+                            104 	.area HOME    (CODE)
+                            105 	.area HOME    (CODE)
+                            106 ;--------------------------------------------------------
+                            107 ; code
+                            108 ;--------------------------------------------------------
+                            109 	.area CSEG    (CODE)
+                            110 ;------------------------------------------------------------
+                            111 ;Allocation info for local variables in function 'ScanKBOnce'
+                            112 ;------------------------------------------------------------
+                            113 ;ch                        Allocated to stack - offset 1
+                            114 ;row                       Allocated to registers r3 
+                            115 ;col                       Allocated to registers r7 
+                            116 ;rownum                    Allocated to registers r7 
+                            117 ;colnum                    Allocated to stack - offset 4
+                            118 ;i                         Allocated to registers r6 r2 
+                            119 ;------------------------------------------------------------
+                            120 ;	SRC/kb.c:67: bit ScanKBOnce(char *ch)
+                            121 ;	-----------------------------------------
+                            122 ;	 function ScanKBOnce
+                            123 ;	-----------------------------------------
+   0000                     124 _ScanKBOnce:
+                    0002    125 	ar2 = 0x02
+                    0003    126 	ar3 = 0x03
+                    0004    127 	ar4 = 0x04
+                    0005    128 	ar5 = 0x05
+                    0006    129 	ar6 = 0x06
+                    0007    130 	ar7 = 0x07
+                    0000    131 	ar0 = 0x00
+                    0001    132 	ar1 = 0x01
+   0000 C0*00               133 	push	_bp
+   0002 85 81*00            134 	mov	_bp,sp
+   0005 C0 82               135 	push	dpl
+   0007 C0 83               136 	push	dph
+   0009 C0 F0               137 	push	b
+   000B 05 81               138 	inc	sp
+                            139 ;	SRC/kb.c:74: for(colnum = 0; colnum < 4; colnum++)
+   000D 7D 00               140 	mov	r5,#0x00
+   000F E5*00               141 	mov	a,_bp
+   0011 24 04               142 	add	a,#0x04
+   0013 F8                  143 	mov	r0,a
+   0014 76 00               144 	mov	@r0,#0x00
+   0016                     145 00113$:
+   0016 E5*00               146 	mov	a,_bp
+   0018 24 04               147 	add	a,#0x04
+   001A F8                  148 	mov	r0,a
+   001B B6 04 00            149 	cjne	@r0,#0x04,00128$
+   001E                     150 00128$:
+   001E 40 03               151 	jc	00129$
+   0020 02s00rE8            152 	ljmp	00116$
+   0023                     153 00129$:
+                            154 ;	SRC/kb.c:76: col = 0x1 << colnum; //0001,0010,0100,1000,0001,...
+   0023 E5*00               155 	mov	a,_bp
+   0025 24 04               156 	add	a,#0x04
+   0027 F8                  157 	mov	r0,a
+   0028 86 F0               158 	mov	b,@r0
+   002A 05 F0               159 	inc	b
+   002C 74 01               160 	mov	a,#0x01
+   002E 80 02               161 	sjmp	00132$
+   0030                     162 00130$:
+   0030 25 E0               163 	add	a,acc
+   0032                     164 00132$:
+   0032 D5 F0 FB            165 	djnz	b,00130$
+                            166 ;	SRC/kb.c:78: WriteMax(KB, ~col); //11111110,11111101,11111011,11110111,11111110,...
+   0035 F4                  167 	cpl	a
+   0036 FF                  168 	mov	r7,a
+   0037 C0 05               169 	push	ar5
+   0039 C0 07               170 	push	ar7
+   003B 90 00 00            171 	mov	dptr,#0x0000
+   003E 12s00r00            172 	lcall	_WriteMax
+   0041 15 81               173 	dec	sp
+   0043 D0 05               174 	pop	ar5
+                            175 ;	SRC/kb.c:82: for(rownum = 0; rownum < 4; rownum++)
+   0045 7F 00               176 	mov	r7,#0x00
+   0047 7C 00               177 	mov	r4,#0x00
+   0049                     178 00109$:
+   0049 BC 04 00            179 	cjne	r4,#0x04,00133$
+   004C                     180 00133$:
+   004C 40 03               181 	jc	00134$
+   004E 02s00rD8            182 	ljmp	00115$
+   0051                     183 00134$:
+                            184 ;	SRC/kb.c:84: row = ReadMax(KB) & (0x10 << rownum);
+   0051 C0 07               185 	push	ar7
+   0053 90 00 00            186 	mov	dptr,#0x0000
+   0056 C0 04               187 	push	ar4
+   0058 C0 05               188 	push	ar5
+   005A 12s00r00            189 	lcall	_ReadMax
+   005D AF 82               190 	mov	r7,dpl
+   005F D0 05               191 	pop	ar5
+   0061 D0 04               192 	pop	ar4
+   0063 8C F0               193 	mov	b,r4
+   0065 05 F0               194 	inc	b
+   0067 74 10               195 	mov	a,#0x10
+   0069 80 02               196 	sjmp	00137$
+   006B                     197 00135$:
+   006B 25 E0               198 	add	a,acc
+   006D                     199 00137$:
+   006D D5 F0 FB            200 	djnz	b,00135$
+   0070 FE                  201 	mov	r6,a
+   0071 52 07               202 	anl	ar7,a
+   0073 8F 03               203 	mov	ar3,r7
+                            204 ;	SRC/kb.c:85: if( !row ) //Обнаружено нажатие клавиши:
+   0075 D0 07               205 	pop	ar7
+   0077 EB                  206 	mov	a,r3
+                            207 ;	SRC/kb.c:87: for(i = 0; i<SECOND_SCAN_AFTER; i++)continue;//проверка на дребезг контакта:
+   0078 70 58               208 	jnz	00111$
+   007A FE                  209 	mov	r6,a
+   007B FA                  210 	mov	r2,a
+   007C                     211 00101$:
+   007C C3                  212 	clr	c
+   007D EE                  213 	mov	a,r6
+   007E 94 40               214 	subb	a,#0x40
+   0080 EA                  215 	mov	a,r2
+   0081 94 1F               216 	subb	a,#0x1F
+   0083 50 07               217 	jnc	00104$
+   0085 0E                  218 	inc	r6
+   0086 BE 00 F3            219 	cjne	r6,#0x00,00101$
+   0089 0A                  220 	inc	r2
+   008A 80 F0               221 	sjmp	00101$
+   008C                     222 00104$:
+                            223 ;	SRC/kb.c:90: row = ReadMax(KB) & (0x10 << rownum);
+   008C 90 00 00            224 	mov	dptr,#0x0000
+   008F C0 04               225 	push	ar4
+   0091 C0 05               226 	push	ar5
+   0093 C0 07               227 	push	ar7
+   0095 12s00r00            228 	lcall	_ReadMax
+   0098 AA 82               229 	mov	r2,dpl
+   009A D0 07               230 	pop	ar7
+   009C D0 05               231 	pop	ar5
+   009E D0 04               232 	pop	ar4
+   00A0 8C F0               233 	mov	b,r4
+   00A2 05 F0               234 	inc	b
+   00A4 74 10               235 	mov	a,#0x10
+   00A6 80 02               236 	sjmp	00142$
+   00A8                     237 00140$:
+   00A8 25 E0               238 	add	a,acc
+   00AA                     239 00142$:
+   00AA D5 F0 FB            240 	djnz	b,00140$
+   00AD 52 02               241 	anl	ar2,a
+   00AF 8A 03               242 	mov	ar3,r2
+                            243 ;	SRC/kb.c:91: if( !row )
+   00B1 EB                  244 	mov	a,r3
+   00B2 70 1E               245 	jnz	00111$
+                            246 ;	SRC/kb.c:93: *ch = (KBTable[(colnum<<2) + rownum]);
+   00B4 ED                  247 	mov	a,r5
+   00B5 2D                  248 	add	a,r5
+   00B6 25 E0               249 	add	a,acc
+   00B8 FA                  250 	mov	r2,a
+   00B9 EF                  251 	mov	a,r7
+   00BA 2A                  252 	add	a,r2
+   00BB 24r00               253 	add	a,#_KBTable
+   00BD F8                  254 	mov	r0,a
+   00BE 86 02               255 	mov	ar2,@r0
+   00C0 A8*00               256 	mov	r0,_bp
+   00C2 08                  257 	inc	r0
+   00C3 86 82               258 	mov	dpl,@r0
+   00C5 08                  259 	inc	r0
+   00C6 86 83               260 	mov	dph,@r0
+   00C8 08                  261 	inc	r0
+   00C9 86 F0               262 	mov	b,@r0
+   00CB EA                  263 	mov	a,r2
+   00CC 12s00r00            264 	lcall	__gptrput
+                            265 ;	SRC/kb.c:94: return 1; //Стабильное нажатие клавиши
+   00CF D3                  266 	setb	c
+   00D0 80 17               267 	sjmp	00117$
+   00D2                     268 00111$:
+                            269 ;	SRC/kb.c:82: for(rownum = 0; rownum < 4; rownum++)
+   00D2 0C                  270 	inc	r4
+   00D3 8C 07               271 	mov	ar7,r4
+   00D5 02s00r49            272 	ljmp	00109$
+   00D8                     273 00115$:
+                            274 ;	SRC/kb.c:74: for(colnum = 0; colnum < 4; colnum++)
+   00D8 E5*00               275 	mov	a,_bp
+   00DA 24 04               276 	add	a,#0x04
+   00DC F8                  277 	mov	r0,a
+   00DD 06                  278 	inc	@r0
+   00DE E5*00               279 	mov	a,_bp
+   00E0 24 04               280 	add	a,#0x04
+   00E2 F8                  281 	mov	r0,a
+   00E3 86 05               282 	mov	ar5,@r0
+   00E5 02s00r16            283 	ljmp	00113$
+   00E8                     284 00116$:
+                            285 ;	SRC/kb.c:102: return 0; //Ни одна клавиша не нажата
+   00E8 C3                  286 	clr	c
+   00E9                     287 00117$:
+   00E9 85*00 81            288 	mov	sp,_bp
+   00EC D0*00               289 	pop	_bp
+   00EE 22                  290 	ret
+                            291 	.area CSEG    (CODE)
+                            292 	.area CONST   (CODE)
+                            293 	.area XINIT   (CODE)
+                            294 	.area CABS    (ABS,CODE)

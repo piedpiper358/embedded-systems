@@ -1,0 +1,24 @@
+-myuxi
+-Y
+-b HOME = 0x2100
+-b XSEG = 0x6000
+-b PSEG = 0x6000
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-b SSEG = 0x0080
+-k C:\Program Files (x86)\SDCC\bin\..\lib\small-stack-auto
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+OBJ/max.rel
+OBJ/lcd.rel
+OBJ/kb.rel
+OBJ/sio.rel
+OBJ/rtc.rel
+OBJ/eeprom.rel
+OBJ/i2c.rel
+OBJ/lab4.rel
+
+-e

@@ -1,0 +1,3510 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.0 #5416 (Mar 22 2009) (MINGW32)
+                              4 ; This file was generated Thu Jan 24 22:49:04 2019
+                              5 ;--------------------------------------------------------
+                              6 	.module lab4
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _main
+                             13 	.globl _PrintConLog
+                             14 	.globl _DecipherCode
+                             15 	.globl _CompareEEPROM
+                             16 	.globl _CompareString
+                             17 	.globl _PrintTime
+                             18 	.globl _dip
+                             19 	.globl _LCD_TypeAnimation
+                             20 	.globl _PrintString
+                             21 	.globl _delay
+                             22 	.globl _CheckTimeLimitSec
+                             23 	.globl _CheckTimeLimitHsec
+                             24 	.globl _getTime
+                             25 	.globl _SPR0
+                             26 	.globl _SPR1
+                             27 	.globl _CPHA
+                             28 	.globl _CPOL
+                             29 	.globl _SPIM
+                             30 	.globl _SPE
+                             31 	.globl _WCOL
+                             32 	.globl _ISPI
+                             33 	.globl _I2CI
+                             34 	.globl _I2CTX
+                             35 	.globl _I2CRS
+                             36 	.globl _I2CM
+                             37 	.globl _MDI
+                             38 	.globl _MCO
+                             39 	.globl _MDE
+                             40 	.globl _MDO
+                             41 	.globl _CS0
+                             42 	.globl _CS1
+                             43 	.globl _CS2
+                             44 	.globl _CS3
+                             45 	.globl _SCONV
+                             46 	.globl _CCONV
+                             47 	.globl _DMA
+                             48 	.globl _ADCI
+                             49 	.globl _P
+                             50 	.globl _F1
+                             51 	.globl _OV
+                             52 	.globl _RS0
+                             53 	.globl _RS1
+                             54 	.globl _F0
+                             55 	.globl _AC
+                             56 	.globl _CY
+                             57 	.globl _CAP2
+                             58 	.globl _CNT2
+                             59 	.globl _TR2
+                             60 	.globl _XEN
+                             61 	.globl _TCLK
+                             62 	.globl _RCLK
+                             63 	.globl _EXF2
+                             64 	.globl _TF2
+                             65 	.globl _WDE
+                             66 	.globl _WDS
+                             67 	.globl _WDR2
+                             68 	.globl _WDR1
+                             69 	.globl _PRE0
+                             70 	.globl _PRE1
+                             71 	.globl _PRE2
+                             72 	.globl _PX0
+                             73 	.globl _PT0
+                             74 	.globl _PX1
+                             75 	.globl _PT1
+                             76 	.globl _PS
+                             77 	.globl _PT2
+                             78 	.globl _PADC
+                             79 	.globl _PSI
+                             80 	.globl _RXD
+                             81 	.globl _TXD
+                             82 	.globl _INT0
+                             83 	.globl _INT1
+                             84 	.globl _T0
+                             85 	.globl _T1
+                             86 	.globl _WR
+                             87 	.globl _RD
+                             88 	.globl _EX0
+                             89 	.globl _ET0
+                             90 	.globl _EX1
+                             91 	.globl _ET1
+                             92 	.globl _ES
+                             93 	.globl _ET2
+                             94 	.globl _EADC
+                             95 	.globl _EA
+                             96 	.globl _RI
+                             97 	.globl _TI
+                             98 	.globl _RB8
+                             99 	.globl _TB8
+                            100 	.globl _REN
+                            101 	.globl _SM2
+                            102 	.globl _SM1
+                            103 	.globl _SM0
+                            104 	.globl _T2
+                            105 	.globl _T2EX
+                            106 	.globl _IT0
+                            107 	.globl _IE0
+                            108 	.globl _IT1
+                            109 	.globl _IE1
+                            110 	.globl _TR0
+                            111 	.globl _TF0
+                            112 	.globl _TR1
+                            113 	.globl _TF1
+                            114 	.globl _DACCON
+                            115 	.globl _DAC1H
+                            116 	.globl _DAC1L
+                            117 	.globl _DAC0H
+                            118 	.globl _DAC0L
+                            119 	.globl _SPICON
+                            120 	.globl _SPIDAT
+                            121 	.globl _ADCCON3
+                            122 	.globl _ADCGAINH
+                            123 	.globl _ADCGAINL
+                            124 	.globl _ADCOFSH
+                            125 	.globl _ADCOFSL
+                            126 	.globl _B
+                            127 	.globl _ADCCON1
+                            128 	.globl _I2CCON
+                            129 	.globl _ACC
+                            130 	.globl _PSMCON
+                            131 	.globl _ADCDATAH
+                            132 	.globl _ADCDATAL
+                            133 	.globl _ADCCON2
+                            134 	.globl _DMAP
+                            135 	.globl _DMAH
+                            136 	.globl _DMAL
+                            137 	.globl _PSW
+                            138 	.globl _TH2
+                            139 	.globl _TL2
+                            140 	.globl _RCAP2H
+                            141 	.globl _RCAP2L
+                            142 	.globl _T2CON
+                            143 	.globl _EADRL
+                            144 	.globl _WDCON
+                            145 	.globl _EDATA4
+                            146 	.globl _EDATA3
+                            147 	.globl _EDATA2
+                            148 	.globl _EDATA1
+                            149 	.globl _ETIM3
+                            150 	.globl _ETIM2
+                            151 	.globl _ETIM1
+                            152 	.globl _ECON
+                            153 	.globl _IP
+                            154 	.globl _P3
+                            155 	.globl _IE2
+                            156 	.globl _IE
+                            157 	.globl _P2
+                            158 	.globl _I2CADD
+                            159 	.globl _I2CDAT
+                            160 	.globl _SBUF
+                            161 	.globl _SCON
+                            162 	.globl _P1
+                            163 	.globl _TH1
+                            164 	.globl _TH0
+                            165 	.globl _TL1
+                            166 	.globl _TL0
+                            167 	.globl _TMOD
+                            168 	.globl _TCON
+                            169 	.globl _PCON
+                            170 	.globl _DPP
+                            171 	.globl _DPH
+                            172 	.globl _DPL
+                            173 	.globl _SP
+                            174 	.globl _P0
+                            175 	.globl _xbuffer
+                            176 	.globl _user_code
+                            177 	.globl _service_code
+                            178 	.globl _CurrentTime
+                            179 	.globl _StartTime
+                            180 	.globl _input
+                            181 	.globl _num_log
+                            182 	.globl _buffer
+                            183 	.globl _message
+                            184 	.globl _PrintNumber
+                            185 	.globl _log
+                            186 ;--------------------------------------------------------
+                            187 ; special function registers
+                            188 ;--------------------------------------------------------
+                            189 	.area RSEG    (DATA)
+                    0080    190 _P0	=	0x0080
+                    0081    191 _SP	=	0x0081
+                    0082    192 _DPL	=	0x0082
+                    0083    193 _DPH	=	0x0083
+                    0084    194 _DPP	=	0x0084
+                    0087    195 _PCON	=	0x0087
+                    0088    196 _TCON	=	0x0088
+                    0089    197 _TMOD	=	0x0089
+                    008A    198 _TL0	=	0x008a
+                    008B    199 _TL1	=	0x008b
+                    008C    200 _TH0	=	0x008c
+                    008D    201 _TH1	=	0x008d
+                    0090    202 _P1	=	0x0090
+                    0098    203 _SCON	=	0x0098
+                    0099    204 _SBUF	=	0x0099
+                    009A    205 _I2CDAT	=	0x009a
+                    009B    206 _I2CADD	=	0x009b
+                    00A0    207 _P2	=	0x00a0
+                    00A8    208 _IE	=	0x00a8
+                    00A9    209 _IE2	=	0x00a9
+                    00B0    210 _P3	=	0x00b0
+                    00B8    211 _IP	=	0x00b8
+                    00B9    212 _ECON	=	0x00b9
+                    00BA    213 _ETIM1	=	0x00ba
+                    00BB    214 _ETIM2	=	0x00bb
+                    00C4    215 _ETIM3	=	0x00c4
+                    00BC    216 _EDATA1	=	0x00bc
+                    00BD    217 _EDATA2	=	0x00bd
+                    00BE    218 _EDATA3	=	0x00be
+                    00BF    219 _EDATA4	=	0x00bf
+                    00C0    220 _WDCON	=	0x00c0
+                    00C6    221 _EADRL	=	0x00c6
+                    00C8    222 _T2CON	=	0x00c8
+                    00CA    223 _RCAP2L	=	0x00ca
+                    00CB    224 _RCAP2H	=	0x00cb
+                    00CC    225 _TL2	=	0x00cc
+                    00CD    226 _TH2	=	0x00cd
+                    00D0    227 _PSW	=	0x00d0
+                    00D2    228 _DMAL	=	0x00d2
+                    00D3    229 _DMAH	=	0x00d3
+                    00D4    230 _DMAP	=	0x00d4
+                    00D8    231 _ADCCON2	=	0x00d8
+                    00D9    232 _ADCDATAL	=	0x00d9
+                    00DA    233 _ADCDATAH	=	0x00da
+                    00DF    234 _PSMCON	=	0x00df
+                    00E0    235 _ACC	=	0x00e0
+                    00E8    236 _I2CCON	=	0x00e8
+                    00EF    237 _ADCCON1	=	0x00ef
+                    00F0    238 _B	=	0x00f0
+                    00F1    239 _ADCOFSL	=	0x00f1
+                    00F2    240 _ADCOFSH	=	0x00f2
+                    00F3    241 _ADCGAINL	=	0x00f3
+                    00F4    242 _ADCGAINH	=	0x00f4
+                    00F5    243 _ADCCON3	=	0x00f5
+                    00F7    244 _SPIDAT	=	0x00f7
+                    00F8    245 _SPICON	=	0x00f8
+                    00F9    246 _DAC0L	=	0x00f9
+                    00FA    247 _DAC0H	=	0x00fa
+                    00FB    248 _DAC1L	=	0x00fb
+                    00FC    249 _DAC1H	=	0x00fc
+                    00FD    250 _DACCON	=	0x00fd
+                            251 ;--------------------------------------------------------
+                            252 ; special function bits
+                            253 ;--------------------------------------------------------
+                            254 	.area RSEG    (DATA)
+                    008F    255 _TF1	=	0x008f
+                    008E    256 _TR1	=	0x008e
+                    008D    257 _TF0	=	0x008d
+                    008C    258 _TR0	=	0x008c
+                    008B    259 _IE1	=	0x008b
+                    008A    260 _IT1	=	0x008a
+                    0089    261 _IE0	=	0x0089
+                    0088    262 _IT0	=	0x0088
+                    0091    263 _T2EX	=	0x0091
+                    0090    264 _T2	=	0x0090
+                    009F    265 _SM0	=	0x009f
+                    009E    266 _SM1	=	0x009e
+                    009D    267 _SM2	=	0x009d
+                    009C    268 _REN	=	0x009c
+                    009B    269 _TB8	=	0x009b
+                    009A    270 _RB8	=	0x009a
+                    0099    271 _TI	=	0x0099
+                    0098    272 _RI	=	0x0098
+                    00AF    273 _EA	=	0x00af
+                    00AE    274 _EADC	=	0x00ae
+                    00AD    275 _ET2	=	0x00ad
+                    00AC    276 _ES	=	0x00ac
+                    00AB    277 _ET1	=	0x00ab
+                    00AA    278 _EX1	=	0x00aa
+                    00A9    279 _ET0	=	0x00a9
+                    00A8    280 _EX0	=	0x00a8
+                    00B7    281 _RD	=	0x00b7
+                    00B6    282 _WR	=	0x00b6
+                    00B5    283 _T1	=	0x00b5
+                    00B4    284 _T0	=	0x00b4
+                    00B3    285 _INT1	=	0x00b3
+                    00B2    286 _INT0	=	0x00b2
+                    00B1    287 _TXD	=	0x00b1
+                    00B0    288 _RXD	=	0x00b0
+                    00BF    289 _PSI	=	0x00bf
+                    00BE    290 _PADC	=	0x00be
+                    00BD    291 _PT2	=	0x00bd
+                    00BC    292 _PS	=	0x00bc
+                    00BB    293 _PT1	=	0x00bb
+                    00BA    294 _PX1	=	0x00ba
+                    00B9    295 _PT0	=	0x00b9
+                    00B8    296 _PX0	=	0x00b8
+                    00C7    297 _PRE2	=	0x00c7
+                    00C6    298 _PRE1	=	0x00c6
+                    00C5    299 _PRE0	=	0x00c5
+                    00C3    300 _WDR1	=	0x00c3
+                    00C2    301 _WDR2	=	0x00c2
+                    00C1    302 _WDS	=	0x00c1
+                    00C0    303 _WDE	=	0x00c0
+                    00CF    304 _TF2	=	0x00cf
+                    00CE    305 _EXF2	=	0x00ce
+                    00CD    306 _RCLK	=	0x00cd
+                    00CC    307 _TCLK	=	0x00cc
+                    00CB    308 _XEN	=	0x00cb
+                    00CA    309 _TR2	=	0x00ca
+                    00C9    310 _CNT2	=	0x00c9
+                    00C8    311 _CAP2	=	0x00c8
+                    00D7    312 _CY	=	0x00d7
+                    00D6    313 _AC	=	0x00d6
+                    00D5    314 _F0	=	0x00d5
+                    00D4    315 _RS1	=	0x00d4
+                    00D3    316 _RS0	=	0x00d3
+                    00D2    317 _OV	=	0x00d2
+                    00D1    318 _F1	=	0x00d1
+                    00D0    319 _P	=	0x00d0
+                    00DF    320 _ADCI	=	0x00df
+                    00DE    321 _DMA	=	0x00de
+                    00DD    322 _CCONV	=	0x00dd
+                    00DC    323 _SCONV	=	0x00dc
+                    00DB    324 _CS3	=	0x00db
+                    00DA    325 _CS2	=	0x00da
+                    00D9    326 _CS1	=	0x00d9
+                    00D8    327 _CS0	=	0x00d8
+                    00EF    328 _MDO	=	0x00ef
+                    00EE    329 _MDE	=	0x00ee
+                    00ED    330 _MCO	=	0x00ed
+                    00EC    331 _MDI	=	0x00ec
+                    00EB    332 _I2CM	=	0x00eb
+                    00EA    333 _I2CRS	=	0x00ea
+                    00E9    334 _I2CTX	=	0x00e9
+                    00E8    335 _I2CI	=	0x00e8
+                    00FF    336 _ISPI	=	0x00ff
+                    00FE    337 _WCOL	=	0x00fe
+                    00FD    338 _SPE	=	0x00fd
+                    00FC    339 _SPIM	=	0x00fc
+                    00FB    340 _CPOL	=	0x00fb
+                    00FA    341 _CPHA	=	0x00fa
+                    00F9    342 _SPR1	=	0x00f9
+                    00F8    343 _SPR0	=	0x00f8
+                            344 ;--------------------------------------------------------
+                            345 ; overlayable register banks
+                            346 ;--------------------------------------------------------
+                            347 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     348 	.ds 8
+                            349 ;--------------------------------------------------------
+                            350 ; overlayable bit register bank
+                            351 ;--------------------------------------------------------
+                            352 	.area BIT_BANK	(REL,OVR,DATA)
+   0000                     353 bits:
+   0000                     354 	.ds 1
+                    8000    355 	b0 = bits[0]
+                    8100    356 	b1 = bits[1]
+                    8200    357 	b2 = bits[2]
+                    8300    358 	b3 = bits[3]
+                    8400    359 	b4 = bits[4]
+                    8500    360 	b5 = bits[5]
+                    8600    361 	b6 = bits[6]
+                    8700    362 	b7 = bits[7]
+                            363 ;--------------------------------------------------------
+                            364 ; internal ram data
+                            365 ;--------------------------------------------------------
+                            366 	.area DSEG    (DATA)
+   0000                     367 _buffer::
+   0000                     368 	.ds 3
+   0003                     369 _num_log::
+   0003                     370 	.ds 1
+                            371 ;--------------------------------------------------------
+                            372 ; overlayable items in internal ram 
+                            373 ;--------------------------------------------------------
+                            374 	.area OSEG    (OVR,DATA)
+                            375 ;--------------------------------------------------------
+                            376 ; Stack segment in internal ram 
+                            377 ;--------------------------------------------------------
+                            378 	.area	SSEG	(DATA)
+   0000                     379 __start__stack:
+   0000                     380 	.ds	1
+                            381 
+                            382 ;--------------------------------------------------------
+                            383 ; indirectly addressable internal ram data
+                            384 ;--------------------------------------------------------
+                            385 	.area ISEG    (DATA)
+                            386 ;--------------------------------------------------------
+                            387 ; absolute internal ram data
+                            388 ;--------------------------------------------------------
+                            389 	.area IABS    (ABS,DATA)
+                            390 	.area IABS    (ABS,DATA)
+                            391 ;--------------------------------------------------------
+                            392 ; bit data
+                            393 ;--------------------------------------------------------
+                            394 	.area BSEG    (BIT)
+                            395 ;--------------------------------------------------------
+                            396 ; paged external ram data
+                            397 ;--------------------------------------------------------
+                            398 	.area PSEG    (PAG,XDATA)
+                            399 ;--------------------------------------------------------
+                            400 ; external ram data
+                            401 ;--------------------------------------------------------
+                            402 	.area XSEG    (XDATA)
+   0000                     403 _input::
+   0000                     404 	.ds 4
+   0004                     405 _StartTime::
+   0004                     406 	.ds 4
+   0008                     407 _CurrentTime::
+   0008                     408 	.ds 4
+   000C                     409 _delay_startTime_1_1:
+   000C                     410 	.ds 4
+   0010                     411 _delay_currentTime_1_1:
+   0010                     412 	.ds 4
+   0014                     413 _PrintConLog_getLog_1_1:
+   0014                     414 	.ds 5
+   0019                     415 _log_newLog_1_1:
+   0019                     416 	.ds 5
+                            417 ;--------------------------------------------------------
+                            418 ; absolute external ram data
+                            419 ;--------------------------------------------------------
+                            420 	.area XABS    (ABS,XDATA)
+                            421 ;--------------------------------------------------------
+                            422 ; external initialized ram data
+                            423 ;--------------------------------------------------------
+                            424 	.area XISEG   (XDATA)
+   0000                     425 _service_code::
+   0000                     426 	.ds 4
+   0004                     427 _user_code::
+   0004                     428 	.ds 4
+   0008                     429 _xbuffer::
+   0008                     430 	.ds 128
+                            431 	.area HOME    (CODE)
+                            432 	.area GSINIT0 (CODE)
+                            433 	.area GSINIT1 (CODE)
+                            434 	.area GSINIT2 (CODE)
+                            435 	.area GSINIT3 (CODE)
+                            436 	.area GSINIT4 (CODE)
+                            437 	.area GSINIT5 (CODE)
+                            438 	.area GSINIT  (CODE)
+                            439 	.area GSFINAL (CODE)
+                            440 	.area CSEG    (CODE)
+                            441 ;--------------------------------------------------------
+                            442 ; interrupt vector 
+                            443 ;--------------------------------------------------------
+                            444 	.area HOME    (CODE)
+   0000                     445 __interrupt_vect:
+   0000 02s00r00            446 	ljmp	__sdcc_gsinit_startup
+                            447 ;--------------------------------------------------------
+                            448 ; global & static initialisations
+                            449 ;--------------------------------------------------------
+                            450 	.area HOME    (CODE)
+                            451 	.area GSINIT  (CODE)
+                            452 	.area GSFINAL (CODE)
+                            453 	.area GSINIT  (CODE)
+                            454 	.globl __sdcc_gsinit_startup
+                            455 	.globl __sdcc_program_startup
+                            456 	.globl __start__stack
+                            457 	.globl __mcs51_genXINIT
+                            458 	.globl __mcs51_genXRAMCLEAR
+                            459 	.globl __mcs51_genRAMCLEAR
+                            460 ;	SRC/lab4.c:90: unsigned char* buffer = xbuffer;
+   0000 75*00r08            461 	mov	_buffer,#_xbuffer
+   0003 75*01s00            462 	mov	(_buffer + 1),#(_xbuffer >> 8)
+   0006 75*02 00            463 	mov	(_buffer + 2),#0x00
+                            464 ;	SRC/lab4.c:91: unsigned char num_log = 0;
+   0009 75*03 00            465 	mov	_num_log,#0x00
+                            466 	.area GSFINAL (CODE)
+   0000 02s00r03            467 	ljmp	__sdcc_program_startup
+                            468 ;--------------------------------------------------------
+                            469 ; Home
+                            470 ;--------------------------------------------------------
+                            471 	.area HOME    (CODE)
+                            472 	.area HOME    (CODE)
+   0003                     473 __sdcc_program_startup:
+   0003 12s09r89            474 	lcall	_main
+                            475 ;	return from main will lock up
+   0006 80 FE               476 	sjmp .
+                            477 ;--------------------------------------------------------
+                            478 ; code
+                            479 ;--------------------------------------------------------
+                            480 	.area CSEG    (CODE)
+                            481 ;------------------------------------------------------------
+                            482 ;Allocation info for local variables in function 'getTime'
+                            483 ;------------------------------------------------------------
+                            484 ;time                      Allocated to registers r2 r3 
+                            485 ;------------------------------------------------------------
+                            486 ;	SRC/lab4.c:109: unsigned char getTime(TIME xdata* time){
+                            487 ;	-----------------------------------------
+                            488 ;	 function getTime
+                            489 ;	-----------------------------------------
+   0000                     490 _getTime:
+                    0002    491 	ar2 = 0x02
+                    0003    492 	ar3 = 0x03
+                    0004    493 	ar4 = 0x04
+                    0005    494 	ar5 = 0x05
+                    0006    495 	ar6 = 0x06
+                    0007    496 	ar7 = 0x07
+                    0000    497 	ar0 = 0x00
+                    0001    498 	ar1 = 0x01
+                            499 ;	SRC/lab4.c:110: if( GetTime(time) ){
+   0000 12s00r00            500 	lcall	_GetTime
+   0003 E5 82               501 	mov	a,dpl
+   0005 60 0D               502 	jz	00102$
+                            503 ;	SRC/lab4.c:111: message("GetTime failed"); //log(GETTIME_ERR);
+   0007 90s00r00            504 	mov	dptr,#__str_0
+   000A 75 F0 80            505 	mov	b,#0x80
+   000D 12s04r75            506 	lcall	_message
+                            507 ;	SRC/lab4.c:112: return 1;
+   0010 75 82 01            508 	mov	dpl,#0x01
+                            509 ;	SRC/lab4.c:114: return 0;
+   0013 22                  510 	ret
+   0014                     511 00102$:
+   0014 75 82 00            512 	mov	dpl,#0x00
+   0017 22                  513 	ret
+                            514 ;------------------------------------------------------------
+                            515 ;Allocation info for local variables in function 'CheckTimeLimitHsec'
+                            516 ;------------------------------------------------------------
+                            517 ;curTime                   Allocated to stack - offset -4
+                            518 ;limit                     Allocated to stack - offset -6
+                            519 ;startTime                 Allocated to stack - offset 1
+                            520 ;sTime                     Allocated to stack - offset 3
+                            521 ;cTime                     Allocated to stack - offset 7
+                            522 ;sloc0                     Allocated to stack - offset 11
+                            523 ;sloc1                     Allocated to stack - offset 15
+                            524 ;------------------------------------------------------------
+                            525 ;	SRC/lab4.c:117: unsigned char CheckTimeLimitHsec(TIME xdata * startTime, TIME xdata * curTime, int limit){
+                            526 ;	-----------------------------------------
+                            527 ;	 function CheckTimeLimitHsec
+                            528 ;	-----------------------------------------
+   0018                     529 _CheckTimeLimitHsec:
+   0018 C0*00               530 	push	_bp
+   001A 85 81*00            531 	mov	_bp,sp
+   001D C0 82               532 	push	dpl
+   001F C0 83               533 	push	dph
+   0021 E5 81               534 	mov	a,sp
+   0023 24 12               535 	add	a,#0x12
+   0025 F5 81               536 	mov	sp,a
+                            537 ;	SRC/lab4.c:119: unsigned long long sTime = startTime->hour*360000 + startTime->min*6000 + startTime->sec*100 + startTime->hsec; 
+   0027 A8*00               538 	mov	r0,_bp
+   0029 08                  539 	inc	r0
+   002A 86 82               540 	mov	dpl,@r0
+   002C 08                  541 	inc	r0
+   002D 86 83               542 	mov	dph,@r0
+   002F A3                  543 	inc	dptr
+   0030 A3                  544 	inc	dptr
+   0031 A3                  545 	inc	dptr
+   0032 E0                  546 	movx	a,@dptr
+   0033 FC                  547 	mov	r4,a
+   0034 7D 00               548 	mov	r5,#0x00
+   0036 7E 00               549 	mov	r6,#0x00
+   0038 7F 00               550 	mov	r7,#0x00
+   003A C0 04               551 	push	ar4
+   003C C0 05               552 	push	ar5
+   003E C0 06               553 	push	ar6
+   0040 C0 07               554 	push	ar7
+   0042 90 7E 40            555 	mov	dptr,#0x7E40
+   0045 75 F0 05            556 	mov	b,#0x05
+   0048 E4                  557 	clr	a
+   0049 12s00r00            558 	lcall	__mullong
+   004C C0 E0               559 	push	acc
+   004E E5*00               560 	mov	a,_bp
+   0050 24 0B               561 	add	a,#0x0b
+   0052 F8                  562 	mov	r0,a
+   0053 D0 E0               563 	pop	acc
+   0055 A6 82               564 	mov	@r0,dpl
+   0057 08                  565 	inc	r0
+   0058 A6 83               566 	mov	@r0,dph
+   005A 08                  567 	inc	r0
+   005B A6 F0               568 	mov	@r0,b
+   005D 08                  569 	inc	r0
+   005E F6                  570 	mov	@r0,a
+   005F E5 81               571 	mov	a,sp
+   0061 24 FC               572 	add	a,#0xfc
+   0063 F5 81               573 	mov	sp,a
+   0065 A8*00               574 	mov	r0,_bp
+   0067 08                  575 	inc	r0
+   0068 86 82               576 	mov	dpl,@r0
+   006A 08                  577 	inc	r0
+   006B 86 83               578 	mov	dph,@r0
+   006D A3                  579 	inc	dptr
+   006E A3                  580 	inc	dptr
+   006F E0                  581 	movx	a,@dptr
+   0070 FA                  582 	mov	r2,a
+   0071 7B 00               583 	mov	r3,#0x00
+   0073 C0 02               584 	push	ar2
+   0075 C0 03               585 	push	ar3
+   0077 90 17 70            586 	mov	dptr,#0x1770
+   007A 12s00r00            587 	lcall	__mulint
+   007D AA 82               588 	mov	r2,dpl
+   007F AB 83               589 	mov	r3,dph
+   0081 15 81               590 	dec	sp
+   0083 15 81               591 	dec	sp
+   0085 EB                  592 	mov	a,r3
+   0086 33                  593 	rlc	a
+   0087 95 E0               594 	subb	a,acc
+   0089 FC                  595 	mov	r4,a
+   008A FD                  596 	mov	r5,a
+   008B E5*00               597 	mov	a,_bp
+   008D 24 0B               598 	add	a,#0x0b
+   008F F8                  599 	mov	r0,a
+   0090 EA                  600 	mov	a,r2
+   0091 26                  601 	add	a,@r0
+   0092 F6                  602 	mov	@r0,a
+   0093 EB                  603 	mov	a,r3
+   0094 08                  604 	inc	r0
+   0095 36                  605 	addc	a,@r0
+   0096 F6                  606 	mov	@r0,a
+   0097 EC                  607 	mov	a,r4
+   0098 08                  608 	inc	r0
+   0099 36                  609 	addc	a,@r0
+   009A F6                  610 	mov	@r0,a
+   009B ED                  611 	mov	a,r5
+   009C 08                  612 	inc	r0
+   009D 36                  613 	addc	a,@r0
+   009E F6                  614 	mov	@r0,a
+   009F A8*00               615 	mov	r0,_bp
+   00A1 08                  616 	inc	r0
+   00A2 86 82               617 	mov	dpl,@r0
+   00A4 08                  618 	inc	r0
+   00A5 86 83               619 	mov	dph,@r0
+   00A7 A3                  620 	inc	dptr
+   00A8 E0                  621 	movx	a,@dptr
+   00A9 75 F0 64            622 	mov	b,#0x64
+   00AC A4                  623 	mul	ab
+   00AD FE                  624 	mov	r6,a
+   00AE E5 F0               625 	mov	a,b
+   00B0 FF                  626 	mov	r7,a
+   00B1 33                  627 	rlc	a
+   00B2 95 E0               628 	subb	a,acc
+   00B4 FA                  629 	mov	r2,a
+   00B5 FB                  630 	mov	r3,a
+   00B6 E5*00               631 	mov	a,_bp
+   00B8 24 0B               632 	add	a,#0x0b
+   00BA F8                  633 	mov	r0,a
+   00BB EE                  634 	mov	a,r6
+   00BC 26                  635 	add	a,@r0
+   00BD FE                  636 	mov	r6,a
+   00BE EF                  637 	mov	a,r7
+   00BF 08                  638 	inc	r0
+   00C0 36                  639 	addc	a,@r0
+   00C1 FF                  640 	mov	r7,a
+   00C2 EA                  641 	mov	a,r2
+   00C3 08                  642 	inc	r0
+   00C4 36                  643 	addc	a,@r0
+   00C5 FA                  644 	mov	r2,a
+   00C6 EB                  645 	mov	a,r3
+   00C7 08                  646 	inc	r0
+   00C8 36                  647 	addc	a,@r0
+   00C9 FB                  648 	mov	r3,a
+   00CA A8*00               649 	mov	r0,_bp
+   00CC 08                  650 	inc	r0
+   00CD 86 82               651 	mov	dpl,@r0
+   00CF 08                  652 	inc	r0
+   00D0 86 83               653 	mov	dph,@r0
+   00D2 E0                  654 	movx	a,@dptr
+   00D3 FC                  655 	mov	r4,a
+   00D4 7D 00               656 	mov	r5,#0x00
+   00D6 E5*00               657 	mov	a,_bp
+   00D8 24 0F               658 	add	a,#0x0f
+   00DA F8                  659 	mov	r0,a
+   00DB A6 04               660 	mov	@r0,ar4
+   00DD 08                  661 	inc	r0
+   00DE A6 05               662 	mov	@r0,ar5
+   00E0 ED                  663 	mov	a,r5
+   00E1 33                  664 	rlc	a
+   00E2 95 E0               665 	subb	a,acc
+   00E4 08                  666 	inc	r0
+   00E5 F6                  667 	mov	@r0,a
+   00E6 08                  668 	inc	r0
+   00E7 F6                  669 	mov	@r0,a
+   00E8 E5*00               670 	mov	a,_bp
+   00EA 24 0F               671 	add	a,#0x0f
+   00EC F8                  672 	mov	r0,a
+   00ED A9*00               673 	mov	r1,_bp
+   00EF 09                  674 	inc	r1
+   00F0 09                  675 	inc	r1
+   00F1 09                  676 	inc	r1
+   00F2 E6                  677 	mov	a,@r0
+   00F3 2E                  678 	add	a,r6
+   00F4 F7                  679 	mov	@r1,a
+   00F5 08                  680 	inc	r0
+   00F6 E6                  681 	mov	a,@r0
+   00F7 3F                  682 	addc	a,r7
+   00F8 09                  683 	inc	r1
+   00F9 F7                  684 	mov	@r1,a
+   00FA 08                  685 	inc	r0
+   00FB E6                  686 	mov	a,@r0
+   00FC 3A                  687 	addc	a,r2
+   00FD 09                  688 	inc	r1
+   00FE F7                  689 	mov	@r1,a
+   00FF 08                  690 	inc	r0
+   0100 E6                  691 	mov	a,@r0
+   0101 3B                  692 	addc	a,r3
+   0102 09                  693 	inc	r1
+   0103 F7                  694 	mov	@r1,a
+                            695 ;	SRC/lab4.c:120: unsigned long long cTime = curTime->hour*360000   + curTime->min*6000   + curTime->sec*100 + startTime->hsec;
+   0104 E5*00               696 	mov	a,_bp
+   0106 24 FC               697 	add	a,#0xfc
+   0108 F8                  698 	mov	r0,a
+   0109 86 06               699 	mov	ar6,@r0
+   010B 08                  700 	inc	r0
+   010C 86 07               701 	mov	ar7,@r0
+   010E 8E 82               702 	mov	dpl,r6
+   0110 8F 83               703 	mov	dph,r7
+   0112 A3                  704 	inc	dptr
+   0113 A3                  705 	inc	dptr
+   0114 A3                  706 	inc	dptr
+   0115 E0                  707 	movx	a,@dptr
+   0116 FA                  708 	mov	r2,a
+   0117 7B 00               709 	mov	r3,#0x00
+   0119 7C 00               710 	mov	r4,#0x00
+   011B 7D 00               711 	mov	r5,#0x00
+   011D C0 06               712 	push	ar6
+   011F C0 07               713 	push	ar7
+   0121 C0 02               714 	push	ar2
+   0123 C0 03               715 	push	ar3
+   0125 C0 04               716 	push	ar4
+   0127 C0 05               717 	push	ar5
+   0129 90 7E 40            718 	mov	dptr,#0x7E40
+   012C 75 F0 05            719 	mov	b,#0x05
+   012F E4                  720 	clr	a
+   0130 12s00r00            721 	lcall	__mullong
+   0133 C0 E0               722 	push	acc
+   0135 E5*00               723 	mov	a,_bp
+   0137 24 0B               724 	add	a,#0x0b
+   0139 F8                  725 	mov	r0,a
+   013A D0 E0               726 	pop	acc
+   013C A6 82               727 	mov	@r0,dpl
+   013E 08                  728 	inc	r0
+   013F A6 83               729 	mov	@r0,dph
+   0141 08                  730 	inc	r0
+   0142 A6 F0               731 	mov	@r0,b
+   0144 08                  732 	inc	r0
+   0145 F6                  733 	mov	@r0,a
+   0146 E5 81               734 	mov	a,sp
+   0148 24 FC               735 	add	a,#0xfc
+   014A F5 81               736 	mov	sp,a
+   014C D0 07               737 	pop	ar7
+   014E D0 06               738 	pop	ar6
+   0150 8E 82               739 	mov	dpl,r6
+   0152 8F 83               740 	mov	dph,r7
+   0154 A3                  741 	inc	dptr
+   0155 A3                  742 	inc	dptr
+   0156 E0                  743 	movx	a,@dptr
+   0157 FA                  744 	mov	r2,a
+   0158 7B 00               745 	mov	r3,#0x00
+   015A C0 06               746 	push	ar6
+   015C C0 07               747 	push	ar7
+   015E C0 02               748 	push	ar2
+   0160 C0 03               749 	push	ar3
+   0162 90 17 70            750 	mov	dptr,#0x1770
+   0165 12s00r00            751 	lcall	__mulint
+   0168 AA 82               752 	mov	r2,dpl
+   016A AB 83               753 	mov	r3,dph
+   016C 15 81               754 	dec	sp
+   016E 15 81               755 	dec	sp
+   0170 D0 07               756 	pop	ar7
+   0172 D0 06               757 	pop	ar6
+   0174 EB                  758 	mov	a,r3
+   0175 33                  759 	rlc	a
+   0176 95 E0               760 	subb	a,acc
+   0178 FC                  761 	mov	r4,a
+   0179 FD                  762 	mov	r5,a
+   017A E5*00               763 	mov	a,_bp
+   017C 24 0B               764 	add	a,#0x0b
+   017E F8                  765 	mov	r0,a
+   017F EA                  766 	mov	a,r2
+   0180 26                  767 	add	a,@r0
+   0181 F6                  768 	mov	@r0,a
+   0182 EB                  769 	mov	a,r3
+   0183 08                  770 	inc	r0
+   0184 36                  771 	addc	a,@r0
+   0185 F6                  772 	mov	@r0,a
+   0186 EC                  773 	mov	a,r4
+   0187 08                  774 	inc	r0
+   0188 36                  775 	addc	a,@r0
+   0189 F6                  776 	mov	@r0,a
+   018A ED                  777 	mov	a,r5
+   018B 08                  778 	inc	r0
+   018C 36                  779 	addc	a,@r0
+   018D F6                  780 	mov	@r0,a
+   018E 8E 82               781 	mov	dpl,r6
+   0190 8F 83               782 	mov	dph,r7
+   0192 A3                  783 	inc	dptr
+   0193 E0                  784 	movx	a,@dptr
+   0194 75 F0 64            785 	mov	b,#0x64
+   0197 A4                  786 	mul	ab
+   0198 FE                  787 	mov	r6,a
+   0199 E5 F0               788 	mov	a,b
+   019B FF                  789 	mov	r7,a
+   019C 33                  790 	rlc	a
+   019D 95 E0               791 	subb	a,acc
+   019F FA                  792 	mov	r2,a
+   01A0 FB                  793 	mov	r3,a
+   01A1 E5*00               794 	mov	a,_bp
+   01A3 24 0B               795 	add	a,#0x0b
+   01A5 F8                  796 	mov	r0,a
+   01A6 EE                  797 	mov	a,r6
+   01A7 26                  798 	add	a,@r0
+   01A8 FE                  799 	mov	r6,a
+   01A9 EF                  800 	mov	a,r7
+   01AA 08                  801 	inc	r0
+   01AB 36                  802 	addc	a,@r0
+   01AC FF                  803 	mov	r7,a
+   01AD EA                  804 	mov	a,r2
+   01AE 08                  805 	inc	r0
+   01AF 36                  806 	addc	a,@r0
+   01B0 FA                  807 	mov	r2,a
+   01B1 EB                  808 	mov	a,r3
+   01B2 08                  809 	inc	r0
+   01B3 36                  810 	addc	a,@r0
+   01B4 FB                  811 	mov	r3,a
+   01B5 E5*00               812 	mov	a,_bp
+   01B7 24 0F               813 	add	a,#0x0f
+   01B9 F8                  814 	mov	r0,a
+   01BA E6                  815 	mov	a,@r0
+   01BB 2E                  816 	add	a,r6
+   01BC FE                  817 	mov	r6,a
+   01BD 08                  818 	inc	r0
+   01BE E6                  819 	mov	a,@r0
+   01BF 3F                  820 	addc	a,r7
+   01C0 FF                  821 	mov	r7,a
+   01C1 08                  822 	inc	r0
+   01C2 E6                  823 	mov	a,@r0
+   01C3 3A                  824 	addc	a,r2
+   01C4 FA                  825 	mov	r2,a
+   01C5 08                  826 	inc	r0
+   01C6 E6                  827 	mov	a,@r0
+   01C7 3B                  828 	addc	a,r3
+   01C8 FB                  829 	mov	r3,a
+   01C9 E5*00               830 	mov	a,_bp
+   01CB 24 07               831 	add	a,#0x07
+   01CD F8                  832 	mov	r0,a
+   01CE A6 06               833 	mov	@r0,ar6
+   01D0 08                  834 	inc	r0
+   01D1 A6 07               835 	mov	@r0,ar7
+   01D3 08                  836 	inc	r0
+   01D4 A6 02               837 	mov	@r0,ar2
+   01D6 08                  838 	inc	r0
+   01D7 A6 03               839 	mov	@r0,ar3
+                            840 ;	SRC/lab4.c:121: return cTime > sTime + limit;
+   01D9 E5*00               841 	mov	a,_bp
+   01DB 24 FA               842 	add	a,#0xfa
+   01DD F8                  843 	mov	r0,a
+   01DE 86 04               844 	mov	ar4,@r0
+   01E0 08                  845 	inc	r0
+   01E1 86 05               846 	mov	ar5,@r0
+   01E3 E6                  847 	mov	a,@r0
+   01E4 33                  848 	rlc	a
+   01E5 95 E0               849 	subb	a,acc
+   01E7 FA                  850 	mov	r2,a
+   01E8 FB                  851 	mov	r3,a
+   01E9 A8*00               852 	mov	r0,_bp
+   01EB 08                  853 	inc	r0
+   01EC 08                  854 	inc	r0
+   01ED 08                  855 	inc	r0
+   01EE EC                  856 	mov	a,r4
+   01EF 26                  857 	add	a,@r0
+   01F0 FC                  858 	mov	r4,a
+   01F1 ED                  859 	mov	a,r5
+   01F2 08                  860 	inc	r0
+   01F3 36                  861 	addc	a,@r0
+   01F4 FD                  862 	mov	r5,a
+   01F5 EA                  863 	mov	a,r2
+   01F6 08                  864 	inc	r0
+   01F7 36                  865 	addc	a,@r0
+   01F8 FA                  866 	mov	r2,a
+   01F9 EB                  867 	mov	a,r3
+   01FA 08                  868 	inc	r0
+   01FB 36                  869 	addc	a,@r0
+   01FC FB                  870 	mov	r3,a
+   01FD E5*00               871 	mov	a,_bp
+   01FF 24 07               872 	add	a,#0x07
+   0201 F8                  873 	mov	r0,a
+   0202 C3                  874 	clr	c
+   0203 EC                  875 	mov	a,r4
+   0204 96                  876 	subb	a,@r0
+   0205 ED                  877 	mov	a,r5
+   0206 08                  878 	inc	r0
+   0207 96                  879 	subb	a,@r0
+   0208 EA                  880 	mov	a,r2
+   0209 08                  881 	inc	r0
+   020A 96                  882 	subb	a,@r0
+   020B EB                  883 	mov	a,r3
+   020C 08                  884 	inc	r0
+   020D 96                  885 	subb	a,@r0
+   020E E4                  886 	clr	a
+   020F 33                  887 	rlc	a
+   0210 F5 82               888 	mov	dpl,a
+   0212 85*00 81            889 	mov	sp,_bp
+   0215 D0*00               890 	pop	_bp
+   0217 22                  891 	ret
+                            892 ;------------------------------------------------------------
+                            893 ;Allocation info for local variables in function 'CheckTimeLimitSec'
+                            894 ;------------------------------------------------------------
+                            895 ;curTime                   Allocated to stack - offset -4
+                            896 ;limit                     Allocated to stack - offset -6
+                            897 ;startTime                 Allocated to registers r2 r3 
+                            898 ;------------------------------------------------------------
+                            899 ;	SRC/lab4.c:123: unsigned char CheckTimeLimitSec(TIME xdata * startTime, TIME xdata * curTime, int limit){
+                            900 ;	-----------------------------------------
+                            901 ;	 function CheckTimeLimitSec
+                            902 ;	-----------------------------------------
+   0218                     903 _CheckTimeLimitSec:
+   0218 C0*00               904 	push	_bp
+   021A 85 81*00            905 	mov	_bp,sp
+   021D AA 82               906 	mov	r2,dpl
+   021F AB 83               907 	mov	r3,dph
+                            908 ;	SRC/lab4.c:124: return CheckTimeLimitHsec(startTime, curTime, limit*100);
+   0221 C0 02               909 	push	ar2
+   0223 C0 03               910 	push	ar3
+   0225 E5*00               911 	mov	a,_bp
+   0227 24 FA               912 	add	a,#0xfa
+   0229 F8                  913 	mov	r0,a
+   022A E6                  914 	mov	a,@r0
+   022B C0 E0               915 	push	acc
+   022D 08                  916 	inc	r0
+   022E E6                  917 	mov	a,@r0
+   022F C0 E0               918 	push	acc
+   0231 90 00 64            919 	mov	dptr,#0x0064
+   0234 12s00r00            920 	lcall	__mulint
+   0237 AC 82               921 	mov	r4,dpl
+   0239 AD 83               922 	mov	r5,dph
+   023B 15 81               923 	dec	sp
+   023D 15 81               924 	dec	sp
+   023F D0 03               925 	pop	ar3
+   0241 D0 02               926 	pop	ar2
+   0243 C0 04               927 	push	ar4
+   0245 C0 05               928 	push	ar5
+   0247 E5*00               929 	mov	a,_bp
+   0249 24 FC               930 	add	a,#0xfc
+   024B F8                  931 	mov	r0,a
+   024C E6                  932 	mov	a,@r0
+   024D C0 E0               933 	push	acc
+   024F 08                  934 	inc	r0
+   0250 E6                  935 	mov	a,@r0
+   0251 C0 E0               936 	push	acc
+   0253 8A 82               937 	mov	dpl,r2
+   0255 8B 83               938 	mov	dph,r3
+   0257 12s00r18            939 	lcall	_CheckTimeLimitHsec
+   025A E5 81               940 	mov	a,sp
+   025C 24 FC               941 	add	a,#0xfc
+   025E F5 81               942 	mov	sp,a
+   0260 D0*00               943 	pop	_bp
+   0262 22                  944 	ret
+                            945 ;------------------------------------------------------------
+                            946 ;Allocation info for local variables in function 'delay'
+                            947 ;------------------------------------------------------------
+                            948 ;hsec                      Allocated to registers r2 r3 
+                            949 ;startTime                 Allocated with name '_delay_startTime_1_1'
+                            950 ;currentTime               Allocated with name '_delay_currentTime_1_1'
+                            951 ;------------------------------------------------------------
+                            952 ;	SRC/lab4.c:126: void delay(int hsec){
+                            953 ;	-----------------------------------------
+                            954 ;	 function delay
+                            955 ;	-----------------------------------------
+   0263                     956 _delay:
+   0263 AA 82               957 	mov	r2,dpl
+   0265 AB 83               958 	mov	r3,dph
+                            959 ;	SRC/lab4.c:130: getTime( &startTime );
+   0267 90s00r0C            960 	mov	dptr,#_delay_startTime_1_1
+   026A C0 02               961 	push	ar2
+   026C C0 03               962 	push	ar3
+   026E 12s00r00            963 	lcall	_getTime
+   0271 D0 03               964 	pop	ar3
+   0273 D0 02               965 	pop	ar2
+                            966 ;	SRC/lab4.c:131: do{ getTime( &currentTime ); }
+   0275                     967 00101$:
+   0275 90s00r10            968 	mov	dptr,#_delay_currentTime_1_1
+   0278 C0 02               969 	push	ar2
+   027A C0 03               970 	push	ar3
+   027C 12s00r00            971 	lcall	_getTime
+   027F D0 03               972 	pop	ar3
+   0281 D0 02               973 	pop	ar2
+                            974 ;	SRC/lab4.c:132: while( !CheckTimeLimitHsec( &startTime, &currentTime, hsec ) );
+   0283 C0 02               975 	push	ar2
+   0285 C0 03               976 	push	ar3
+   0287 C0 02               977 	push	ar2
+   0289 C0 03               978 	push	ar3
+   028B 74r10               979 	mov	a,#_delay_currentTime_1_1
+   028D C0 E0               980 	push	acc
+   028F 74s00               981 	mov	a,#(_delay_currentTime_1_1 >> 8)
+   0291 C0 E0               982 	push	acc
+   0293 90s00r0C            983 	mov	dptr,#_delay_startTime_1_1
+   0296 12s00r18            984 	lcall	_CheckTimeLimitHsec
+   0299 AC 82               985 	mov	r4,dpl
+   029B E5 81               986 	mov	a,sp
+   029D 24 FC               987 	add	a,#0xfc
+   029F F5 81               988 	mov	sp,a
+   02A1 D0 03               989 	pop	ar3
+   02A3 D0 02               990 	pop	ar2
+   02A5 EC                  991 	mov	a,r4
+   02A6 60 CD               992 	jz	00101$
+   02A8 22                  993 	ret
+                            994 ;------------------------------------------------------------
+                            995 ;Allocation info for local variables in function 'PrintString'
+                            996 ;------------------------------------------------------------
+                            997 ;s                         Allocated to stack - offset 1
+                            998 ;i                         Allocated to registers r5 r6 
+                            999 ;isEnd                     Allocated to registers b0 
+                           1000 ;------------------------------------------------------------
+                           1001 ;	SRC/lab4.c:135: void PrintString(char* s){
+                           1002 ;	-----------------------------------------
+                           1003 ;	 function PrintString
+                           1004 ;	-----------------------------------------
+   02A9                    1005 _PrintString:
+   02A9 C0*00              1006 	push	_bp
+   02AB 85 81*00           1007 	mov	_bp,sp
+   02AE C0 82              1008 	push	dpl
+   02B0 C0 83              1009 	push	dph
+   02B2 C0 F0              1010 	push	b
+                           1011 ;	SRC/lab4.c:137: bit isEnd = 0;
+   02B4 C2*00              1012 	clr	b0
+                           1013 ;	SRC/lab4.c:138: for(i=0; i<16; i++){
+   02B6 7D 00              1014 	mov	r5,#0x00
+   02B8 7E 00              1015 	mov	r6,#0x00
+   02BA                    1016 00106$:
+   02BA C3                 1017 	clr	c
+   02BB ED                 1018 	mov	a,r5
+   02BC 94 10              1019 	subb	a,#0x10
+   02BE EE                 1020 	mov	a,r6
+   02BF 64 80              1021 	xrl	a,#0x80
+   02C1 94 80              1022 	subb	a,#0x80
+   02C3 50 5F              1023 	jnc	00110$
+                           1024 ;	SRC/lab4.c:139: if(s[i]==0){isEnd=1;}
+   02C5 A8*00              1025 	mov	r0,_bp
+   02C7 08                 1026 	inc	r0
+   02C8 ED                 1027 	mov	a,r5
+   02C9 26                 1028 	add	a,@r0
+   02CA FF                 1029 	mov	r7,a
+   02CB EE                 1030 	mov	a,r6
+   02CC 08                 1031 	inc	r0
+   02CD 36                 1032 	addc	a,@r0
+   02CE FA                 1033 	mov	r2,a
+   02CF 08                 1034 	inc	r0
+   02D0 86 03              1035 	mov	ar3,@r0
+   02D2 8F 82              1036 	mov	dpl,r7
+   02D4 8A 83              1037 	mov	dph,r2
+   02D6 8B F0              1038 	mov	b,r3
+   02D8 12s00r00           1039 	lcall	__gptrget
+   02DB 70 02              1040 	jnz	00102$
+   02DD D2*00              1041 	setb	b0
+   02DF                    1042 00102$:
+                           1043 ;	SRC/lab4.c:140: if(isEnd) LCD_Putch(' '); else LCD_Putch(s[i]);
+   02DF 30*00 14           1044 	jnb	b0,00104$
+   02E2 75 82 20           1045 	mov	dpl,#0x20
+   02E5 C0 05              1046 	push	ar5
+   02E7 C0 06              1047 	push	ar6
+   02E9 C0*00              1048 	push	bits
+   02EB 12s00r00           1049 	lcall	_LCD_Putch
+   02EE D0*00              1050 	pop	bits
+   02F0 D0 06              1051 	pop	ar6
+   02F2 D0 05              1052 	pop	ar5
+   02F4 80 27              1053 	sjmp	00108$
+   02F6                    1054 00104$:
+   02F6 A8*00              1055 	mov	r0,_bp
+   02F8 08                 1056 	inc	r0
+   02F9 ED                 1057 	mov	a,r5
+   02FA 26                 1058 	add	a,@r0
+   02FB FA                 1059 	mov	r2,a
+   02FC EE                 1060 	mov	a,r6
+   02FD 08                 1061 	inc	r0
+   02FE 36                 1062 	addc	a,@r0
+   02FF FB                 1063 	mov	r3,a
+   0300 08                 1064 	inc	r0
+   0301 86 04              1065 	mov	ar4,@r0
+   0303 8A 82              1066 	mov	dpl,r2
+   0305 8B 83              1067 	mov	dph,r3
+   0307 8C F0              1068 	mov	b,r4
+   0309 12s00r00           1069 	lcall	__gptrget
+   030C F5 82              1070 	mov	dpl,a
+   030E C0 05              1071 	push	ar5
+   0310 C0 06              1072 	push	ar6
+   0312 C0*00              1073 	push	bits
+   0314 12s00r00           1074 	lcall	_LCD_Putch
+   0317 D0*00              1075 	pop	bits
+   0319 D0 06              1076 	pop	ar6
+   031B D0 05              1077 	pop	ar5
+   031D                    1078 00108$:
+                           1079 ;	SRC/lab4.c:138: for(i=0; i<16; i++){
+   031D 0D                 1080 	inc	r5
+   031E BD 00 99           1081 	cjne	r5,#0x00,00106$
+   0321 0E                 1082 	inc	r6
+   0322 80 96              1083 	sjmp	00106$
+   0324                    1084 00110$:
+   0324 85*00 81           1085 	mov	sp,_bp
+   0327 D0*00              1086 	pop	_bp
+   0329 22                 1087 	ret
+                           1088 ;------------------------------------------------------------
+                           1089 ;Allocation info for local variables in function 'LCD_TypeAnimation'
+                           1090 ;------------------------------------------------------------
+                           1091 ;s                         Allocated to stack - offset 1
+                           1092 ;ptr                       Allocated to registers r5 r6 r7 
+                           1093 ;i                         Allocated to stack - offset 7
+                           1094 ;isEnd                     Allocated to stack - offset 9
+                           1095 ;length                    Allocated to registers 
+                           1096 ;y                         Allocated to registers b0 
+                           1097 ;------------------------------------------------------------
+                           1098 ;	SRC/lab4.c:155: void LCD_TypeAnimation(char* s){
+                           1099 ;	-----------------------------------------
+                           1100 ;	 function LCD_TypeAnimation
+                           1101 ;	-----------------------------------------
+   032A                    1102 _LCD_TypeAnimation:
+   032A C0*00              1103 	push	_bp
+   032C 85 81*00           1104 	mov	_bp,sp
+   032F C0 82              1105 	push	dpl
+   0331 C0 83              1106 	push	dph
+   0333 C0 F0              1107 	push	b
+                           1108 ;	SRC/lab4.c:161: bit y = LCD_GetY();
+   0335 12s00r00           1109 	lcall	_LCD_GetY
+   0338 92*00              1110 	mov	b0,c
+                           1111 ;	SRC/lab4.c:165: LCD_Type("                ");
+   033A 90s00r0F           1112 	mov	dptr,#__str_1
+   033D 75 F0 80           1113 	mov	b,#0x80
+   0340 C0*00              1114 	push	bits
+   0342 12s00r00           1115 	lcall	_LCD_Type
+   0345 D0*00              1116 	pop	bits
+                           1117 ;	SRC/lab4.c:166: LCD_GotoXY(0,y);
+   0347 A2*00              1118 	mov	c,b0
+   0349 92 F0              1119 	mov	b[0],c
+   034B C0*00              1120 	push	bits
+   034D 85 F0*00           1121 	mov	bits,b
+   0350 75 82 00           1122 	mov	dpl,#0x00
+   0353 12s00r00           1123 	lcall	_LCD_GotoXY
+   0356 D0*00              1124 	pop	bits
+                           1125 ;	SRC/lab4.c:167: PrintString(ptr++);
+   0358 A8*00              1126 	mov	r0,_bp
+   035A 08                 1127 	inc	r0
+   035B 74 01              1128 	mov	a,#0x01
+   035D 26                 1129 	add	a,@r0
+   035E FD                 1130 	mov	r5,a
+   035F E4                 1131 	clr	a
+   0360 08                 1132 	inc	r0
+   0361 36                 1133 	addc	a,@r0
+   0362 FE                 1134 	mov	r6,a
+   0363 08                 1135 	inc	r0
+   0364 86 07              1136 	mov	ar7,@r0
+   0366 A8*00              1137 	mov	r0,_bp
+   0368 08                 1138 	inc	r0
+   0369 86 82              1139 	mov	dpl,@r0
+   036B 08                 1140 	inc	r0
+   036C 86 83              1141 	mov	dph,@r0
+   036E 08                 1142 	inc	r0
+   036F 86 F0              1143 	mov	b,@r0
+   0371 C0 05              1144 	push	ar5
+   0373 C0 06              1145 	push	ar6
+   0375 C0 07              1146 	push	ar7
+   0377 C0*00              1147 	push	bits
+   0379 12s02rA9           1148 	lcall	_PrintString
+   037C D0*00              1149 	pop	bits
+                           1150 ;	SRC/lab4.c:168: getTime( &StartTime );
+   037E 90s00r04           1151 	mov	dptr,#_StartTime
+   0381 C0*00              1152 	push	bits
+   0383 12s00r00           1153 	lcall	_getTime
+   0386 D0*00              1154 	pop	bits
+   0388 D0 07              1155 	pop	ar7
+   038A D0 06              1156 	pop	ar6
+   038C D0 05              1157 	pop	ar5
+                           1158 ;	SRC/lab4.c:170: while( ! ScanKBOnce(&input[0]) ){
+   038E                    1159 00106$:
+   038E 90s00r00           1160 	mov	dptr,#_input
+   0391 75 F0 00           1161 	mov	b,#0x00
+   0394 C0 05              1162 	push	ar5
+   0396 C0 06              1163 	push	ar6
+   0398 C0 07              1164 	push	ar7
+   039A C0*00              1165 	push	bits
+   039C 12s00r00           1166 	lcall	_ScanKBOnce
+   039F D0*00              1167 	pop	bits
+   03A1 D0 07              1168 	pop	ar7
+   03A3 D0 06              1169 	pop	ar6
+   03A5 D0 05              1170 	pop	ar5
+   03A7 50 03              1171 	jnc	00115$
+   03A9 02s04r6F           1172 	ljmp	00109$
+   03AC                    1173 00115$:
+                           1174 ;	SRC/lab4.c:172: getTime( &CurrentTime );
+   03AC 90s00r08           1175 	mov	dptr,#_CurrentTime
+   03AF C0 05              1176 	push	ar5
+   03B1 C0 06              1177 	push	ar6
+   03B3 C0 07              1178 	push	ar7
+   03B5 C0*00              1179 	push	bits
+   03B7 12s00r00           1180 	lcall	_getTime
+   03BA D0*00              1181 	pop	bits
+                           1182 ;	SRC/lab4.c:173: if(CheckTimeLimitHsec( &StartTime, &CurrentTime, ANIMATION_DELAY_TIME )){
+   03BC C0*00              1183 	push	bits
+   03BE 74 28              1184 	mov	a,#0x28
+   03C0 C0 E0              1185 	push	acc
+   03C2 E4                 1186 	clr	a
+   03C3 C0 E0              1187 	push	acc
+   03C5 74r08              1188 	mov	a,#_CurrentTime
+   03C7 C0 E0              1189 	push	acc
+   03C9 74s00              1190 	mov	a,#(_CurrentTime >> 8)
+   03CB C0 E0              1191 	push	acc
+   03CD 90s00r04           1192 	mov	dptr,#_StartTime
+   03D0 12s00r18           1193 	lcall	_CheckTimeLimitHsec
+   03D3 AA 82              1194 	mov	r2,dpl
+   03D5 E5 81              1195 	mov	a,sp
+   03D7 24 FC              1196 	add	a,#0xfc
+   03D9 F5 81              1197 	mov	sp,a
+   03DB D0*00              1198 	pop	bits
+   03DD D0 07              1199 	pop	ar7
+   03DF D0 06              1200 	pop	ar6
+   03E1 D0 05              1201 	pop	ar5
+   03E3 EA                 1202 	mov	a,r2
+   03E4 60 A8              1203 	jz	00106$
+                           1204 ;	SRC/lab4.c:174: getTime( &StartTime );
+   03E6 90s00r04           1205 	mov	dptr,#_StartTime
+   03E9 C0 05              1206 	push	ar5
+   03EB C0 06              1207 	push	ar6
+   03ED C0 07              1208 	push	ar7
+   03EF C0*00              1209 	push	bits
+   03F1 12s00r00           1210 	lcall	_getTime
+   03F4 D0*00              1211 	pop	bits
+   03F6 D0 07              1212 	pop	ar7
+   03F8 D0 06              1213 	pop	ar6
+   03FA D0 05              1214 	pop	ar5
+                           1215 ;	SRC/lab4.c:175: if(ptr[15]){
+   03FC 74 0F              1216 	mov	a,#0x0F
+   03FE 2D                 1217 	add	a,r5
+   03FF FA                 1218 	mov	r2,a
+   0400 E4                 1219 	clr	a
+   0401 3E                 1220 	addc	a,r6
+   0402 FB                 1221 	mov	r3,a
+   0403 8F 04              1222 	mov	ar4,r7
+   0405 8A 82              1223 	mov	dpl,r2
+   0407 8B 83              1224 	mov	dph,r3
+   0409 8C F0              1225 	mov	b,r4
+   040B 12s00r00           1226 	lcall	__gptrget
+   040E 60 51              1227 	jz	00102$
+                           1228 ;	SRC/lab4.c:176: LCD_Type("                ");
+   0410 90s00r0F           1229 	mov	dptr,#__str_1
+   0413 75 F0 80           1230 	mov	b,#0x80
+   0416 C0 05              1231 	push	ar5
+   0418 C0 06              1232 	push	ar6
+   041A C0 07              1233 	push	ar7
+   041C C0*00              1234 	push	bits
+   041E 12s00r00           1235 	lcall	_LCD_Type
+   0421 D0*00              1236 	pop	bits
+                           1237 ;	SRC/lab4.c:177: LCD_GotoXY(0,y);
+   0423 A2*00              1238 	mov	c,b0
+   0425 92 F0              1239 	mov	b[0],c
+   0427 C0*00              1240 	push	bits
+   0429 85 F0*00           1241 	mov	bits,b
+   042C 75 82 00           1242 	mov	dpl,#0x00
+   042F 12s00r00           1243 	lcall	_LCD_GotoXY
+   0432 D0*00              1244 	pop	bits
+   0434 D0 07              1245 	pop	ar7
+   0436 D0 06              1246 	pop	ar6
+   0438 D0 05              1247 	pop	ar5
+                           1248 ;	SRC/lab4.c:178: PrintString(ptr++);
+   043A 8D 02              1249 	mov	ar2,r5
+   043C 8E 03              1250 	mov	ar3,r6
+   043E 8F 04              1251 	mov	ar4,r7
+   0440 0D                 1252 	inc	r5
+   0441 BD 00 01           1253 	cjne	r5,#0x00,00118$
+   0444 0E                 1254 	inc	r6
+   0445                    1255 00118$:
+   0445 8A 82              1256 	mov	dpl,r2
+   0447 8B 83              1257 	mov	dph,r3
+   0449 8C F0              1258 	mov	b,r4
+   044B C0 05              1259 	push	ar5
+   044D C0 06              1260 	push	ar6
+   044F C0 07              1261 	push	ar7
+   0451 C0*00              1262 	push	bits
+   0453 12s02rA9           1263 	lcall	_PrintString
+   0456 D0*00              1264 	pop	bits
+   0458 D0 07              1265 	pop	ar7
+   045A D0 06              1266 	pop	ar6
+   045C D0 05              1267 	pop	ar5
+   045E 02s03r8E           1268 	ljmp	00106$
+   0461                    1269 00102$:
+                           1270 ;	SRC/lab4.c:181: ptr = s;
+   0461 A8*00              1271 	mov	r0,_bp
+   0463 08                 1272 	inc	r0
+   0464 86 05              1273 	mov	ar5,@r0
+   0466 08                 1274 	inc	r0
+   0467 86 06              1275 	mov	ar6,@r0
+   0469 08                 1276 	inc	r0
+   046A 86 07              1277 	mov	ar7,@r0
+   046C 02s03r8E           1278 	ljmp	00106$
+   046F                    1279 00109$:
+   046F 85*00 81           1280 	mov	sp,_bp
+   0472 D0*00              1281 	pop	_bp
+   0474 22                 1282 	ret
+                           1283 ;------------------------------------------------------------
+                           1284 ;Allocation info for local variables in function 'message'
+                           1285 ;------------------------------------------------------------
+                           1286 ;msg                       Allocated to registers r2 r3 r4 
+                           1287 ;------------------------------------------------------------
+                           1288 ;	SRC/lab4.c:188: void message(unsigned char*  msg){
+                           1289 ;	-----------------------------------------
+                           1290 ;	 function message
+                           1291 ;	-----------------------------------------
+   0475                    1292 _message:
+   0475 AA 82              1293 	mov	r2,dpl
+   0477 AB 83              1294 	mov	r3,dph
+   0479 AC F0              1295 	mov	r4,b
+                           1296 ;	SRC/lab4.c:189: LCD_Clear();
+   047B C0 02              1297 	push	ar2
+   047D C0 03              1298 	push	ar3
+   047F C0 04              1299 	push	ar4
+   0481 12s00r00           1300 	lcall	_LCD_Clear
+   0484 D0 04              1301 	pop	ar4
+   0486 D0 03              1302 	pop	ar3
+   0488 D0 02              1303 	pop	ar2
+                           1304 ;	SRC/lab4.c:190: LCD_Type(msg); 
+   048A 8A 82              1305 	mov	dpl,r2
+   048C 8B 83              1306 	mov	dph,r3
+   048E 8C F0              1307 	mov	b,r4
+   0490 C0 02              1308 	push	ar2
+   0492 C0 03              1309 	push	ar3
+   0494 C0 04              1310 	push	ar4
+   0496 12s00r00           1311 	lcall	_LCD_Type
+   0499 D0 04              1312 	pop	ar4
+   049B D0 03              1313 	pop	ar3
+   049D D0 02              1314 	pop	ar2
+                           1315 ;	SRC/lab4.c:191: Type(msg);
+   049F 8A 82              1316 	mov	dpl,r2
+   04A1 8B 83              1317 	mov	dph,r3
+   04A3 8C F0              1318 	mov	b,r4
+   04A5 12s00r00           1319 	lcall	_Type
+                           1320 ;	SRC/lab4.c:192: Type("\r\n");
+   04A8 90s00r20           1321 	mov	dptr,#__str_2
+   04AB 75 F0 80           1322 	mov	b,#0x80
+   04AE 12s00r00           1323 	lcall	_Type
+                           1324 ;	SRC/lab4.c:194: delay(DISPLAY_MESSAGE_DELAY_TIME);
+   04B1 90 01 2C           1325 	mov	dptr,#0x012C
+   04B4 02s02r63           1326 	ljmp	_delay
+                           1327 ;------------------------------------------------------------
+                           1328 ;Allocation info for local variables in function 'dip'
+                           1329 ;------------------------------------------------------------
+                           1330 ;------------------------------------------------------------
+                           1331 ;	SRC/lab4.c:198: unsigned char dip(){
+                           1332 ;	-----------------------------------------
+                           1333 ;	 function dip
+                           1334 ;	-----------------------------------------
+   04B7                    1335 _dip:
+                           1336 ;	SRC/lab4.c:199: return ReadMax(EXT_LO);
+   04B7 90 00 02           1337 	mov	dptr,#0x0002
+   04BA 02s00r00           1338 	ljmp	_ReadMax
+                           1339 ;------------------------------------------------------------
+                           1340 ;Allocation info for local variables in function 'PrintTime'
+                           1341 ;------------------------------------------------------------
+                           1342 ;buffer                    Allocated to stack - offset -5
+                           1343 ;time                      Allocated to stack - offset 1
+                           1344 ;i                         Allocated to registers 
+                           1345 ;sloc0                     Allocated to stack - offset 5
+                           1346 ;sloc1                     Allocated to stack - offset 4
+                           1347 ;------------------------------------------------------------
+                           1348 ;	SRC/lab4.c:201: unsigned char* PrintTime(TIME* time, unsigned char* buffer){
+                           1349 ;	-----------------------------------------
+                           1350 ;	 function PrintTime
+                           1351 ;	-----------------------------------------
+   04BD                    1352 _PrintTime:
+   04BD C0*00              1353 	push	_bp
+   04BF 85 81*00           1354 	mov	_bp,sp
+   04C2 C0 82              1355 	push	dpl
+   04C4 C0 83              1356 	push	dph
+   04C6 C0 F0              1357 	push	b
+   04C8 05 81              1358 	inc	sp
+   04CA 05 81              1359 	inc	sp
+   04CC 05 81              1360 	inc	sp
+                           1361 ;	SRC/lab4.c:204: buffer[i++] = (time->hour / 10 % 10) + '0';
+   04CE E5*00              1362 	mov	a,_bp
+   04D0 24 FB              1363 	add	a,#0xfb
+   04D2 F8                 1364 	mov	r0,a
+   04D3 86 05              1365 	mov	ar5,@r0
+   04D5 08                 1366 	inc	r0
+   04D6 86 06              1367 	mov	ar6,@r0
+   04D8 08                 1368 	inc	r0
+   04D9 86 07              1369 	mov	ar7,@r0
+   04DB A8*00              1370 	mov	r0,_bp
+   04DD 08                 1371 	inc	r0
+   04DE 74 03              1372 	mov	a,#0x03
+   04E0 26                 1373 	add	a,@r0
+   04E1 FA                 1374 	mov	r2,a
+   04E2 E4                 1375 	clr	a
+   04E3 08                 1376 	inc	r0
+   04E4 36                 1377 	addc	a,@r0
+   04E5 FB                 1378 	mov	r3,a
+   04E6 08                 1379 	inc	r0
+   04E7 86 04              1380 	mov	ar4,@r0
+   04E9 8A 82              1381 	mov	dpl,r2
+   04EB 8B 83              1382 	mov	dph,r3
+   04ED 8C F0              1383 	mov	b,r4
+   04EF 12s00r00           1384 	lcall	__gptrget
+   04F2 FA                 1385 	mov	r2,a
+   04F3 75 F0 0A           1386 	mov	b,#0x0A
+   04F6 84                 1387 	div	ab
+   04F7 75 F0 0A           1388 	mov	b,#0x0A
+   04FA 84                 1389 	div	ab
+   04FB E5 F0              1390 	mov	a,b
+   04FD 24 30              1391 	add	a,#0x30
+   04FF 8D 82              1392 	mov	dpl,r5
+   0501 8E 83              1393 	mov	dph,r6
+   0503 8F F0              1394 	mov	b,r7
+   0505 12s00r00           1395 	lcall	__gptrput
+                           1396 ;	SRC/lab4.c:205: buffer[i++] = (time->hour % 10) + '0';
+   0508 E5*00              1397 	mov	a,_bp
+   050A 24 04              1398 	add	a,#0x04
+   050C F8                 1399 	mov	r0,a
+   050D 74 01              1400 	mov	a,#0x01
+   050F 2D                 1401 	add	a,r5
+   0510 F6                 1402 	mov	@r0,a
+   0511 E4                 1403 	clr	a
+   0512 3E                 1404 	addc	a,r6
+   0513 08                 1405 	inc	r0
+   0514 F6                 1406 	mov	@r0,a
+   0515 08                 1407 	inc	r0
+   0516 A6 07              1408 	mov	@r0,ar7
+   0518 75 F0 0A           1409 	mov	b,#0x0A
+   051B EA                 1410 	mov	a,r2
+   051C 84                 1411 	div	ab
+   051D E5 F0              1412 	mov	a,b
+   051F 24 30              1413 	add	a,#0x30
+   0521 FA                 1414 	mov	r2,a
+   0522 E5*00              1415 	mov	a,_bp
+   0524 24 04              1416 	add	a,#0x04
+   0526 F8                 1417 	mov	r0,a
+   0527 86 82              1418 	mov	dpl,@r0
+   0529 08                 1419 	inc	r0
+   052A 86 83              1420 	mov	dph,@r0
+   052C 08                 1421 	inc	r0
+   052D 86 F0              1422 	mov	b,@r0
+   052F EA                 1423 	mov	a,r2
+   0530 12s00r00           1424 	lcall	__gptrput
+                           1425 ;	SRC/lab4.c:206: buffer[i++] = ':';
+   0533 74 02              1426 	mov	a,#0x02
+   0535 2D                 1427 	add	a,r5
+   0536 FA                 1428 	mov	r2,a
+   0537 E4                 1429 	clr	a
+   0538 3E                 1430 	addc	a,r6
+   0539 FB                 1431 	mov	r3,a
+   053A 8F 04              1432 	mov	ar4,r7
+   053C 8A 82              1433 	mov	dpl,r2
+   053E 8B 83              1434 	mov	dph,r3
+   0540 8C F0              1435 	mov	b,r4
+   0542 74 3A              1436 	mov	a,#0x3A
+   0544 12s00r00           1437 	lcall	__gptrput
+                           1438 ;	SRC/lab4.c:209: buffer[i++] = (time->min / 10 % 10) + '0';
+   0547 E5*00              1439 	mov	a,_bp
+   0549 24 04              1440 	add	a,#0x04
+   054B F8                 1441 	mov	r0,a
+   054C 74 03              1442 	mov	a,#0x03
+   054E 2D                 1443 	add	a,r5
+   054F F6                 1444 	mov	@r0,a
+   0550 E4                 1445 	clr	a
+   0551 3E                 1446 	addc	a,r6
+   0552 08                 1447 	inc	r0
+   0553 F6                 1448 	mov	@r0,a
+   0554 08                 1449 	inc	r0
+   0555 A6 07              1450 	mov	@r0,ar7
+   0557 A8*00              1451 	mov	r0,_bp
+   0559 08                 1452 	inc	r0
+   055A 74 02              1453 	mov	a,#0x02
+   055C 26                 1454 	add	a,@r0
+   055D FA                 1455 	mov	r2,a
+   055E E4                 1456 	clr	a
+   055F 08                 1457 	inc	r0
+   0560 36                 1458 	addc	a,@r0
+   0561 FB                 1459 	mov	r3,a
+   0562 08                 1460 	inc	r0
+   0563 86 04              1461 	mov	ar4,@r0
+   0565 8A 82              1462 	mov	dpl,r2
+   0567 8B 83              1463 	mov	dph,r3
+   0569 8C F0              1464 	mov	b,r4
+   056B 12s00r00           1465 	lcall	__gptrget
+   056E FA                 1466 	mov	r2,a
+   056F 75 F0 0A           1467 	mov	b,#0x0A
+   0572 84                 1468 	div	ab
+   0573 75 F0 0A           1469 	mov	b,#0x0A
+   0576 84                 1470 	div	ab
+   0577 E5 F0              1471 	mov	a,b
+   0579 24 30              1472 	add	a,#0x30
+   057B FB                 1473 	mov	r3,a
+   057C E5*00              1474 	mov	a,_bp
+   057E 24 04              1475 	add	a,#0x04
+   0580 F8                 1476 	mov	r0,a
+   0581 86 82              1477 	mov	dpl,@r0
+   0583 08                 1478 	inc	r0
+   0584 86 83              1479 	mov	dph,@r0
+   0586 08                 1480 	inc	r0
+   0587 86 F0              1481 	mov	b,@r0
+   0589 EB                 1482 	mov	a,r3
+   058A 12s00r00           1483 	lcall	__gptrput
+                           1484 ;	SRC/lab4.c:210: buffer[i++] = (time->min % 10) + '0';
+   058D E5*00              1485 	mov	a,_bp
+   058F 24 04              1486 	add	a,#0x04
+   0591 F8                 1487 	mov	r0,a
+   0592 74 04              1488 	mov	a,#0x04
+   0594 2D                 1489 	add	a,r5
+   0595 F6                 1490 	mov	@r0,a
+   0596 E4                 1491 	clr	a
+   0597 3E                 1492 	addc	a,r6
+   0598 08                 1493 	inc	r0
+   0599 F6                 1494 	mov	@r0,a
+   059A 08                 1495 	inc	r0
+   059B A6 07              1496 	mov	@r0,ar7
+   059D 75 F0 0A           1497 	mov	b,#0x0A
+   05A0 EA                 1498 	mov	a,r2
+   05A1 84                 1499 	div	ab
+   05A2 E5 F0              1500 	mov	a,b
+   05A4 24 30              1501 	add	a,#0x30
+   05A6 FA                 1502 	mov	r2,a
+   05A7 E5*00              1503 	mov	a,_bp
+   05A9 24 04              1504 	add	a,#0x04
+   05AB F8                 1505 	mov	r0,a
+   05AC 86 82              1506 	mov	dpl,@r0
+   05AE 08                 1507 	inc	r0
+   05AF 86 83              1508 	mov	dph,@r0
+   05B1 08                 1509 	inc	r0
+   05B2 86 F0              1510 	mov	b,@r0
+   05B4 EA                 1511 	mov	a,r2
+   05B5 12s00r00           1512 	lcall	__gptrput
+                           1513 ;	SRC/lab4.c:211: buffer[i++] = ':';
+   05B8 74 05              1514 	mov	a,#0x05
+   05BA 2D                 1515 	add	a,r5
+   05BB FA                 1516 	mov	r2,a
+   05BC E4                 1517 	clr	a
+   05BD 3E                 1518 	addc	a,r6
+   05BE FB                 1519 	mov	r3,a
+   05BF 8F 04              1520 	mov	ar4,r7
+   05C1 8A 82              1521 	mov	dpl,r2
+   05C3 8B 83              1522 	mov	dph,r3
+   05C5 8C F0              1523 	mov	b,r4
+   05C7 74 3A              1524 	mov	a,#0x3A
+   05C9 12s00r00           1525 	lcall	__gptrput
+                           1526 ;	SRC/lab4.c:214: buffer[i++] = (time->sec / 10 % 10) + '0';
+   05CC E5*00              1527 	mov	a,_bp
+   05CE 24 04              1528 	add	a,#0x04
+   05D0 F8                 1529 	mov	r0,a
+   05D1 74 06              1530 	mov	a,#0x06
+   05D3 2D                 1531 	add	a,r5
+   05D4 F6                 1532 	mov	@r0,a
+   05D5 E4                 1533 	clr	a
+   05D6 3E                 1534 	addc	a,r6
+   05D7 08                 1535 	inc	r0
+   05D8 F6                 1536 	mov	@r0,a
+   05D9 08                 1537 	inc	r0
+   05DA A6 07              1538 	mov	@r0,ar7
+   05DC A8*00              1539 	mov	r0,_bp
+   05DE 08                 1540 	inc	r0
+   05DF 74 01              1541 	mov	a,#0x01
+   05E1 26                 1542 	add	a,@r0
+   05E2 FA                 1543 	mov	r2,a
+   05E3 E4                 1544 	clr	a
+   05E4 08                 1545 	inc	r0
+   05E5 36                 1546 	addc	a,@r0
+   05E6 FB                 1547 	mov	r3,a
+   05E7 08                 1548 	inc	r0
+   05E8 86 04              1549 	mov	ar4,@r0
+   05EA 8A 82              1550 	mov	dpl,r2
+   05EC 8B 83              1551 	mov	dph,r3
+   05EE 8C F0              1552 	mov	b,r4
+   05F0 12s00r00           1553 	lcall	__gptrget
+   05F3 FA                 1554 	mov	r2,a
+   05F4 75 F0 0A           1555 	mov	b,#0x0A
+   05F7 84                 1556 	div	ab
+   05F8 75 F0 0A           1557 	mov	b,#0x0A
+   05FB 84                 1558 	div	ab
+   05FC E5 F0              1559 	mov	a,b
+   05FE 24 30              1560 	add	a,#0x30
+   0600 FB                 1561 	mov	r3,a
+   0601 E5*00              1562 	mov	a,_bp
+   0603 24 04              1563 	add	a,#0x04
+   0605 F8                 1564 	mov	r0,a
+   0606 86 82              1565 	mov	dpl,@r0
+   0608 08                 1566 	inc	r0
+   0609 86 83              1567 	mov	dph,@r0
+   060B 08                 1568 	inc	r0
+   060C 86 F0              1569 	mov	b,@r0
+   060E EB                 1570 	mov	a,r3
+   060F 12s00r00           1571 	lcall	__gptrput
+                           1572 ;	SRC/lab4.c:215: buffer[i++] = (time->sec % 10) + '0';
+   0612 E5*00              1573 	mov	a,_bp
+   0614 24 04              1574 	add	a,#0x04
+   0616 F8                 1575 	mov	r0,a
+   0617 74 07              1576 	mov	a,#0x07
+   0619 2D                 1577 	add	a,r5
+   061A F6                 1578 	mov	@r0,a
+   061B E4                 1579 	clr	a
+   061C 3E                 1580 	addc	a,r6
+   061D 08                 1581 	inc	r0
+   061E F6                 1582 	mov	@r0,a
+   061F 08                 1583 	inc	r0
+   0620 A6 07              1584 	mov	@r0,ar7
+   0622 75 F0 0A           1585 	mov	b,#0x0A
+   0625 EA                 1586 	mov	a,r2
+   0626 84                 1587 	div	ab
+   0627 E5 F0              1588 	mov	a,b
+   0629 24 30              1589 	add	a,#0x30
+   062B FA                 1590 	mov	r2,a
+   062C E5*00              1591 	mov	a,_bp
+   062E 24 04              1592 	add	a,#0x04
+   0630 F8                 1593 	mov	r0,a
+   0631 86 82              1594 	mov	dpl,@r0
+   0633 08                 1595 	inc	r0
+   0634 86 83              1596 	mov	dph,@r0
+   0636 08                 1597 	inc	r0
+   0637 86 F0              1598 	mov	b,@r0
+   0639 EA                 1599 	mov	a,r2
+   063A 12s00r00           1600 	lcall	__gptrput
+                           1601 ;	SRC/lab4.c:216: buffer[i] = '\0';
+   063D 74 08              1602 	mov	a,#0x08
+   063F 2D                 1603 	add	a,r5
+   0640 FA                 1604 	mov	r2,a
+   0641 E4                 1605 	clr	a
+   0642 3E                 1606 	addc	a,r6
+   0643 FB                 1607 	mov	r3,a
+   0644 8F 04              1608 	mov	ar4,r7
+   0646 8A 82              1609 	mov	dpl,r2
+   0648 8B 83              1610 	mov	dph,r3
+   064A 8C F0              1611 	mov	b,r4
+   064C E4                 1612 	clr	a
+   064D 12s00r00           1613 	lcall	__gptrput
+                           1614 ;	SRC/lab4.c:218: return buffer;
+   0650 8D 82              1615 	mov	dpl,r5
+   0652 8E 83              1616 	mov	dph,r6
+   0654 8F F0              1617 	mov	b,r7
+   0656 85*00 81           1618 	mov	sp,_bp
+   0659 D0*00              1619 	pop	_bp
+   065B 22                 1620 	ret
+                           1621 ;------------------------------------------------------------
+                           1622 ;Allocation info for local variables in function 'CompareString'
+                           1623 ;------------------------------------------------------------
+                           1624 ;str2                      Allocated to stack - offset -5
+                           1625 ;length                    Allocated to stack - offset -6
+                           1626 ;str1                      Allocated to stack - offset 1
+                           1627 ;i                         Allocated to registers r5 
+                           1628 ;------------------------------------------------------------
+                           1629 ;	SRC/lab4.c:220: char CompareString(unsigned char* str1, unsigned char* str2, unsigned char length){
+                           1630 ;	-----------------------------------------
+                           1631 ;	 function CompareString
+                           1632 ;	-----------------------------------------
+   065C                    1633 _CompareString:
+   065C C0*00              1634 	push	_bp
+   065E 85 81*00           1635 	mov	_bp,sp
+   0661 C0 82              1636 	push	dpl
+   0663 C0 83              1637 	push	dph
+   0665 C0 F0              1638 	push	b
+                           1639 ;	SRC/lab4.c:222: for(i = 0; i < length; i++)
+   0667 7D 00              1640 	mov	r5,#0x00
+   0669                    1641 00103$:
+   0669 E5*00              1642 	mov	a,_bp
+   066B 24 FA              1643 	add	a,#0xfa
+   066D F8                 1644 	mov	r0,a
+   066E C3                 1645 	clr	c
+   066F ED                 1646 	mov	a,r5
+   0670 96                 1647 	subb	a,@r0
+   0671 50 3E              1648 	jnc	00106$
+                           1649 ;	SRC/lab4.c:223: if( str1[i] != str2[i] )
+   0673 A8*00              1650 	mov	r0,_bp
+   0675 08                 1651 	inc	r0
+   0676 ED                 1652 	mov	a,r5
+   0677 26                 1653 	add	a,@r0
+   0678 FE                 1654 	mov	r6,a
+   0679 E4                 1655 	clr	a
+   067A 08                 1656 	inc	r0
+   067B 36                 1657 	addc	a,@r0
+   067C FF                 1658 	mov	r7,a
+   067D 08                 1659 	inc	r0
+   067E 86 02              1660 	mov	ar2,@r0
+   0680 8E 82              1661 	mov	dpl,r6
+   0682 8F 83              1662 	mov	dph,r7
+   0684 8A F0              1663 	mov	b,r2
+   0686 12s00r00           1664 	lcall	__gptrget
+   0689 FE                 1665 	mov	r6,a
+   068A E5*00              1666 	mov	a,_bp
+   068C 24 FB              1667 	add	a,#0xfb
+   068E F8                 1668 	mov	r0,a
+   068F ED                 1669 	mov	a,r5
+   0690 26                 1670 	add	a,@r0
+   0691 FA                 1671 	mov	r2,a
+   0692 E4                 1672 	clr	a
+   0693 08                 1673 	inc	r0
+   0694 36                 1674 	addc	a,@r0
+   0695 FB                 1675 	mov	r3,a
+   0696 08                 1676 	inc	r0
+   0697 86 04              1677 	mov	ar4,@r0
+   0699 8A 82              1678 	mov	dpl,r2
+   069B 8B 83              1679 	mov	dph,r3
+   069D 8C F0              1680 	mov	b,r4
+   069F 12s00r00           1681 	lcall	__gptrget
+   06A2 FA                 1682 	mov	r2,a
+   06A3 EE                 1683 	mov	a,r6
+   06A4 B5 02 02           1684 	cjne	a,ar2,00113$
+   06A7 80 05              1685 	sjmp	00105$
+   06A9                    1686 00113$:
+                           1687 ;	SRC/lab4.c:224: return 1;
+   06A9 75 82 01           1688 	mov	dpl,#0x01
+   06AC 80 06              1689 	sjmp	00107$
+   06AE                    1690 00105$:
+                           1691 ;	SRC/lab4.c:222: for(i = 0; i < length; i++)
+   06AE 0D                 1692 	inc	r5
+   06AF 80 B8              1693 	sjmp	00103$
+   06B1                    1694 00106$:
+                           1695 ;	SRC/lab4.c:225: return 0;
+   06B1 75 82 00           1696 	mov	dpl,#0x00
+   06B4                    1697 00107$:
+   06B4 85*00 81           1698 	mov	sp,_bp
+   06B7 D0*00              1699 	pop	_bp
+   06B9 22                 1700 	ret
+                           1701 ;------------------------------------------------------------
+                           1702 ;Allocation info for local variables in function 'CompareEEPROM'
+                           1703 ;------------------------------------------------------------
+                           1704 ;compStr                   Allocated to stack - offset -5
+                           1705 ;length                    Allocated to stack - offset -6
+                           1706 ;address                   Allocated to registers r2 
+                           1707 ;i                         Allocated to stack - offset 2
+                           1708 ;------------------------------------------------------------
+                           1709 ;	SRC/lab4.c:227: char CompareEEPROM(unsigned char address, unsigned char* compStr, unsigned char length){
+                           1710 ;	-----------------------------------------
+                           1711 ;	 function CompareEEPROM
+                           1712 ;	-----------------------------------------
+   06BA                    1713 _CompareEEPROM:
+   06BA C0*00              1714 	push	_bp
+   06BC 85 81*00           1715 	mov	_bp,sp
+   06BF AA 82              1716 	mov	r2,dpl
+                           1717 ;	SRC/lab4.c:229: if( ReadBlockEEPROM(address, xbuffer, length) ){ 
+   06C1 E5*00              1718 	mov	a,_bp
+   06C3 24 FA              1719 	add	a,#0xfa
+   06C5 F8                 1720 	mov	r0,a
+   06C6 E6                 1721 	mov	a,@r0
+   06C7 C0 E0              1722 	push	acc
+   06C9 74r08              1723 	mov	a,#_xbuffer
+   06CB C0 E0              1724 	push	acc
+   06CD 74s00              1725 	mov	a,#(_xbuffer >> 8)
+   06CF C0 E0              1726 	push	acc
+   06D1 8A 82              1727 	mov	dpl,r2
+   06D3 12s00r00           1728 	lcall	_ReadBlockEEPROM
+   06D6 15 81              1729 	dec	sp
+   06D8 15 81              1730 	dec	sp
+   06DA 15 81              1731 	dec	sp
+   06DC 92*00              1732 	mov	b0,c
+   06DE 50 14              1733 	jnc	00102$
+                           1734 ;	SRC/lab4.c:230: log(READ_EEPROM_ERR);
+   06E0 75 82 66           1735 	mov	dpl,#0x66
+   06E3 12s09r2C           1736 	lcall	_log
+                           1737 ;	SRC/lab4.c:231: message("Read EEEPROM error!");
+   06E6 90s00r23           1738 	mov	dptr,#__str_3
+   06E9 75 F0 80           1739 	mov	b,#0x80
+   06EC 12s04r75           1740 	lcall	_message
+                           1741 ;	SRC/lab4.c:232: return 2;
+   06EF 75 82 02           1742 	mov	dpl,#0x02
+   06F2 80 2A              1743 	sjmp	00104$
+   06F4                    1744 00102$:
+                           1745 ;	SRC/lab4.c:236: return CompareString(buffer, compStr, length);
+   06F4 E5*00              1746 	mov	a,_bp
+   06F6 24 FA              1747 	add	a,#0xfa
+   06F8 F8                 1748 	mov	r0,a
+   06F9 E6                 1749 	mov	a,@r0
+   06FA C0 E0              1750 	push	acc
+   06FC E5*00              1751 	mov	a,_bp
+   06FE 24 FB              1752 	add	a,#0xfb
+   0700 F8                 1753 	mov	r0,a
+   0701 E6                 1754 	mov	a,@r0
+   0702 C0 E0              1755 	push	acc
+   0704 08                 1756 	inc	r0
+   0705 E6                 1757 	mov	a,@r0
+   0706 C0 E0              1758 	push	acc
+   0708 08                 1759 	inc	r0
+   0709 E6                 1760 	mov	a,@r0
+   070A C0 E0              1761 	push	acc
+   070C 85*00 82           1762 	mov	dpl,_buffer
+   070F 85*01 83           1763 	mov	dph,(_buffer + 1)
+   0712 85*02 F0           1764 	mov	b,(_buffer + 2)
+   0715 12s06r5C           1765 	lcall	_CompareString
+   0718 E5 81              1766 	mov	a,sp
+   071A 24 FC              1767 	add	a,#0xfc
+   071C F5 81              1768 	mov	sp,a
+   071E                    1769 00104$:
+   071E D0*00              1770 	pop	_bp
+   0720 22                 1771 	ret
+                           1772 ;------------------------------------------------------------
+                           1773 ;Allocation info for local variables in function 'PrintNumber'
+                           1774 ;------------------------------------------------------------
+                           1775 ;num                       Allocated to registers r2 
+                           1776 ;i                         Allocated to registers r3 
+                           1777 ;------------------------------------------------------------
+                           1778 ;	SRC/lab4.c:243: void PrintNumber(unsigned char num){
+                           1779 ;	-----------------------------------------
+                           1780 ;	 function PrintNumber
+                           1781 ;	-----------------------------------------
+   0721                    1782 _PrintNumber:
+   0721 AA 82              1783 	mov	r2,dpl
+                           1784 ;	SRC/lab4.c:244: char i = 0;
+   0723 7B 00              1785 	mov	r3,#0x00
+                           1786 ;	SRC/lab4.c:246: buffer[i] = 								(num / 100 % 10) + '0';
+   0725 AC*00              1787 	mov	r4,_buffer
+   0727 AD*01              1788 	mov	r5,(_buffer + 1)
+   0729 AE*02              1789 	mov	r6,(_buffer + 2)
+   072B 75 F0 64           1790 	mov	b,#0x64
+   072E EA                 1791 	mov	a,r2
+   072F 84                 1792 	div	ab
+   0730 75 F0 0A           1793 	mov	b,#0x0A
+   0733 84                 1794 	div	ab
+   0734 E5 F0              1795 	mov	a,b
+   0736 24 30              1796 	add	a,#0x30
+   0738 FF                 1797 	mov	r7,a
+   0739 8C 82              1798 	mov	dpl,r4
+   073B 8D 83              1799 	mov	dph,r5
+   073D 8E F0              1800 	mov	b,r6
+   073F 12s00r00           1801 	lcall	__gptrput
+                           1802 ;	SRC/lab4.c:247: buffer[buffer[i]=='0' ? i : ++i ] = 		(num / 10 % 10) + '0';
+   0742 BF 30 04           1803 	cjne	r7,#0x30,00103$
+   0745 7C 00              1804 	mov	r4,#0x00
+   0747 80 04              1805 	sjmp	00104$
+   0749                    1806 00103$:
+   0749 7B 01              1807 	mov	r3,#0x01
+   074B 7C 01              1808 	mov	r4,#0x01
+   074D                    1809 00104$:
+   074D EC                 1810 	mov	a,r4
+   074E 25*00              1811 	add	a,_buffer
+   0750 FC                 1812 	mov	r4,a
+   0751 E4                 1813 	clr	a
+   0752 35*01              1814 	addc	a,(_buffer + 1)
+   0754 FD                 1815 	mov	r5,a
+   0755 AE*02              1816 	mov	r6,(_buffer + 2)
+   0757 75 F0 0A           1817 	mov	b,#0x0A
+   075A EA                 1818 	mov	a,r2
+   075B 84                 1819 	div	ab
+   075C 75 F0 0A           1820 	mov	b,#0x0A
+   075F 84                 1821 	div	ab
+   0760 E5 F0              1822 	mov	a,b
+   0762 24 30              1823 	add	a,#0x30
+   0764 FF                 1824 	mov	r7,a
+   0765 8C 82              1825 	mov	dpl,r4
+   0767 8D 83              1826 	mov	dph,r5
+   0769 8E F0              1827 	mov	b,r6
+   076B 12s00r00           1828 	lcall	__gptrput
+                           1829 ;	SRC/lab4.c:248: buffer[buffer[i]=='0' && i==0 ? i : ++i] = 	(num % 10) + '0';
+   076E EB                 1830 	mov	a,r3
+   076F 25*00              1831 	add	a,_buffer
+   0771 FC                 1832 	mov	r4,a
+   0772 E4                 1833 	clr	a
+   0773 35*01              1834 	addc	a,(_buffer + 1)
+   0775 FD                 1835 	mov	r5,a
+   0776 AE*02              1836 	mov	r6,(_buffer + 2)
+   0778 8C 82              1837 	mov	dpl,r4
+   077A 8D 83              1838 	mov	dph,r5
+   077C 8E F0              1839 	mov	b,r6
+   077E 12s00r00           1840 	lcall	__gptrget
+   0781 FC                 1841 	mov	r4,a
+   0782 BC 30 09           1842 	cjne	r4,#0x30,00107$
+   0785 EB                 1843 	mov	a,r3
+   0786 B4 01 00           1844 	cjne	a,#0x01,00117$
+   0789                    1845 00117$:
+   0789 E4                 1846 	clr	a
+   078A 33                 1847 	rlc	a
+   078B FC                 1848 	mov	r4,a
+   078C 70 04              1849 	jnz	00108$
+   078E                    1850 00107$:
+   078E 7C 00              1851 	mov	r4,#0x00
+   0790 80 02              1852 	sjmp	00109$
+   0792                    1853 00108$:
+   0792 7C 01              1854 	mov	r4,#0x01
+   0794                    1855 00109$:
+   0794 EC                 1856 	mov	a,r4
+   0795 60 04              1857 	jz	00105$
+   0797 8B 04              1858 	mov	ar4,r3
+   0799 80 03              1859 	sjmp	00106$
+   079B                    1860 00105$:
+   079B 0B                 1861 	inc	r3
+   079C 8B 04              1862 	mov	ar4,r3
+   079E                    1863 00106$:
+   079E EC                 1864 	mov	a,r4
+   079F 25*00              1865 	add	a,_buffer
+   07A1 FC                 1866 	mov	r4,a
+   07A2 E4                 1867 	clr	a
+   07A3 35*01              1868 	addc	a,(_buffer + 1)
+   07A5 FD                 1869 	mov	r5,a
+   07A6 AE*02              1870 	mov	r6,(_buffer + 2)
+   07A8 75 F0 0A           1871 	mov	b,#0x0A
+   07AB EA                 1872 	mov	a,r2
+   07AC 84                 1873 	div	ab
+   07AD E5 F0              1874 	mov	a,b
+   07AF 24 30              1875 	add	a,#0x30
+   07B1 8C 82              1876 	mov	dpl,r4
+   07B3 8D 83              1877 	mov	dph,r5
+   07B5 8E F0              1878 	mov	b,r6
+   07B7 12s00r00           1879 	lcall	__gptrput
+                           1880 ;	SRC/lab4.c:249: buffer[++i] = 								'\0';
+   07BA 0B                 1881 	inc	r3
+   07BB EB                 1882 	mov	a,r3
+   07BC 25*00              1883 	add	a,_buffer
+   07BE FB                 1884 	mov	r3,a
+   07BF E4                 1885 	clr	a
+   07C0 35*01              1886 	addc	a,(_buffer + 1)
+   07C2 FA                 1887 	mov	r2,a
+   07C3 AC*02              1888 	mov	r4,(_buffer + 2)
+   07C5 8B 82              1889 	mov	dpl,r3
+   07C7 8A 83              1890 	mov	dph,r2
+   07C9 8C F0              1891 	mov	b,r4
+   07CB E4                 1892 	clr	a
+   07CC 02s00r00           1893 	ljmp	__gptrput
+                           1894 ;------------------------------------------------------------
+                           1895 ;Allocation info for local variables in function 'DecipherCode'
+                           1896 ;------------------------------------------------------------
+                           1897 ;msg_code                  Allocated to registers r2 
+                           1898 ;------------------------------------------------------------
+                           1899 ;	SRC/lab4.c:258: void DecipherCode(unsigned char msg_code){
+                           1900 ;	-----------------------------------------
+                           1901 ;	 function DecipherCode
+                           1902 ;	-----------------------------------------
+   07CF                    1903 _DecipherCode:
+   07CF AA 82              1904 	mov	r2,dpl
+                           1905 ;	SRC/lab4.c:259: switch(msg_code){
+   07D1 BA 01 02           1906 	cjne	r2,#0x01,00127$
+   07D4 80 2C              1907 	sjmp	00101$
+   07D6                    1908 00127$:
+   07D6 BA 02 02           1909 	cjne	r2,#0x02,00128$
+   07D9 80 30              1910 	sjmp	00102$
+   07DB                    1911 00128$:
+   07DB BA 04 02           1912 	cjne	r2,#0x04,00129$
+   07DE 80 4F              1913 	sjmp	00106$
+   07E0                    1914 00129$:
+   07E0 BA 05 02           1915 	cjne	r2,#0x05,00130$
+   07E3 80 53              1916 	sjmp	00107$
+   07E5                    1917 00130$:
+   07E5 BA 08 03           1918 	cjne	r2,#0x08,00131$
+   07E8 02s08r4A           1919 	ljmp	00109$
+   07EB                    1920 00131$:
+   07EB BA 0A 02           1921 	cjne	r2,#0x0A,00132$
+   07EE 80 24              1922 	sjmp	00103$
+   07F0                    1923 00132$:
+   07F0 BA 0B 02           1924 	cjne	r2,#0x0B,00133$
+   07F3 80 28              1925 	sjmp	00104$
+   07F5                    1926 00133$:
+   07F5 BA 14 02           1927 	cjne	r2,#0x14,00134$
+   07F8 80 2C              1928 	sjmp	00105$
+   07FA                    1929 00134$:
+   07FA BA 15 02           1930 	cjne	r2,#0x15,00135$
+   07FD 80 42              1931 	sjmp	00108$
+   07FF                    1932 00135$:
+   07FF 02s08r53           1933 	ljmp	00110$
+                           1934 ;	SRC/lab4.c:260: case START:
+   0802                    1935 00101$:
+                           1936 ;	SRC/lab4.c:261: LCD_TypeAnimation("Start");
+   0802 90s00r37           1937 	mov	dptr,#__str_4
+   0805 75 F0 80           1938 	mov	b,#0x80
+                           1939 ;	SRC/lab4.c:262: break;
+   0808 02s03r2A           1940 	ljmp	_LCD_TypeAnimation
+                           1941 ;	SRC/lab4.c:263: case INITIALIZATION:
+   080B                    1942 00102$:
+                           1943 ;	SRC/lab4.c:264: LCD_TypeAnimation("Initialization");
+   080B 90s00r3D           1944 	mov	dptr,#__str_5
+   080E 75 F0 80           1945 	mov	b,#0x80
+                           1946 ;	SRC/lab4.c:265: break;
+   0811 02s03r2A           1947 	ljmp	_LCD_TypeAnimation
+                           1948 ;	SRC/lab4.c:266: case SERVICE_LOGIN_SUCCEED:
+   0814                    1949 00103$:
+                           1950 ;	SRC/lab4.c:267: LCD_TypeAnimation("Service login succeed");
+   0814 90s00r4C           1951 	mov	dptr,#__str_6
+   0817 75 F0 80           1952 	mov	b,#0x80
+                           1953 ;	SRC/lab4.c:268: break;
+   081A 02s03r2A           1954 	ljmp	_LCD_TypeAnimation
+                           1955 ;	SRC/lab4.c:269: case SERVICE_MENU_TIMELIMIT_EXCCEEDED:
+   081D                    1956 00104$:
+                           1957 ;	SRC/lab4.c:270: LCD_TypeAnimation("Time limit in the service menu exceeded!");
+   081D 90s00r62           1958 	mov	dptr,#__str_7
+   0820 75 F0 80           1959 	mov	b,#0x80
+                           1960 ;	SRC/lab4.c:271: break;
+                           1961 ;	SRC/lab4.c:272: case USER_LOGIN_SUCCEED:
+   0823 02s03r2A           1962 	ljmp	_LCD_TypeAnimation
+   0826                    1963 00105$:
+                           1964 ;	SRC/lab4.c:273: LCD_TypeAnimation("User login succeed");
+   0826 90s00r8B           1965 	mov	dptr,#__str_8
+   0829 75 F0 80           1966 	mov	b,#0x80
+                           1967 ;	SRC/lab4.c:274: break;
+                           1968 ;	SRC/lab4.c:275: case DOOR_IS_OPEN:
+   082C 02s03r2A           1969 	ljmp	_LCD_TypeAnimation
+   082F                    1970 00106$:
+                           1971 ;	SRC/lab4.c:276: LCD_TypeAnimation("Door is open");
+   082F 90s00r9E           1972 	mov	dptr,#__str_9
+   0832 75 F0 80           1973 	mov	b,#0x80
+                           1974 ;	SRC/lab4.c:277: break;
+                           1975 ;	SRC/lab4.c:278: case DOOR_IS_CLOSE:
+   0835 02s03r2A           1976 	ljmp	_LCD_TypeAnimation
+   0838                    1977 00107$:
+                           1978 ;	SRC/lab4.c:279: LCD_TypeAnimation("Door is close");
+   0838 90s00rAB           1979 	mov	dptr,#__str_10
+   083B 75 F0 80           1980 	mov	b,#0x80
+                           1981 ;	SRC/lab4.c:280: break;
+                           1982 ;	SRC/lab4.c:281: case INCORRECT_CODE:
+   083E 02s03r2A           1983 	ljmp	_LCD_TypeAnimation
+   0841                    1984 00108$:
+                           1985 ;	SRC/lab4.c:282: LCD_TypeAnimation("Incorrect code");
+   0841 90s00rB9           1986 	mov	dptr,#__str_11
+   0844 75 F0 80           1987 	mov	b,#0x80
+                           1988 ;	SRC/lab4.c:283: break;
+                           1989 ;	SRC/lab4.c:284: case INPUT_CANCELED:
+   0847 02s03r2A           1990 	ljmp	_LCD_TypeAnimation
+   084A                    1991 00109$:
+                           1992 ;	SRC/lab4.c:285: LCD_TypeAnimation("Input canceled");
+   084A 90s00rC8           1993 	mov	dptr,#__str_12
+   084D 75 F0 80           1994 	mov	b,#0x80
+                           1995 ;	SRC/lab4.c:286: break;
+                           1996 ;	SRC/lab4.c:287: default:
+   0850 02s03r2A           1997 	ljmp	_LCD_TypeAnimation
+   0853                    1998 00110$:
+                           1999 ;	SRC/lab4.c:288: PrintNumber(msg_code);
+   0853 8A 82              2000 	mov	dpl,r2
+   0855 12s07r21           2001 	lcall	_PrintNumber
+                           2002 ;	SRC/lab4.c:289: LCD_Type(buffer);
+   0858 AA*00              2003 	mov	r2,_buffer
+   085A AB*01              2004 	mov	r3,(_buffer + 1)
+   085C AC*02              2005 	mov	r4,(_buffer + 2)
+   085E 8A 82              2006 	mov	dpl,r2
+   0860 8B 83              2007 	mov	dph,r3
+   0862 8C F0              2008 	mov	b,r4
+   0864 12s00r00           2009 	lcall	_LCD_Type
+                           2010 ;	SRC/lab4.c:290: while( ! ScanKBOnce(&input[0]) ){}
+   0867                    2011 00111$:
+   0867 90s00r00           2012 	mov	dptr,#_input
+   086A 75 F0 00           2013 	mov	b,#0x00
+   086D 12s00r00           2014 	lcall	_ScanKBOnce
+   0870 50 F5              2015 	jnc	00111$
+                           2016 ;	SRC/lab4.c:292: }
+   0872 22                 2017 	ret
+                           2018 ;------------------------------------------------------------
+                           2019 ;Allocation info for local variables in function 'PrintConLog'
+                           2020 ;------------------------------------------------------------
+                           2021 ;i                         Allocated to registers r2 
+                           2022 ;getLog                    Allocated with name '_PrintConLog_getLog_1_1'
+                           2023 ;------------------------------------------------------------
+                           2024 ;	SRC/lab4.c:295: void PrintConLog(unsigned char i){
+                           2025 ;	-----------------------------------------
+                           2026 ;	 function PrintConLog
+                           2027 ;	-----------------------------------------
+   0873                    2028 _PrintConLog:
+                           2029 ;	SRC/lab4.c:297: if( ReadBlockEEPROM(LOG_ADDRESS(i), (unsigned char xdata *)&getLog, sizeof(LOG_ENTRY)) ){ 
+   0873 E5 82              2030 	mov	a,dpl
+   0875 FA                 2031 	mov	r2,a
+   0876 75 F0 05           2032 	mov	b,#0x05
+   0879 A4                 2033 	mul	ab
+   087A F5 82              2034 	mov	dpl,a
+   087C 85 F0 83           2035 	mov	dph,b
+   087F C0 02              2036 	push	ar2
+   0881 74 73              2037 	mov	a,#0x73
+   0883 C0 E0              2038 	push	acc
+   0885 E4                 2039 	clr	a
+   0886 C0 E0              2040 	push	acc
+   0888 12s00r00           2041 	lcall	__modsint
+   088B AB 82              2042 	mov	r3,dpl
+   088D 15 81              2043 	dec	sp
+   088F 15 81              2044 	dec	sp
+   0891 74 0A              2045 	mov	a,#0x0A
+   0893 2B                 2046 	add	a,r3
+   0894 F5 82              2047 	mov	dpl,a
+   0896 74 05              2048 	mov	a,#0x05
+   0898 C0 E0              2049 	push	acc
+   089A 74r14              2050 	mov	a,#_PrintConLog_getLog_1_1
+   089C C0 E0              2051 	push	acc
+   089E 74s00              2052 	mov	a,#(_PrintConLog_getLog_1_1 >> 8)
+   08A0 C0 E0              2053 	push	acc
+   08A2 12s00r00           2054 	lcall	_ReadBlockEEPROM
+   08A5 15 81              2055 	dec	sp
+   08A7 15 81              2056 	dec	sp
+   08A9 15 81              2057 	dec	sp
+   08AB D0 02              2058 	pop	ar2
+   08AD 92*00              2059 	mov	b0,c
+   08AF 50 09              2060 	jnc	00102$
+                           2061 ;	SRC/lab4.c:298: message("Read EEEPROM error!");//log(READ_EEPROM_ERR);
+   08B1 90s00r23           2062 	mov	dptr,#__str_3
+   08B4 75 F0 80           2063 	mov	b,#0x80
+   08B7 02s04r75           2064 	ljmp	_message
+   08BA                    2065 00102$:
+                           2066 ;	SRC/lab4.c:302: LCD_Clear();
+   08BA C0 02              2067 	push	ar2
+   08BC 12s00r00           2068 	lcall	_LCD_Clear
+                           2069 ;	SRC/lab4.c:303: LCD_GotoXY(0,0);
+   08BF C2 F0              2070 	clr	b[0]
+   08C1 85 F0*00           2071 	mov	bits,b
+   08C4 75 82 00           2072 	mov	dpl,#0x00
+   08C7 12s00r00           2073 	lcall	_LCD_GotoXY
+                           2074 ;	SRC/lab4.c:304: LCD_Type("#");
+   08CA 90s00rD7           2075 	mov	dptr,#__str_13
+   08CD 75 F0 80           2076 	mov	b,#0x80
+   08D0 12s00r00           2077 	lcall	_LCD_Type
+   08D3 D0 02              2078 	pop	ar2
+                           2079 ;	SRC/lab4.c:305: PrintNumber(i);		
+   08D5 8A 82              2080 	mov	dpl,r2
+   08D7 12s07r21           2081 	lcall	_PrintNumber
+                           2082 ;	SRC/lab4.c:306: LCD_Type(buffer);
+   08DA AA*00              2083 	mov	r2,_buffer
+   08DC AB*01              2084 	mov	r3,(_buffer + 1)
+   08DE AC*02              2085 	mov	r4,(_buffer + 2)
+   08E0 8A 82              2086 	mov	dpl,r2
+   08E2 8B 83              2087 	mov	dph,r3
+   08E4 8C F0              2088 	mov	b,r4
+   08E6 12s00r00           2089 	lcall	_LCD_Type
+                           2090 ;	SRC/lab4.c:307: LCD_GotoXY(8,0);
+   08E9 C2 F0              2091 	clr	b[0]
+   08EB 85 F0*00           2092 	mov	bits,b
+   08EE 75 82 08           2093 	mov	dpl,#0x08
+   08F1 12s00r00           2094 	lcall	_LCD_GotoXY
+                           2095 ;	SRC/lab4.c:308: PrintTime((TIME *)&getLog.time, buffer);
+   08F4 C0*00              2096 	push	_buffer
+   08F6 C0*01              2097 	push	(_buffer + 1)
+   08F8 C0*02              2098 	push	(_buffer + 2)
+   08FA 90s00r14           2099 	mov	dptr,#_PrintConLog_getLog_1_1
+   08FD 75 F0 00           2100 	mov	b,#0x00
+   0900 12s04rBD           2101 	lcall	_PrintTime
+   0903 15 81              2102 	dec	sp
+   0905 15 81              2103 	dec	sp
+   0907 15 81              2104 	dec	sp
+                           2105 ;	SRC/lab4.c:309: LCD_Type(buffer);
+   0909 AA*00              2106 	mov	r2,_buffer
+   090B AB*01              2107 	mov	r3,(_buffer + 1)
+   090D AC*02              2108 	mov	r4,(_buffer + 2)
+   090F 8A 82              2109 	mov	dpl,r2
+   0911 8B 83              2110 	mov	dph,r3
+   0913 8C F0              2111 	mov	b,r4
+   0915 12s00r00           2112 	lcall	_LCD_Type
+                           2113 ;	SRC/lab4.c:310: LCD_GotoXY(0,1);
+   0918 D2 F0              2114 	setb	b[0]
+   091A 85 F0*00           2115 	mov	bits,b
+   091D 75 82 00           2116 	mov	dpl,#0x00
+   0920 12s00r00           2117 	lcall	_LCD_GotoXY
+                           2118 ;	SRC/lab4.c:311: DecipherCode(getLog.msg_code);
+   0923 90s00r18           2119 	mov	dptr,#(_PrintConLog_getLog_1_1 + 0x0004)
+   0926 E0                 2120 	movx	a,@dptr
+   0927 F5 82              2121 	mov	dpl,a
+   0929 02s07rCF           2122 	ljmp	_DecipherCode
+                           2123 ;------------------------------------------------------------
+                           2124 ;Allocation info for local variables in function 'log'
+                           2125 ;------------------------------------------------------------
+                           2126 ;msg_code                  Allocated to registers r2 
+                           2127 ;newLog                    Allocated with name '_log_newLog_1_1'
+                           2128 ;------------------------------------------------------------
+                           2129 ;	SRC/lab4.c:315: unsigned char log(unsigned char msg_code){
+                           2130 ;	-----------------------------------------
+                           2131 ;	 function log
+                           2132 ;	-----------------------------------------
+   092C                    2133 _log:
+   092C AA 82              2134 	mov	r2,dpl
+                           2135 ;	SRC/lab4.c:336: getTime((TIME xdata *)&newLog.time);
+   092E 90s00r19           2136 	mov	dptr,#_log_newLog_1_1
+   0931 C0 02              2137 	push	ar2
+   0933 12s00r00           2138 	lcall	_getTime
+   0936 D0 02              2139 	pop	ar2
+                           2140 ;	SRC/lab4.c:337: newLog.msg_code = msg_code;
+   0938 90s00r1D           2141 	mov	dptr,#(_log_newLog_1_1 + 0x0004)
+   093B EA                 2142 	mov	a,r2
+   093C F0                 2143 	movx	@dptr,a
+                           2144 ;	SRC/lab4.c:339: if( WriteBlockEEPROM(LOG_ADDRESS(num_log), (unsigned char xdata *)&newLog, sizeof(LOG_ENTRY)) ){	
+   093D E5*03              2145 	mov	a,_num_log
+   093F 75 F0 05           2146 	mov	b,#0x05
+   0942 A4                 2147 	mul	ab
+   0943 F5 82              2148 	mov	dpl,a
+   0945 85 F0 83           2149 	mov	dph,b
+   0948 74 73              2150 	mov	a,#0x73
+   094A C0 E0              2151 	push	acc
+   094C E4                 2152 	clr	a
+   094D C0 E0              2153 	push	acc
+   094F 12s00r00           2154 	lcall	__modsint
+   0952 AA 82              2155 	mov	r2,dpl
+   0954 15 81              2156 	dec	sp
+   0956 15 81              2157 	dec	sp
+   0958 74 0A              2158 	mov	a,#0x0A
+   095A 2A                 2159 	add	a,r2
+   095B F5 82              2160 	mov	dpl,a
+   095D 74 05              2161 	mov	a,#0x05
+   095F C0 E0              2162 	push	acc
+   0961 74r19              2163 	mov	a,#_log_newLog_1_1
+   0963 C0 E0              2164 	push	acc
+   0965 74s00              2165 	mov	a,#(_log_newLog_1_1 >> 8)
+   0967 C0 E0              2166 	push	acc
+   0969 12s00r00           2167 	lcall	_WriteBlockEEPROM
+   096C 15 81              2168 	dec	sp
+   096E 15 81              2169 	dec	sp
+   0970 15 81              2170 	dec	sp
+   0972 92*00              2171 	mov	b0,c
+   0974 50 0D              2172 	jnc	00102$
+                           2173 ;	SRC/lab4.c:340: message("Write error!"); //log
+   0976 90s00rD9           2174 	mov	dptr,#__str_14
+   0979 75 F0 80           2175 	mov	b,#0x80
+   097C 12s04r75           2176 	lcall	_message
+                           2177 ;	SRC/lab4.c:341: return 1;
+   097F 75 82 01           2178 	mov	dpl,#0x01
+   0982 22                 2179 	ret
+   0983                    2180 00102$:
+                           2181 ;	SRC/lab4.c:344: num_log++;  
+   0983 05*03              2182 	inc	_num_log
+                           2183 ;	SRC/lab4.c:346: return 0;
+   0985 75 82 00           2184 	mov	dpl,#0x00
+   0988 22                 2185 	ret
+                           2186 ;------------------------------------------------------------
+                           2187 ;Allocation info for local variables in function 'main'
+                           2188 ;------------------------------------------------------------
+                           2189 ;i                         Allocated to registers r4 
+                           2190 ;cur_log                   Allocated to registers r2 r3 
+                           2191 ;------------------------------------------------------------
+                           2192 ;	SRC/lab4.c:352: void main( void ){
+                           2193 ;	-----------------------------------------
+                           2194 ;	 function main
+                           2195 ;	-----------------------------------------
+   0989                    2196 _main:
+                           2197 ;	SRC/lab4.c:355: int cur_log = 0;
+   0989 7A 00              2198 	mov	r2,#0x00
+   098B 7B 00              2199 	mov	r3,#0x00
+                           2200 ;	SRC/lab4.c:360: log(START);
+   098D 75 82 01           2201 	mov	dpl,#0x01
+   0990 C0 02              2202 	push	ar2
+   0992 C0 03              2203 	push	ar3
+   0994 12s09r2C           2204 	lcall	_log
+                           2205 ;	SRC/lab4.c:361: InitSIO(S9600, 0);
+   0997 C2 F0              2206 	clr	b[0]
+   0999 85 F0*00           2207 	mov	bits,b
+   099C 75 82 FD           2208 	mov	dpl,#0xFD
+   099F 12s00r00           2209 	lcall	_InitSIO
+                           2210 ;	SRC/lab4.c:362: Type("Initialization\r\n");
+   09A2 90s00rE6           2211 	mov	dptr,#__str_15
+   09A5 75 F0 80           2212 	mov	b,#0x80
+   09A8 12s00r00           2213 	lcall	_Type
+                           2214 ;	SRC/lab4.c:363: log(INITIALIZATION);
+   09AB 75 82 02           2215 	mov	dpl,#0x02
+   09AE 12s09r2C           2216 	lcall	_log
+                           2217 ;	SRC/lab4.c:364: InitLCD(); 
+   09B1 12s00r00           2218 	lcall	_InitLCD
+                           2219 ;	SRC/lab4.c:366: if( CompareEEPROM(MAGIC_NUMBER_ADDRESS, MAGIC_NUMBER, 2)){//нет магии
+   09B4 74 02              2220 	mov	a,#0x02
+   09B6 C0 E0              2221 	push	acc
+   09B8 74rF7              2222 	mov	a,#__str_16
+   09BA C0 E0              2223 	push	acc
+   09BC 74s00              2224 	mov	a,#(__str_16 >> 8)
+   09BE C0 E0              2225 	push	acc
+   09C0 74 80              2226 	mov	a,#0x80
+   09C2 C0 E0              2227 	push	acc
+   09C4 75 82 00           2228 	mov	dpl,#0x00
+   09C7 12s06rBA           2229 	lcall	_CompareEEPROM
+   09CA AC 82              2230 	mov	r4,dpl
+   09CC E5 81              2231 	mov	a,sp
+   09CE 24 FC              2232 	add	a,#0xfc
+   09D0 F5 81              2233 	mov	sp,a
+   09D2 D0 03              2234 	pop	ar3
+   09D4 D0 02              2235 	pop	ar2
+   09D6 EC                 2236 	mov	a,r4
+   09D7 70 03              2237 	jnz	00243$
+   09D9 02s0ArCA           2238 	ljmp	00108$
+   09DC                    2239 00243$:
+                           2240 ;	SRC/lab4.c:367: log(NO_MAGIC);
+   09DC 75 82 06           2241 	mov	dpl,#0x06
+   09DF C0 02              2242 	push	ar2
+   09E1 C0 03              2243 	push	ar3
+   09E3 12s09r2C           2244 	lcall	_log
+                           2245 ;	SRC/lab4.c:368: Type("Magic not found!\r\n");
+   09E6 90s00rFA           2246 	mov	dptr,#__str_17
+   09E9 75 F0 80           2247 	mov	b,#0x80
+   09EC 12s00r00           2248 	lcall	_Type
+   09EF D0 03              2249 	pop	ar3
+   09F1 D0 02              2250 	pop	ar2
+                           2251 ;	SRC/lab4.c:371: for(i = 0; i < 2;  i++) //Записать магическое число
+   09F3 7C 00              2252 	mov	r4,#0x00
+   09F5                    2253 00176$:
+   09F5 BC 02 00           2254 	cjne	r4,#0x02,00244$
+   09F8                    2255 00244$:
+   09F8 50 23              2256 	jnc	00179$
+                           2257 ;	SRC/lab4.c:372: buffer[i] = MAGIC_NUMBER[i];
+   09FA C0 02              2258 	push	ar2
+   09FC C0 03              2259 	push	ar3
+   09FE EC                 2260 	mov	a,r4
+   09FF 25*00              2261 	add	a,_buffer
+   0A01 FD                 2262 	mov	r5,a
+   0A02 E4                 2263 	clr	a
+   0A03 35*01              2264 	addc	a,(_buffer + 1)
+   0A05 FE                 2265 	mov	r6,a
+   0A06 AF*02              2266 	mov	r7,(_buffer + 2)
+   0A08 EC                 2267 	mov	a,r4
+   0A09 90s00rF7           2268 	mov	dptr,#__str_16
+   0A0C 93                 2269 	movc	a,@a+dptr
+   0A0D 8D 82              2270 	mov	dpl,r5
+   0A0F 8E 83              2271 	mov	dph,r6
+   0A11 8F F0              2272 	mov	b,r7
+   0A13 12s00r00           2273 	lcall	__gptrput
+                           2274 ;	SRC/lab4.c:371: for(i = 0; i < 2;  i++) //Записать магическое число
+   0A16 0C                 2275 	inc	r4
+   0A17 D0 03              2276 	pop	ar3
+   0A19 D0 02              2277 	pop	ar2
+   0A1B 80 D8              2278 	sjmp	00176$
+   0A1D                    2279 00179$:
+                           2280 ;	SRC/lab4.c:373: for(i = 0; i < 4;  i++) //Записать сервисный код по-умолчанию
+   0A1D 7C 00              2281 	mov	r4,#0x00
+   0A1F                    2282 00180$:
+   0A1F BC 04 00           2283 	cjne	r4,#0x04,00246$
+   0A22                    2284 00246$:
+   0A22 50 2E              2285 	jnc	00183$
+                           2286 ;	SRC/lab4.c:374: buffer[i+2] = DEFAULT_SERVICE_CODE[i];
+   0A24 C0 02              2287 	push	ar2
+   0A26 C0 03              2288 	push	ar3
+   0A28 8C 05              2289 	mov	ar5,r4
+   0A2A 7E 00              2290 	mov	r6,#0x00
+   0A2C 74 02              2291 	mov	a,#0x02
+   0A2E 2D                 2292 	add	a,r5
+   0A2F FD                 2293 	mov	r5,a
+   0A30 E4                 2294 	clr	a
+   0A31 3E                 2295 	addc	a,r6
+   0A32 FE                 2296 	mov	r6,a
+   0A33 ED                 2297 	mov	a,r5
+   0A34 25*00              2298 	add	a,_buffer
+   0A36 FD                 2299 	mov	r5,a
+   0A37 EE                 2300 	mov	a,r6
+   0A38 35*01              2301 	addc	a,(_buffer + 1)
+   0A3A FE                 2302 	mov	r6,a
+   0A3B AF*02              2303 	mov	r7,(_buffer + 2)
+   0A3D EC                 2304 	mov	a,r4
+   0A3E 90s01r0D           2305 	mov	dptr,#__str_18
+   0A41 93                 2306 	movc	a,@a+dptr
+   0A42 8D 82              2307 	mov	dpl,r5
+   0A44 8E 83              2308 	mov	dph,r6
+   0A46 8F F0              2309 	mov	b,r7
+   0A48 12s00r00           2310 	lcall	__gptrput
+                           2311 ;	SRC/lab4.c:373: for(i = 0; i < 4;  i++) //Записать сервисный код по-умолчанию
+   0A4B 0C                 2312 	inc	r4
+   0A4C D0 03              2313 	pop	ar3
+   0A4E D0 02              2314 	pop	ar2
+   0A50 80 CD              2315 	sjmp	00180$
+   0A52                    2316 00183$:
+                           2317 ;	SRC/lab4.c:375: for(i = 0; i < 4;  i++) //Записать пользовательский код по-умолчанию
+   0A52 7C 00              2318 	mov	r4,#0x00
+   0A54                    2319 00184$:
+   0A54 BC 04 00           2320 	cjne	r4,#0x04,00248$
+   0A57                    2321 00248$:
+   0A57 50 2E              2322 	jnc	00187$
+                           2323 ;	SRC/lab4.c:376: buffer[i+6] = DEFAULT_USER_CODE[i];	
+   0A59 C0 02              2324 	push	ar2
+   0A5B C0 03              2325 	push	ar3
+   0A5D 8C 05              2326 	mov	ar5,r4
+   0A5F 7E 00              2327 	mov	r6,#0x00
+   0A61 74 06              2328 	mov	a,#0x06
+   0A63 2D                 2329 	add	a,r5
+   0A64 FD                 2330 	mov	r5,a
+   0A65 E4                 2331 	clr	a
+   0A66 3E                 2332 	addc	a,r6
+   0A67 FE                 2333 	mov	r6,a
+   0A68 ED                 2334 	mov	a,r5
+   0A69 25*00              2335 	add	a,_buffer
+   0A6B FD                 2336 	mov	r5,a
+   0A6C EE                 2337 	mov	a,r6
+   0A6D 35*01              2338 	addc	a,(_buffer + 1)
+   0A6F FE                 2339 	mov	r6,a
+   0A70 AF*02              2340 	mov	r7,(_buffer + 2)
+   0A72 EC                 2341 	mov	a,r4
+   0A73 90s01r12           2342 	mov	dptr,#__str_19
+   0A76 93                 2343 	movc	a,@a+dptr
+   0A77 8D 82              2344 	mov	dpl,r5
+   0A79 8E 83              2345 	mov	dph,r6
+   0A7B 8F F0              2346 	mov	b,r7
+   0A7D 12s00r00           2347 	lcall	__gptrput
+                           2348 ;	SRC/lab4.c:375: for(i = 0; i < 4;  i++) //Записать пользовательский код по-умолчанию
+   0A80 0C                 2349 	inc	r4
+   0A81 D0 03              2350 	pop	ar3
+   0A83 D0 02              2351 	pop	ar2
+   0A85 80 CD              2352 	sjmp	00184$
+   0A87                    2353 00187$:
+                           2354 ;	SRC/lab4.c:378: if( WriteBlockEEPROM(EEPROM_START_ADDRESS, xbuffer, 2+4+4) ){
+   0A87 C0 02              2355 	push	ar2
+   0A89 C0 03              2356 	push	ar3
+   0A8B 74 0A              2357 	mov	a,#0x0A
+   0A8D C0 E0              2358 	push	acc
+   0A8F 74r08              2359 	mov	a,#_xbuffer
+   0A91 C0 E0              2360 	push	acc
+   0A93 74s00              2361 	mov	a,#(_xbuffer >> 8)
+   0A95 C0 E0              2362 	push	acc
+   0A97 75 82 00           2363 	mov	dpl,#0x00
+   0A9A 12s00r00           2364 	lcall	_WriteBlockEEPROM
+   0A9D 15 81              2365 	dec	sp
+   0A9F 15 81              2366 	dec	sp
+   0AA1 15 81              2367 	dec	sp
+   0AA3 D0 03              2368 	pop	ar3
+   0AA5 D0 02              2369 	pop	ar2
+   0AA7 92*00              2370 	mov	b0,c
+   0AA9 40 03              2371 	jc	00250$
+   0AAB 02s0Br3D           2372 	ljmp	00174$
+   0AAE                    2373 00250$:
+                           2374 ;	SRC/lab4.c:381: LCD_Type("Write error!"); 
+   0AAE 90s00rD9           2375 	mov	dptr,#__str_14
+   0AB1 75 F0 80           2376 	mov	b,#0x80
+   0AB4 C0 02              2377 	push	ar2
+   0AB6 C0 03              2378 	push	ar3
+   0AB8 12s00r00           2379 	lcall	_LCD_Type
+                           2380 ;	SRC/lab4.c:382: Type("Failure during setting default service code\r\n");
+   0ABB 90s01r17           2381 	mov	dptr,#__str_20
+   0ABE 75 F0 80           2382 	mov	b,#0x80
+   0AC1 12s00r00           2383 	lcall	_Type
+   0AC4 D0 03              2384 	pop	ar3
+   0AC6 D0 02              2385 	pop	ar2
+   0AC8 80 73              2386 	sjmp	00174$
+   0ACA                    2387 00108$:
+                           2388 ;	SRC/lab4.c:390: Type("Magic found!\r\n");
+   0ACA 90s01r45           2389 	mov	dptr,#__str_21
+   0ACD 75 F0 80           2390 	mov	b,#0x80
+   0AD0 C0 02              2391 	push	ar2
+   0AD2 C0 03              2392 	push	ar3
+   0AD4 12s00r00           2393 	lcall	_Type
+                           2394 ;	SRC/lab4.c:391: if( ReadBlockEEPROM(SERVICE_CODE_ADDRESS, service_code, 4) ) //Чтение сервисного кода
+   0AD7 74 04              2395 	mov	a,#0x04
+   0AD9 C0 E0              2396 	push	acc
+   0ADB 74r00              2397 	mov	a,#_service_code
+   0ADD C0 E0              2398 	push	acc
+   0ADF 74s00              2399 	mov	a,#(_service_code >> 8)
+   0AE1 C0 E0              2400 	push	acc
+   0AE3 75 82 02           2401 	mov	dpl,#0x02
+   0AE6 12s00r00           2402 	lcall	_ReadBlockEEPROM
+   0AE9 15 81              2403 	dec	sp
+   0AEB 15 81              2404 	dec	sp
+   0AED 15 81              2405 	dec	sp
+   0AEF D0 03              2406 	pop	ar3
+   0AF1 D0 02              2407 	pop	ar2
+   0AF3 92*00              2408 	mov	b0,c
+   0AF5 50 11              2409 	jnc	00104$
+                           2410 ;	SRC/lab4.c:392: message("Read EEEPROM error!");
+   0AF7 90s00r23           2411 	mov	dptr,#__str_3
+   0AFA 75 F0 80           2412 	mov	b,#0x80
+   0AFD C0 02              2413 	push	ar2
+   0AFF C0 03              2414 	push	ar3
+   0B01 12s04r75           2415 	lcall	_message
+   0B04 D0 03              2416 	pop	ar3
+   0B06 D0 02              2417 	pop	ar2
+   0B08                    2418 00104$:
+                           2419 ;	SRC/lab4.c:393: if( ReadBlockEEPROM(USER_CODE_ADDRESS, user_code, 4) )//Чтение пользовательского кода
+   0B08 C0 02              2420 	push	ar2
+   0B0A C0 03              2421 	push	ar3
+   0B0C 74 04              2422 	mov	a,#0x04
+   0B0E C0 E0              2423 	push	acc
+   0B10 74r04              2424 	mov	a,#_user_code
+   0B12 C0 E0              2425 	push	acc
+   0B14 74s00              2426 	mov	a,#(_user_code >> 8)
+   0B16 C0 E0              2427 	push	acc
+   0B18 75 82 06           2428 	mov	dpl,#0x06
+   0B1B 12s00r00           2429 	lcall	_ReadBlockEEPROM
+   0B1E 15 81              2430 	dec	sp
+   0B20 15 81              2431 	dec	sp
+   0B22 15 81              2432 	dec	sp
+   0B24 D0 03              2433 	pop	ar3
+   0B26 D0 02              2434 	pop	ar2
+   0B28 92*00              2435 	mov	b0,c
+   0B2A 50 11              2436 	jnc	00174$
+                           2437 ;	SRC/lab4.c:394: message("Read EEEPROM error!");
+   0B2C 90s00r23           2438 	mov	dptr,#__str_3
+   0B2F 75 F0 80           2439 	mov	b,#0x80
+   0B32 C0 02              2440 	push	ar2
+   0B34 C0 03              2441 	push	ar3
+   0B36 12s04r75           2442 	lcall	_message
+   0B39 D0 03              2443 	pop	ar3
+   0B3B D0 02              2444 	pop	ar2
+                           2445 ;	SRC/lab4.c:398: while(1){ //основной цикл
+   0B3D                    2446 00174$:
+                           2447 ;	SRC/lab4.c:399: WriteMax(LEDLINE, 0);
+   0B3D C0 02              2448 	push	ar2
+   0B3F C0 03              2449 	push	ar3
+   0B41 E4                 2450 	clr	a
+   0B42 C0 E0              2451 	push	acc
+   0B44 90 00 07           2452 	mov	dptr,#0x0007
+   0B47 12s00r00           2453 	lcall	_WriteMax
+   0B4A 15 81              2454 	dec	sp
+                           2455 ;	SRC/lab4.c:400: LCD_Clear();
+   0B4C 12s00r00           2456 	lcall	_LCD_Clear
+                           2457 ;	SRC/lab4.c:402: LCD_Type("    Password:   "); //предложение ввода
+   0B4F 90s01r54           2458 	mov	dptr,#__str_22
+   0B52 75 F0 80           2459 	mov	b,#0x80
+   0B55 12s00r00           2460 	lcall	_LCD_Type
+   0B58 D0 03              2461 	pop	ar3
+   0B5A D0 02              2462 	pop	ar2
+                           2463 ;	SRC/lab4.c:404: for(i=0; i<4; i++){
+   0B5C 7C 00              2464 	mov	r4,#0x00
+   0B5E                    2465 00188$:
+   0B5E BC 04 00           2466 	cjne	r4,#0x04,00253$
+   0B61                    2467 00253$:
+   0B61 40 03              2468 	jc	00254$
+   0B63 02s0Cr46           2469 	ljmp	00191$
+   0B66                    2470 00254$:
+                           2471 ;	SRC/lab4.c:405: while( ! ScanKBOnce(&input[i]) ){
+   0B66                    2472 00118$:
+   0B66 EC                 2473 	mov	a,r4
+   0B67 24r00              2474 	add	a,#_input
+   0B69 FD                 2475 	mov	r5,a
+   0B6A E4                 2476 	clr	a
+   0B6B 34s00              2477 	addc	a,#(_input >> 8)
+   0B6D FE                 2478 	mov	r6,a
+   0B6E 7F 00              2479 	mov	r7,#0x00
+   0B70 8D 82              2480 	mov	dpl,r5
+   0B72 8E 83              2481 	mov	dph,r6
+   0B74 8F F0              2482 	mov	b,r7
+   0B76 C0 02              2483 	push	ar2
+   0B78 C0 03              2484 	push	ar3
+   0B7A C0 04              2485 	push	ar4
+   0B7C 12s00r00           2486 	lcall	_ScanKBOnce
+   0B7F D0 04              2487 	pop	ar4
+   0B81 D0 03              2488 	pop	ar3
+   0B83 D0 02              2489 	pop	ar2
+   0B85 40 5A              2490 	jc	00120$
+                           2491 ;	SRC/lab4.c:407: if( i>0 && !getTime(&CurrentTime) ){
+   0B87 EC                 2492 	mov	a,r4
+   0B88 60 DC              2493 	jz	00118$
+   0B8A 90s00r08           2494 	mov	dptr,#_CurrentTime
+   0B8D C0 02              2495 	push	ar2
+   0B8F C0 03              2496 	push	ar3
+   0B91 C0 04              2497 	push	ar4
+   0B93 12s00r00           2498 	lcall	_getTime
+   0B96 E5 82              2499 	mov	a,dpl
+   0B98 D0 04              2500 	pop	ar4
+   0B9A D0 03              2501 	pop	ar3
+   0B9C D0 02              2502 	pop	ar2
+   0B9E 70 C6              2503 	jnz	00118$
+                           2504 ;	SRC/lab4.c:414: if( CheckTimeLimitSec(&StartTime, &CurrentTime, INPUT_CODE_TIME_LIMIT) ){
+   0BA0 C0 02              2505 	push	ar2
+   0BA2 C0 03              2506 	push	ar3
+   0BA4 C0 04              2507 	push	ar4
+   0BA6 74 DC              2508 	mov	a,#0xDC
+   0BA8 C0 E0              2509 	push	acc
+   0BAA 74 05              2510 	mov	a,#0x05
+   0BAC C0 E0              2511 	push	acc
+   0BAE 74r08              2512 	mov	a,#_CurrentTime
+   0BB0 C0 E0              2513 	push	acc
+   0BB2 74s00              2514 	mov	a,#(_CurrentTime >> 8)
+   0BB4 C0 E0              2515 	push	acc
+   0BB6 90s00r04           2516 	mov	dptr,#_StartTime
+   0BB9 12s02r18           2517 	lcall	_CheckTimeLimitSec
+   0BBC AD 82              2518 	mov	r5,dpl
+   0BBE E5 81              2519 	mov	a,sp
+   0BC0 24 FC              2520 	add	a,#0xfc
+   0BC2 F5 81              2521 	mov	sp,a
+   0BC4 D0 04              2522 	pop	ar4
+   0BC6 D0 03              2523 	pop	ar3
+   0BC8 D0 02              2524 	pop	ar2
+   0BCA ED                 2525 	mov	a,r5
+   0BCB 60 99              2526 	jz	00118$
+                           2527 ;	SRC/lab4.c:415: message("Input code time limit exceeded!"); //log("Input code time limit exceeded!");
+   0BCD 90s01r65           2528 	mov	dptr,#__str_23
+   0BD0 75 F0 80           2529 	mov	b,#0x80
+   0BD3 C0 02              2530 	push	ar2
+   0BD5 C0 03              2531 	push	ar3
+   0BD7 12s04r75           2532 	lcall	_message
+   0BDA D0 03              2533 	pop	ar3
+   0BDC D0 02              2534 	pop	ar2
+                           2535 ;	SRC/lab4.c:416: goto wait;
+   0BDE 02s0Br3D           2536 	ljmp	00174$
+   0BE1                    2537 00120$:
+                           2538 ;	SRC/lab4.c:421: if(i==0) getTime(&StartTime); //начало отсчета
+   0BE1 EC                 2539 	mov	a,r4
+   0BE2 70 12              2540 	jnz	00122$
+   0BE4 90s00r04           2541 	mov	dptr,#_StartTime
+   0BE7 C0 02              2542 	push	ar2
+   0BE9 C0 03              2543 	push	ar3
+   0BEB C0 04              2544 	push	ar4
+   0BED 12s00r00           2545 	lcall	_getTime
+   0BF0 D0 04              2546 	pop	ar4
+   0BF2 D0 03              2547 	pop	ar3
+   0BF4 D0 02              2548 	pop	ar2
+   0BF6                    2549 00122$:
+                           2550 ;	SRC/lab4.c:422: if(input[i]=='C'){
+   0BF6 EC                 2551 	mov	a,r4
+   0BF7 24r00              2552 	add	a,#_input
+   0BF9 F5 82              2553 	mov	dpl,a
+   0BFB E4                 2554 	clr	a
+   0BFC 34s00              2555 	addc	a,#(_input >> 8)
+   0BFE F5 83              2556 	mov	dph,a
+   0C00 E0                 2557 	movx	a,@dptr
+   0C01 FD                 2558 	mov	r5,a
+   0C02 BD 43 11           2559 	cjne	r5,#0x43,00126$
+                           2560 ;	SRC/lab4.c:423: log(INPUT_CANCELED);
+   0C05 75 82 08           2561 	mov	dpl,#0x08
+   0C08 C0 02              2562 	push	ar2
+   0C0A C0 03              2563 	push	ar3
+   0C0C 12s09r2C           2564 	lcall	_log
+   0C0F D0 03              2565 	pop	ar3
+   0C11 D0 02              2566 	pop	ar2
+                           2567 ;	SRC/lab4.c:424: goto wait;
+   0C13 02s0Br3D           2568 	ljmp	00174$
+                           2569 ;	SRC/lab4.c:429: LCD_Putch(input[i]);
+   0C16                    2570 00126$:
+                           2571 ;	SRC/lab4.c:431: WriteMax(LEDLINE, POW2((i+1)*2) - 1);
+   0C16 EC                 2572 	mov	a,r4
+   0C17 04                 2573 	inc	a
+   0C18 FD                 2574 	mov	r5,a
+   0C19 25 E0              2575 	add	a,acc
+   0C1B FE                 2576 	mov	r6,a
+   0C1C 8E F0              2577 	mov	b,r6
+   0C1E 05 F0              2578 	inc	b
+   0C20 74 01              2579 	mov	a,#0x01
+   0C22 80 02              2580 	sjmp	00264$
+   0C24                    2581 00262$:
+   0C24 25 E0              2582 	add	a,acc
+   0C26                    2583 00264$:
+   0C26 D5 F0 FB           2584 	djnz	b,00262$
+   0C29 14                 2585 	dec	a
+   0C2A FE                 2586 	mov	r6,a
+   0C2B C0 02              2587 	push	ar2
+   0C2D C0 03              2588 	push	ar3
+   0C2F C0 05              2589 	push	ar5
+   0C31 C0 06              2590 	push	ar6
+   0C33 90 00 07           2591 	mov	dptr,#0x0007
+   0C36 12s00r00           2592 	lcall	_WriteMax
+   0C39 15 81              2593 	dec	sp
+   0C3B D0 05              2594 	pop	ar5
+   0C3D D0 03              2595 	pop	ar3
+   0C3F D0 02              2596 	pop	ar2
+                           2597 ;	SRC/lab4.c:404: for(i=0; i<4; i++){
+   0C41 8D 04              2598 	mov	ar4,r5
+   0C43 02s0Br5E           2599 	ljmp	00188$
+   0C46                    2600 00191$:
+                           2601 ;	SRC/lab4.c:434: delay(20);
+   0C46 90 00 14           2602 	mov	dptr,#0x0014
+   0C49 C0 02              2603 	push	ar2
+   0C4B C0 03              2604 	push	ar3
+   0C4D 12s02r63           2605 	lcall	_delay
+                           2606 ;	SRC/lab4.c:435: WriteMax(LEDLINE, 0);//убираем светодиоды
+   0C50 E4                 2607 	clr	a
+   0C51 C0 E0              2608 	push	acc
+   0C53 90 00 07           2609 	mov	dptr,#0x0007
+   0C56 12s00r00           2610 	lcall	_WriteMax
+   0C59 15 81              2611 	dec	sp
+                           2612 ;	SRC/lab4.c:440: if(CompareString(service_code, input, 4))
+   0C5B 74 04              2613 	mov	a,#0x04
+   0C5D C0 E0              2614 	push	acc
+   0C5F 74r00              2615 	mov	a,#_input
+   0C61 C0 E0              2616 	push	acc
+   0C63 74s00              2617 	mov	a,#(_input >> 8)
+   0C65 C0 E0              2618 	push	acc
+   0C67 E4                 2619 	clr	a
+   0C68 C0 E0              2620 	push	acc
+   0C6A 90s00r00           2621 	mov	dptr,#_service_code
+   0C6D 75 F0 00           2622 	mov	b,#0x00
+   0C70 12s06r5C           2623 	lcall	_CompareString
+   0C73 AD 82              2624 	mov	r5,dpl
+   0C75 E5 81              2625 	mov	a,sp
+   0C77 24 FC              2626 	add	a,#0xfc
+   0C79 F5 81              2627 	mov	sp,a
+   0C7B D0 03              2628 	pop	ar3
+   0C7D D0 02              2629 	pop	ar2
+   0C7F ED                 2630 	mov	a,r5
+   0C80 60 14              2631 	jz	00168$
+                           2632 ;	SRC/lab4.c:441: Type("Not a service code\r\n");
+   0C82 90s01r85           2633 	mov	dptr,#__str_24
+   0C85 75 F0 80           2634 	mov	b,#0x80
+   0C88 C0 02              2635 	push	ar2
+   0C8A C0 03              2636 	push	ar3
+   0C8C 12s00r00           2637 	lcall	_Type
+   0C8F D0 03              2638 	pop	ar3
+   0C91 D0 02              2639 	pop	ar2
+   0C93 02s0Fr95           2640 	ljmp	00169$
+   0C96                    2641 00168$:
+                           2642 ;	SRC/lab4.c:443: log(SERVICE_LOGIN_SUCCEED);
+   0C96 75 82 0A           2643 	mov	dpl,#0x0A
+   0C99 C0 02              2644 	push	ar2
+   0C9B C0 03              2645 	push	ar3
+   0C9D 12s09r2C           2646 	lcall	_log
+                           2647 ;	SRC/lab4.c:445: LCD_Clear();
+   0CA0 12s00r00           2648 	lcall	_LCD_Clear
+                           2649 ;	SRC/lab4.c:446: LCD_Type("  Service Menu: "); 
+   0CA3 90s01r9A           2650 	mov	dptr,#__str_25
+   0CA6 75 F0 80           2651 	mov	b,#0x80
+   0CA9 12s00r00           2652 	lcall	_LCD_Type
+                           2653 ;	SRC/lab4.c:449: delay(1);
+   0CAC 90 00 01           2654 	mov	dptr,#0x0001
+   0CAF 12s02r63           2655 	lcall	_delay
+                           2656 ;	SRC/lab4.c:450: LCD_Clear();
+   0CB2 12s00r00           2657 	lcall	_LCD_Clear
+                           2658 ;	SRC/lab4.c:451: LCD_Type("2 - View logs");
+   0CB5 90s01rAB           2659 	mov	dptr,#__str_26
+   0CB8 75 F0 80           2660 	mov	b,#0x80
+   0CBB 12s00r00           2661 	lcall	_LCD_Type
+                           2662 ;	SRC/lab4.c:452: LCD_GotoXY(0,1);
+   0CBE D2 F0              2663 	setb	b[0]
+   0CC0 85 F0*00           2664 	mov	bits,b
+   0CC3 75 82 00           2665 	mov	dpl,#0x00
+   0CC6 12s00r00           2666 	lcall	_LCD_GotoXY
+                           2667 ;	SRC/lab4.c:453: LCD_Type("5 - Change code");			
+   0CC9 90s01rB9           2668 	mov	dptr,#__str_27
+   0CCC 75 F0 80           2669 	mov	b,#0x80
+   0CCF 12s00r00           2670 	lcall	_LCD_Type
+                           2671 ;	SRC/lab4.c:455: getTime(&StartTime);
+   0CD2 90s00r04           2672 	mov	dptr,#_StartTime
+   0CD5 12s00r00           2673 	lcall	_getTime
+   0CD8 D0 03              2674 	pop	ar3
+   0CDA D0 02              2675 	pop	ar2
+                           2676 ;	SRC/lab4.c:456: while( ! ScanKBOnce(&input[0]) ){
+   0CDC                    2677 00129$:
+   0CDC 90s00r00           2678 	mov	dptr,#_input
+   0CDF 75 F0 00           2679 	mov	b,#0x00
+   0CE2 C0 02              2680 	push	ar2
+   0CE4 C0 03              2681 	push	ar3
+   0CE6 12s00r00           2682 	lcall	_ScanKBOnce
+   0CE9 D0 03              2683 	pop	ar3
+   0CEB D0 02              2684 	pop	ar2
+   0CED 40 52              2685 	jc	00131$
+                           2686 ;	SRC/lab4.c:458: getTime(&CurrentTime);
+   0CEF 90s00r08           2687 	mov	dptr,#_CurrentTime
+   0CF2 C0 02              2688 	push	ar2
+   0CF4 C0 03              2689 	push	ar3
+   0CF6 12s00r00           2690 	lcall	_getTime
+                           2691 ;	SRC/lab4.c:460: if( CheckTimeLimitSec(&StartTime, &CurrentTime, SERVICE_MENU_TIME_LIMIT) ){
+   0CF9 74 70              2692 	mov	a,#0x70
+   0CFB C0 E0              2693 	push	acc
+   0CFD 74 17              2694 	mov	a,#0x17
+   0CFF C0 E0              2695 	push	acc
+   0D01 74r08              2696 	mov	a,#_CurrentTime
+   0D03 C0 E0              2697 	push	acc
+   0D05 74s00              2698 	mov	a,#(_CurrentTime >> 8)
+   0D07 C0 E0              2699 	push	acc
+   0D09 90s00r04           2700 	mov	dptr,#_StartTime
+   0D0C 12s02r18           2701 	lcall	_CheckTimeLimitSec
+   0D0F AD 82              2702 	mov	r5,dpl
+   0D11 E5 81              2703 	mov	a,sp
+   0D13 24 FC              2704 	add	a,#0xfc
+   0D15 F5 81              2705 	mov	sp,a
+   0D17 D0 03              2706 	pop	ar3
+   0D19 D0 02              2707 	pop	ar2
+   0D1B ED                 2708 	mov	a,r5
+   0D1C 60 BE              2709 	jz	00129$
+                           2710 ;	SRC/lab4.c:461: LCD_Type("Leaving the service menu");
+   0D1E 90s01rC9           2711 	mov	dptr,#__str_28
+   0D21 75 F0 80           2712 	mov	b,#0x80
+   0D24 C0 02              2713 	push	ar2
+   0D26 C0 03              2714 	push	ar3
+   0D28 12s00r00           2715 	lcall	_LCD_Type
+                           2716 ;	SRC/lab4.c:462: Type("Time limit in the service menu exceeded!\r\n");
+   0D2B 90s01rE2           2717 	mov	dptr,#__str_29
+   0D2E 75 F0 80           2718 	mov	b,#0x80
+   0D31 12s00r00           2719 	lcall	_Type
+                           2720 ;	SRC/lab4.c:463: log(SERVICE_MENU_TIMELIMIT_EXCCEEDED);
+   0D34 75 82 0B           2721 	mov	dpl,#0x0B
+   0D37 12s09r2C           2722 	lcall	_log
+   0D3A D0 03              2723 	pop	ar3
+   0D3C D0 02              2724 	pop	ar2
+                           2725 ;	SRC/lab4.c:464: goto wait;
+   0D3E 02s0Br3D           2726 	ljmp	00174$
+   0D41                    2727 00131$:
+                           2728 ;	SRC/lab4.c:467: switch(input[0] - '0'){
+   0D41 90s00r00           2729 	mov	dptr,#_input
+   0D44 E0                 2730 	movx	a,@dptr
+   0D45 FD                 2731 	mov	r5,a
+   0D46 7F 00              2732 	mov	r7,#0x00
+   0D48 24 D0              2733 	add	a,#0xd0
+   0D4A FE                 2734 	mov	r6,a
+   0D4B EF                 2735 	mov	a,r7
+   0D4C 34 FF              2736 	addc	a,#0xff
+   0D4E FF                 2737 	mov	r7,a
+   0D4F BE 02 06           2738 	cjne	r6,#0x02,00268$
+   0D52 BF 00 03           2739 	cjne	r7,#0x00,00268$
+   0D55 02s0ErE1           2740 	ljmp	00236$
+   0D58                    2741 00268$:
+   0D58 BE 05 05           2742 	cjne	r6,#0x05,00269$
+   0D5B BF 00 02           2743 	cjne	r7,#0x00,00269$
+   0D5E 80 03              2744 	sjmp	00270$
+   0D60                    2745 00269$:
+   0D60 02s0Fr7C           2746 	ljmp	00163$
+   0D63                    2747 00270$:
+                           2748 ;	SRC/lab4.c:469: LCD_Clear();
+   0D63 C0 02              2749 	push	ar2
+   0D65 C0 03              2750 	push	ar3
+   0D67 12s00r00           2751 	lcall	_LCD_Clear
+                           2752 ;	SRC/lab4.c:470: LCD_GotoXY(0,0);
+   0D6A C2 F0              2753 	clr	b[0]
+   0D6C 85 F0*00           2754 	mov	bits,b
+   0D6F 75 82 00           2755 	mov	dpl,#0x00
+   0D72 12s00r00           2756 	lcall	_LCD_GotoXY
+                           2757 ;	SRC/lab4.c:471: LCD_Type(" Enter new code "); 
+   0D75 90s02r0D           2758 	mov	dptr,#__str_30
+   0D78 75 F0 80           2759 	mov	b,#0x80
+   0D7B 12s00r00           2760 	lcall	_LCD_Type
+   0D7E D0 03              2761 	pop	ar3
+   0D80 D0 02              2762 	pop	ar2
+                           2763 ;	SRC/lab4.c:472: for(i=0; i<4; i++){
+   0D82 7C 00              2764 	mov	r4,#0x00
+   0D84                    2765 00192$:
+   0D84 BC 04 00           2766 	cjne	r4,#0x04,00271$
+   0D87                    2767 00271$:
+   0D87 50 7B              2768 	jnc	00195$
+                           2769 ;	SRC/lab4.c:473: while( ! ScanKBOnce(&input[i]) ){}
+   0D89                    2770 00133$:
+   0D89 C0 02              2771 	push	ar2
+   0D8B C0 03              2772 	push	ar3
+   0D8D EC                 2773 	mov	a,r4
+   0D8E 24r00              2774 	add	a,#_input
+   0D90 FE                 2775 	mov	r6,a
+   0D91 E4                 2776 	clr	a
+   0D92 34s00              2777 	addc	a,#(_input >> 8)
+   0D94 FF                 2778 	mov	r7,a
+   0D95 7A 00              2779 	mov	r2,#0x00
+   0D97 8E 82              2780 	mov	dpl,r6
+   0D99 8F 83              2781 	mov	dph,r7
+   0D9B 8A F0              2782 	mov	b,r2
+   0D9D C0 02              2783 	push	ar2
+   0D9F C0 03              2784 	push	ar3
+   0DA1 C0 04              2785 	push	ar4
+   0DA3 12s00r00           2786 	lcall	_ScanKBOnce
+   0DA6 D0 04              2787 	pop	ar4
+   0DA8 D0 03              2788 	pop	ar3
+   0DAA D0 02              2789 	pop	ar2
+   0DAC E4                 2790 	clr	a
+   0DAD 33                 2791 	rlc	a
+   0DAE D0 03              2792 	pop	ar3
+   0DB0 D0 02              2793 	pop	ar2
+   0DB2 60 D5              2794 	jz	00133$
+                           2795 ;	SRC/lab4.c:478: if(input[i]=='C'){
+   0DB4 EC                 2796 	mov	a,r4
+   0DB5 24r00              2797 	add	a,#_input
+   0DB7 F5 82              2798 	mov	dpl,a
+   0DB9 E4                 2799 	clr	a
+   0DBA 34s00              2800 	addc	a,#(_input >> 8)
+   0DBC F5 83              2801 	mov	dph,a
+   0DBE E0                 2802 	movx	a,@dptr
+   0DBF FE                 2803 	mov	r6,a
+   0DC0 BE 43 11           2804 	cjne	r6,#0x43,00139$
+                           2805 ;	SRC/lab4.c:479: log(INPUT_CANCELED);
+   0DC3 75 82 08           2806 	mov	dpl,#0x08
+   0DC6 C0 02              2807 	push	ar2
+   0DC8 C0 03              2808 	push	ar3
+   0DCA 12s09r2C           2809 	lcall	_log
+   0DCD D0 03              2810 	pop	ar3
+   0DCF D0 02              2811 	pop	ar2
+                           2812 ;	SRC/lab4.c:480: goto wait;
+   0DD1 02s0Br3D           2813 	ljmp	00174$
+   0DD4                    2814 00139$:
+                           2815 ;	SRC/lab4.c:482: WriteMax(LEDLINE, POW2((i+1)*2) - 1);
+   0DD4 EC                 2816 	mov	a,r4
+   0DD5 04                 2817 	inc	a
+   0DD6 FE                 2818 	mov	r6,a
+   0DD7 25 E0              2819 	add	a,acc
+   0DD9 FF                 2820 	mov	r7,a
+   0DDA 8F F0              2821 	mov	b,r7
+   0DDC 05 F0              2822 	inc	b
+   0DDE 74 01              2823 	mov	a,#0x01
+   0DE0 80 02              2824 	sjmp	00278$
+   0DE2                    2825 00276$:
+   0DE2 25 E0              2826 	add	a,acc
+   0DE4                    2827 00278$:
+   0DE4 D5 F0 FB           2828 	djnz	b,00276$
+   0DE7 14                 2829 	dec	a
+   0DE8 FF                 2830 	mov	r7,a
+   0DE9 C0 02              2831 	push	ar2
+   0DEB C0 03              2832 	push	ar3
+   0DED C0 06              2833 	push	ar6
+   0DEF C0 07              2834 	push	ar7
+   0DF1 90 00 07           2835 	mov	dptr,#0x0007
+   0DF4 12s00r00           2836 	lcall	_WriteMax
+   0DF7 15 81              2837 	dec	sp
+   0DF9 D0 06              2838 	pop	ar6
+   0DFB D0 03              2839 	pop	ar3
+   0DFD D0 02              2840 	pop	ar2
+                           2841 ;	SRC/lab4.c:472: for(i=0; i<4; i++){
+   0DFF 8E 04              2842 	mov	ar4,r6
+   0E01 02s0Dr84           2843 	ljmp	00192$
+   0E04                    2844 00195$:
+                           2845 ;	SRC/lab4.c:484: delay(30);
+   0E04 90 00 1E           2846 	mov	dptr,#0x001E
+   0E07 C0 02              2847 	push	ar2
+   0E09 C0 03              2848 	push	ar3
+   0E0B 12s02r63           2849 	lcall	_delay
+                           2850 ;	SRC/lab4.c:485: WriteMax(LEDLINE, 0);
+   0E0E E4                 2851 	clr	a
+   0E0F C0 E0              2852 	push	acc
+   0E11 90 00 07           2853 	mov	dptr,#0x0007
+   0E14 12s00r00           2854 	lcall	_WriteMax
+   0E17 15 81              2855 	dec	sp
+                           2856 ;	SRC/lab4.c:487: if( WriteBlockEEPROM(USER_CODE_ADDRESS, input, 4 )){
+   0E19 74 04              2857 	mov	a,#0x04
+   0E1B C0 E0              2858 	push	acc
+   0E1D 74r00              2859 	mov	a,#_input
+   0E1F C0 E0              2860 	push	acc
+   0E21 74s00              2861 	mov	a,#(_input >> 8)
+   0E23 C0 E0              2862 	push	acc
+   0E25 75 82 06           2863 	mov	dpl,#0x06
+   0E28 12s00r00           2864 	lcall	_WriteBlockEEPROM
+   0E2B 15 81              2865 	dec	sp
+   0E2D 15 81              2866 	dec	sp
+   0E2F 15 81              2867 	dec	sp
+   0E31 D0 03              2868 	pop	ar3
+   0E33 D0 02              2869 	pop	ar2
+   0E35 92*00              2870 	mov	b0,c
+   0E37 50 1A              2871 	jnc	00141$
+                           2872 ;	SRC/lab4.c:488: message("WriteBlockEEPROM error");
+   0E39 90s02r1E           2873 	mov	dptr,#__str_31
+   0E3C 75 F0 80           2874 	mov	b,#0x80
+   0E3F C0 02              2875 	push	ar2
+   0E41 C0 03              2876 	push	ar3
+   0E43 12s04r75           2877 	lcall	_message
+                           2878 ;	SRC/lab4.c:489: Type("Failure during setting new user code\r\n");
+   0E46 90s02r35           2879 	mov	dptr,#__str_32
+   0E49 75 F0 80           2880 	mov	b,#0x80
+   0E4C 12s00r00           2881 	lcall	_Type
+   0E4F D0 03              2882 	pop	ar3
+   0E51 D0 02              2883 	pop	ar2
+   0E53                    2884 00141$:
+                           2885 ;	SRC/lab4.c:491: if( ReadBlockEEPROM(USER_CODE_ADDRESS, user_code, 4 )){
+   0E53 C0 02              2886 	push	ar2
+   0E55 C0 03              2887 	push	ar3
+   0E57 74 04              2888 	mov	a,#0x04
+   0E59 C0 E0              2889 	push	acc
+   0E5B 74r04              2890 	mov	a,#_user_code
+   0E5D C0 E0              2891 	push	acc
+   0E5F 74s00              2892 	mov	a,#(_user_code >> 8)
+   0E61 C0 E0              2893 	push	acc
+   0E63 75 82 06           2894 	mov	dpl,#0x06
+   0E66 12s00r00           2895 	lcall	_ReadBlockEEPROM
+   0E69 15 81              2896 	dec	sp
+   0E6B 15 81              2897 	dec	sp
+   0E6D 15 81              2898 	dec	sp
+   0E6F D0 03              2899 	pop	ar3
+   0E71 D0 02              2900 	pop	ar2
+   0E73 92*00              2901 	mov	b0,c
+   0E75 50 1A              2902 	jnc	00143$
+                           2903 ;	SRC/lab4.c:492: message("ReadBlockEEPROM error");
+   0E77 90s02r5C           2904 	mov	dptr,#__str_33
+   0E7A 75 F0 80           2905 	mov	b,#0x80
+   0E7D C0 02              2906 	push	ar2
+   0E7F C0 03              2907 	push	ar3
+   0E81 12s04r75           2908 	lcall	_message
+                           2909 ;	SRC/lab4.c:493: Type("Failure during setting new user code\r\n");
+   0E84 90s02r35           2910 	mov	dptr,#__str_32
+   0E87 75 F0 80           2911 	mov	b,#0x80
+   0E8A 12s00r00           2912 	lcall	_Type
+   0E8D D0 03              2913 	pop	ar3
+   0E8F D0 02              2914 	pop	ar2
+   0E91                    2915 00143$:
+                           2916 ;	SRC/lab4.c:495: if(CompareString(user_code, input, 4)){
+   0E91 C0 02              2917 	push	ar2
+   0E93 C0 03              2918 	push	ar3
+   0E95 74 04              2919 	mov	a,#0x04
+   0E97 C0 E0              2920 	push	acc
+   0E99 74r00              2921 	mov	a,#_input
+   0E9B C0 E0              2922 	push	acc
+   0E9D 74s00              2923 	mov	a,#(_input >> 8)
+   0E9F C0 E0              2924 	push	acc
+   0EA1 E4                 2925 	clr	a
+   0EA2 C0 E0              2926 	push	acc
+   0EA4 90s00r04           2927 	mov	dptr,#_user_code
+   0EA7 75 F0 00           2928 	mov	b,#0x00
+   0EAA 12s06r5C           2929 	lcall	_CompareString
+   0EAD AC 82              2930 	mov	r4,dpl
+   0EAF E5 81              2931 	mov	a,sp
+   0EB1 24 FC              2932 	add	a,#0xfc
+   0EB3 F5 81              2933 	mov	sp,a
+   0EB5 D0 03              2934 	pop	ar3
+   0EB7 D0 02              2935 	pop	ar2
+   0EB9 EC                 2936 	mov	a,r4
+   0EBA 60 11              2937 	jz	00145$
+                           2938 ;	SRC/lab4.c:497: message("CompareString error");
+   0EBC 90s02r72           2939 	mov	dptr,#__str_34
+   0EBF 75 F0 80           2940 	mov	b,#0x80
+   0EC2 C0 02              2941 	push	ar2
+   0EC4 C0 03              2942 	push	ar3
+   0EC6 12s04r75           2943 	lcall	_message
+   0EC9 D0 03              2944 	pop	ar3
+   0ECB D0 02              2945 	pop	ar2
+   0ECD                    2946 00145$:
+                           2947 ;	SRC/lab4.c:499: message("User code successfully changed");
+   0ECD 90s02r86           2948 	mov	dptr,#__str_35
+   0ED0 75 F0 80           2949 	mov	b,#0x80
+   0ED3 C0 02              2950 	push	ar2
+   0ED5 C0 03              2951 	push	ar3
+   0ED7 12s04r75           2952 	lcall	_message
+   0EDA D0 03              2953 	pop	ar3
+   0EDC D0 02              2954 	pop	ar2
+                           2955 ;	SRC/lab4.c:500: break;
+   0EDE 02s0Br3D           2956 	ljmp	00174$
+                           2957 ;	SRC/lab4.c:502: do {
+   0EE1                    2958 00236$:
+   0EE1                    2959 00160$:
+                           2960 ;	SRC/lab4.c:503: if(cur_log>=0 && cur_log<num_log) //не совсем так
+   0EE1 EB                 2961 	mov	a,r3
+   0EE2 20 E7 20           2962 	jb	acc.7,00148$
+   0EE5 AC*03              2963 	mov	r4,_num_log
+   0EE7 7E 00              2964 	mov	r6,#0x00
+   0EE9 C3                 2965 	clr	c
+   0EEA EA                 2966 	mov	a,r2
+   0EEB 9C                 2967 	subb	a,r4
+   0EEC EB                 2968 	mov	a,r3
+   0EED 64 80              2969 	xrl	a,#0x80
+   0EEF 8E F0              2970 	mov	b,r6
+   0EF1 63 F0 80           2971 	xrl	b,#0x80
+   0EF4 95 F0              2972 	subb	a,b
+   0EF6 50 0D              2973 	jnc	00148$
+                           2974 ;	SRC/lab4.c:504: PrintConLog(cur_log);				
+   0EF8 8A 82              2975 	mov	dpl,r2
+   0EFA C0 02              2976 	push	ar2
+   0EFC C0 03              2977 	push	ar3
+   0EFE 12s08r73           2978 	lcall	_PrintConLog
+   0F01 D0 03              2979 	pop	ar3
+   0F03 D0 02              2980 	pop	ar2
+   0F05                    2981 00148$:
+                           2982 ;	SRC/lab4.c:507: if(input[0]=='A')
+   0F05 90s00r00           2983 	mov	dptr,#_input
+   0F08 E0                 2984 	movx	a,@dptr
+   0F09 FC                 2985 	mov	r4,a
+   0F0A BC 41 25           2986 	cjne	r4,#0x41,00154$
+                           2987 ;	SRC/lab4.c:508: if(cur_log==0) 			{LCD_Clear(); LCD_Type("Reached the start of the list."); delay(100);}
+   0F0D EA                 2988 	mov	a,r2
+   0F0E 4B                 2989 	orl	a,r3
+   0F0F 70 1C              2990 	jnz	00151$
+   0F11 C0 02              2991 	push	ar2
+   0F13 C0 03              2992 	push	ar3
+   0F15 12s00r00           2993 	lcall	_LCD_Clear
+   0F18 90s02rA5           2994 	mov	dptr,#__str_36
+   0F1B 75 F0 80           2995 	mov	b,#0x80
+   0F1E 12s00r00           2996 	lcall	_LCD_Type
+   0F21 90 00 64           2997 	mov	dptr,#0x0064
+   0F24 12s02r63           2998 	lcall	_delay
+   0F27 D0 03              2999 	pop	ar3
+   0F29 D0 02              3000 	pop	ar2
+   0F2B 80 05              3001 	sjmp	00154$
+   0F2D                    3002 00151$:
+                           3003 ;	SRC/lab4.c:509: else cur_log--;	
+   0F2D 1A                 3004 	dec	r2
+   0F2E BA FF 01           3005 	cjne	r2,#0xff,00287$
+   0F31 1B                 3006 	dec	r3
+   0F32                    3007 00287$:
+   0F32                    3008 00154$:
+                           3009 ;	SRC/lab4.c:510: if(input[0]=='D')
+   0F32 90s00r00           3010 	mov	dptr,#_input
+   0F35 E0                 3011 	movx	a,@dptr
+   0F36 FC                 3012 	mov	r4,a
+   0F37 BC 44 32           3013 	cjne	r4,#0x44,00161$
+                           3014 ;	SRC/lab4.c:511: if(cur_log==num_log-1)  {LCD_Clear(); LCD_Type("Reached the end of the list."); delay(100); }
+   0F3A AC*03              3015 	mov	r4,_num_log
+   0F3C 7E 00              3016 	mov	r6,#0x00
+   0F3E 1C                 3017 	dec	r4
+   0F3F BC FF 01           3018 	cjne	r4,#0xff,00290$
+   0F42 1E                 3019 	dec	r6
+   0F43                    3020 00290$:
+   0F43 EA                 3021 	mov	a,r2
+   0F44 B5 04 20           3022 	cjne	a,ar4,00156$
+   0F47 EB                 3023 	mov	a,r3
+   0F48 B5 06 1C           3024 	cjne	a,ar6,00156$
+   0F4B C0 02              3025 	push	ar2
+   0F4D C0 03              3026 	push	ar3
+   0F4F 12s00r00           3027 	lcall	_LCD_Clear
+   0F52 90s02rC4           3028 	mov	dptr,#__str_37
+   0F55 75 F0 80           3029 	mov	b,#0x80
+   0F58 12s00r00           3030 	lcall	_LCD_Type
+   0F5B 90 00 64           3031 	mov	dptr,#0x0064
+   0F5E 12s02r63           3032 	lcall	_delay
+   0F61 D0 03              3033 	pop	ar3
+   0F63 D0 02              3034 	pop	ar2
+   0F65 80 05              3035 	sjmp	00161$
+   0F67                    3036 00156$:
+                           3037 ;	SRC/lab4.c:512: else cur_log++;								
+   0F67 0A                 3038 	inc	r2
+   0F68 BA 00 01           3039 	cjne	r2,#0x00,00293$
+   0F6B 0B                 3040 	inc	r3
+   0F6C                    3041 00293$:
+   0F6C                    3042 00161$:
+                           3043 ;	SRC/lab4.c:513: }while(input[0]!='C');
+   0F6C 90s00r00           3044 	mov	dptr,#_input
+   0F6F E0                 3045 	movx	a,@dptr
+   0F70 FC                 3046 	mov	r4,a
+   0F71 BC 43 02           3047 	cjne	r4,#0x43,00294$
+   0F74 80 03              3048 	sjmp	00295$
+   0F76                    3049 00294$:
+   0F76 02s0ErE1           3050 	ljmp	00160$
+   0F79                    3051 00295$:
+                           3052 ;	SRC/lab4.c:514: break;
+   0F79 02s0Br3D           3053 	ljmp	00174$
+                           3054 ;	SRC/lab4.c:515: default:
+   0F7C                    3055 00163$:
+                           3056 ;	SRC/lab4.c:516: if(input[0]=='C'){
+   0F7C BD 43 02           3057 	cjne	r5,#0x43,00296$
+   0F7F 80 03              3058 	sjmp	00297$
+   0F81                    3059 00296$:
+   0F81 02s0Br3D           3060 	ljmp	00174$
+   0F84                    3061 00297$:
+                           3062 ;	SRC/lab4.c:517: log(INPUT_CANCELED);
+   0F84 75 82 08           3063 	mov	dpl,#0x08
+   0F87 C0 02              3064 	push	ar2
+   0F89 C0 03              3065 	push	ar3
+   0F8B 12s09r2C           3066 	lcall	_log
+   0F8E D0 03              3067 	pop	ar3
+   0F90 D0 02              3068 	pop	ar2
+                           3069 ;	SRC/lab4.c:518: goto wait;
+   0F92 02s0Br3D           3070 	ljmp	00174$
+                           3071 ;	SRC/lab4.c:522: goto wait;
+   0F95                    3072 00169$:
+                           3073 ;	SRC/lab4.c:527: if(CompareString(user_code, input, 4)){
+   0F95 C0 02              3074 	push	ar2
+   0F97 C0 03              3075 	push	ar3
+   0F99 74 04              3076 	mov	a,#0x04
+   0F9B C0 E0              3077 	push	acc
+   0F9D 74r00              3078 	mov	a,#_input
+   0F9F C0 E0              3079 	push	acc
+   0FA1 74s00              3080 	mov	a,#(_input >> 8)
+   0FA3 C0 E0              3081 	push	acc
+   0FA5 E4                 3082 	clr	a
+   0FA6 C0 E0              3083 	push	acc
+   0FA8 90s00r04           3084 	mov	dptr,#_user_code
+   0FAB 75 F0 00           3085 	mov	b,#0x00
+   0FAE 12s06r5C           3086 	lcall	_CompareString
+   0FB1 AC 82              3087 	mov	r4,dpl
+   0FB3 E5 81              3088 	mov	a,sp
+   0FB5 24 FC              3089 	add	a,#0xfc
+   0FB7 F5 81              3090 	mov	sp,a
+   0FB9 D0 03              3091 	pop	ar3
+   0FBB D0 02              3092 	pop	ar2
+   0FBD EC                 3093 	mov	a,r4
+   0FBE 60 1A              3094 	jz	00171$
+                           3095 ;	SRC/lab4.c:528: message(" Incorrect code ");
+   0FC0 90s02rE1           3096 	mov	dptr,#__str_38
+   0FC3 75 F0 80           3097 	mov	b,#0x80
+   0FC6 C0 02              3098 	push	ar2
+   0FC8 C0 03              3099 	push	ar3
+   0FCA 12s04r75           3100 	lcall	_message
+                           3101 ;	SRC/lab4.c:529: log(INCORRECT_CODE);
+   0FCD 75 82 15           3102 	mov	dpl,#0x15
+   0FD0 12s09r2C           3103 	lcall	_log
+   0FD3 D0 03              3104 	pop	ar3
+   0FD5 D0 02              3105 	pop	ar2
+   0FD7 02s0Br3D           3106 	ljmp	00174$
+   0FDA                    3107 00171$:
+                           3108 ;	SRC/lab4.c:533: WriteMax(LEDLINE, 0xAA);
+   0FDA C0 02              3109 	push	ar2
+   0FDC C0 03              3110 	push	ar3
+   0FDE 74 AA              3111 	mov	a,#0xAA
+   0FE0 C0 E0              3112 	push	acc
+   0FE2 90 00 07           3113 	mov	dptr,#0x0007
+   0FE5 12s00r00           3114 	lcall	_WriteMax
+   0FE8 15 81              3115 	dec	sp
+                           3116 ;	SRC/lab4.c:535: LCD_Clear();
+   0FEA 12s00r00           3117 	lcall	_LCD_Clear
+                           3118 ;	SRC/lab4.c:536: LCD_Type("  Door is open! ");
+   0FED 90s02rF2           3119 	mov	dptr,#__str_39
+   0FF0 75 F0 80           3120 	mov	b,#0x80
+   0FF3 12s00r00           3121 	lcall	_LCD_Type
+                           3122 ;	SRC/lab4.c:537: LCD_Type("   Come on in!  ");
+   0FF6 90s03r03           3123 	mov	dptr,#__str_40
+   0FF9 75 F0 80           3124 	mov	b,#0x80
+   0FFC 12s00r00           3125 	lcall	_LCD_Type
+                           3126 ;	SRC/lab4.c:538: log(DOOR_IS_OPEN);
+   0FFF 75 82 04           3127 	mov	dpl,#0x04
+   1002 12s09r2C           3128 	lcall	_log
+                           3129 ;	SRC/lab4.c:540: delay(DOOR_OPEN_TIME_LIMIT);
+   1005 90 01 F4           3130 	mov	dptr,#0x01F4
+   1008 12s02r63           3131 	lcall	_delay
+                           3132 ;	SRC/lab4.c:541: log(DOOR_IS_CLOSE);
+   100B 75 82 05           3133 	mov	dpl,#0x05
+   100E 12s09r2C           3134 	lcall	_log
+   1011 D0 03              3135 	pop	ar3
+   1013 D0 02              3136 	pop	ar2
+   1015 02s0Br3D           3137 	ljmp	00174$
+                           3138 	.area CSEG    (CODE)
+                           3139 	.area CONST   (CODE)
+   0000                    3140 __str_0:
+   0000 47 65 74 54 69 6D  3141 	.ascii "GetTime failed"
+        65 20 66 61 69 6C
+        65 64
+   000E 00                 3142 	.db 0x00
+   000F                    3143 __str_1:
+   000F 20 20 20 20 20 20  3144 	.ascii "                "
+        20 20 20 20 20 20
+        20 20 20 20
+   001F 00                 3145 	.db 0x00
+   0020                    3146 __str_2:
+   0020 0D                 3147 	.db 0x0D
+   0021 0A                 3148 	.db 0x0A
+   0022 00                 3149 	.db 0x00
+   0023                    3150 __str_3:
+   0023 52 65 61 64 20 45  3151 	.ascii "Read EEEPROM error!"
+        45 45 50 52 4F 4D
+        20 65 72 72 6F 72
+        21
+   0036 00                 3152 	.db 0x00
+   0037                    3153 __str_4:
+   0037 53 74 61 72 74     3154 	.ascii "Start"
+   003C 00                 3155 	.db 0x00
+   003D                    3156 __str_5:
+   003D 49 6E 69 74 69 61  3157 	.ascii "Initialization"
+        6C 69 7A 61 74 69
+        6F 6E
+   004B 00                 3158 	.db 0x00
+   004C                    3159 __str_6:
+   004C 53 65 72 76 69 63  3160 	.ascii "Service login succeed"
+        65 20 6C 6F 67 69
+        6E 20 73 75 63 63
+        65 65 64
+   0061 00                 3161 	.db 0x00
+   0062                    3162 __str_7:
+   0062 54 69 6D 65 20 6C  3163 	.ascii "Time limit in the service menu exceeded!"
+        69 6D 69 74 20 69
+        6E 20 74 68 65 20
+        73 65 72 76 69 63
+        65 20 6D 65 6E 75
+        20 65 78 63 65 65
+        64 65 64 21
+   008A 00                 3164 	.db 0x00
+   008B                    3165 __str_8:
+   008B 55 73 65 72 20 6C  3166 	.ascii "User login succeed"
+        6F 67 69 6E 20 73
+        75 63 63 65 65 64
+   009D 00                 3167 	.db 0x00
+   009E                    3168 __str_9:
+   009E 44 6F 6F 72 20 69  3169 	.ascii "Door is open"
+        73 20 6F 70 65 6E
+   00AA 00                 3170 	.db 0x00
+   00AB                    3171 __str_10:
+   00AB 44 6F 6F 72 20 69  3172 	.ascii "Door is close"
+        73 20 63 6C 6F 73
+        65
+   00B8 00                 3173 	.db 0x00
+   00B9                    3174 __str_11:
+   00B9 49 6E 63 6F 72 72  3175 	.ascii "Incorrect code"
+        65 63 74 20 63 6F
+        64 65
+   00C7 00                 3176 	.db 0x00
+   00C8                    3177 __str_12:
+   00C8 49 6E 70 75 74 20  3178 	.ascii "Input canceled"
+        63 61 6E 63 65 6C
+        65 64
+   00D6 00                 3179 	.db 0x00
+   00D7                    3180 __str_13:
+   00D7 23                 3181 	.ascii "#"
+   00D8 00                 3182 	.db 0x00
+   00D9                    3183 __str_14:
+   00D9 57 72 69 74 65 20  3184 	.ascii "Write error!"
+        65 72 72 6F 72 21
+   00E5 00                 3185 	.db 0x00
+   00E6                    3186 __str_15:
+   00E6 49 6E 69 74 69 61  3187 	.ascii "Initialization"
+        6C 69 7A 61 74 69
+        6F 6E
+   00F4 0D                 3188 	.db 0x0D
+   00F5 0A                 3189 	.db 0x0A
+   00F6 00                 3190 	.db 0x00
+   00F7                    3191 __str_16:
+   00F7 42 53              3192 	.ascii "BS"
+   00F9 00                 3193 	.db 0x00
+   00FA                    3194 __str_17:
+   00FA 4D 61 67 69 63 20  3195 	.ascii "Magic not found!"
+        6E 6F 74 20 66 6F
+        75 6E 64 21
+   010A 0D                 3196 	.db 0x0D
+   010B 0A                 3197 	.db 0x0A
+   010C 00                 3198 	.db 0x00
+   010D                    3199 __str_18:
+   010D 38 38 38 38        3200 	.ascii "8888"
+   0111 00                 3201 	.db 0x00
+   0112                    3202 __str_19:
+   0112 35 35 35 35        3203 	.ascii "5555"
+   0116 00                 3204 	.db 0x00
+   0117                    3205 __str_20:
+   0117 46 61 69 6C 75 72  3206 	.ascii "Failure during setting default service code"
+        65 20 64 75 72 69
+        6E 67 20 73 65 74
+        74 69 6E 67 20 64
+        65 66 61 75 6C 74
+        20 73 65 72 76 69
+        63 65 20 63 6F 64
+        65
+   0142 0D                 3207 	.db 0x0D
+   0143 0A                 3208 	.db 0x0A
+   0144 00                 3209 	.db 0x00
+   0145                    3210 __str_21:
+   0145 4D 61 67 69 63 20  3211 	.ascii "Magic found!"
+        66 6F 75 6E 64 21
+   0151 0D                 3212 	.db 0x0D
+   0152 0A                 3213 	.db 0x0A
+   0153 00                 3214 	.db 0x00
+   0154                    3215 __str_22:
+   0154 20 20 20 20 50 61  3216 	.ascii "    Password:   "
+        73 73 77 6F 72 64
+        3A 20 20 20
+   0164 00                 3217 	.db 0x00
+   0165                    3218 __str_23:
+   0165 49 6E 70 75 74 20  3219 	.ascii "Input code time limit exceeded!"
+        63 6F 64 65 20 74
+        69 6D 65 20 6C 69
+        6D 69 74 20 65 78
+        63 65 65 64 65 64
+        21
+   0184 00                 3220 	.db 0x00
+   0185                    3221 __str_24:
+   0185 4E 6F 74 20 61 20  3222 	.ascii "Not a service code"
+        73 65 72 76 69 63
+        65 20 63 6F 64 65
+   0197 0D                 3223 	.db 0x0D
+   0198 0A                 3224 	.db 0x0A
+   0199 00                 3225 	.db 0x00
+   019A                    3226 __str_25:
+   019A 20 20 53 65 72 76  3227 	.ascii "  Service Menu: "
+        69 63 65 20 4D 65
+        6E 75 3A 20
+   01AA 00                 3228 	.db 0x00
+   01AB                    3229 __str_26:
+   01AB 32 20 2D 20 56 69  3230 	.ascii "2 - View logs"
+        65 77 20 6C 6F 67
+        73
+   01B8 00                 3231 	.db 0x00
+   01B9                    3232 __str_27:
+   01B9 35 20 2D 20 43 68  3233 	.ascii "5 - Change code"
+        61 6E 67 65 20 63
+        6F 64 65
+   01C8 00                 3234 	.db 0x00
+   01C9                    3235 __str_28:
+   01C9 4C 65 61 76 69 6E  3236 	.ascii "Leaving the service menu"
+        67 20 74 68 65 20
+        73 65 72 76 69 63
+        65 20 6D 65 6E 75
+   01E1 00                 3237 	.db 0x00
+   01E2                    3238 __str_29:
+   01E2 54 69 6D 65 20 6C  3239 	.ascii "Time limit in the service menu exceeded!"
+        69 6D 69 74 20 69
+        6E 20 74 68 65 20
+        73 65 72 76 69 63
+        65 20 6D 65 6E 75
+        20 65 78 63 65 65
+        64 65 64 21
+   020A 0D                 3240 	.db 0x0D
+   020B 0A                 3241 	.db 0x0A
+   020C 00                 3242 	.db 0x00
+   020D                    3243 __str_30:
+   020D 20 45 6E 74 65 72  3244 	.ascii " Enter new code "
+        20 6E 65 77 20 63
+        6F 64 65 20
+   021D 00                 3245 	.db 0x00
+   021E                    3246 __str_31:
+   021E 57 72 69 74 65 42  3247 	.ascii "WriteBlockEEPROM error"
+        6C 6F 63 6B 45 45
+        50 52 4F 4D 20 65
+        72 72 6F 72
+   0234 00                 3248 	.db 0x00
+   0235                    3249 __str_32:
+   0235 46 61 69 6C 75 72  3250 	.ascii "Failure during setting new user code"
+        65 20 64 75 72 69
+        6E 67 20 73 65 74
+        74 69 6E 67 20 6E
+        65 77 20 75 73 65
+        72 20 63 6F 64 65
+   0259 0D                 3251 	.db 0x0D
+   025A 0A                 3252 	.db 0x0A
+   025B 00                 3253 	.db 0x00
+   025C                    3254 __str_33:
+   025C 52 65 61 64 42 6C  3255 	.ascii "ReadBlockEEPROM error"
+        6F 63 6B 45 45 50
+        52 4F 4D 20 65 72
+        72 6F 72
+   0271 00                 3256 	.db 0x00
+   0272                    3257 __str_34:
+   0272 43 6F 6D 70 61 72  3258 	.ascii "CompareString error"
+        65 53 74 72 69 6E
+        67 20 65 72 72 6F
+        72
+   0285 00                 3259 	.db 0x00
+   0286                    3260 __str_35:
+   0286 55 73 65 72 20 63  3261 	.ascii "User code successfully changed"
+        6F 64 65 20 73 75
+        63 63 65 73 73 66
+        75 6C 6C 79 20 63
+        68 61 6E 67 65 64
+   02A4 00                 3262 	.db 0x00
+   02A5                    3263 __str_36:
+   02A5 52 65 61 63 68 65  3264 	.ascii "Reached the start of the list."
+        64 20 74 68 65 20
+        73 74 61 72 74 20
+        6F 66 20 74 68 65
+        20 6C 69 73 74 2E
+   02C3 00                 3265 	.db 0x00
+   02C4                    3266 __str_37:
+   02C4 52 65 61 63 68 65  3267 	.ascii "Reached the end of the list."
+        64 20 74 68 65 20
+        65 6E 64 20 6F 66
+        20 74 68 65 20 6C
+        69 73 74 2E
+   02E0 00                 3268 	.db 0x00
+   02E1                    3269 __str_38:
+   02E1 20 49 6E 63 6F 72  3270 	.ascii " Incorrect code "
+        72 65 63 74 20 63
+        6F 64 65 20
+   02F1 00                 3271 	.db 0x00
+   02F2                    3272 __str_39:
+   02F2 20 20 44 6F 6F 72  3273 	.ascii "  Door is open! "
+        20 69 73 20 6F 70
+        65 6E 21 20
+   0302 00                 3274 	.db 0x00
+   0303                    3275 __str_40:
+   0303 20 20 20 43 6F 6D  3276 	.ascii "   Come on in!  "
+        65 20 6F 6E 20 69
+        6E 21 20 20
+   0313 00                 3277 	.db 0x00
+                           3278 	.area XINIT   (CODE)
+   0000                    3279 __xinit__service_code:
+   0000 38 38 38 38        3280 	.ascii "8888"
+   0004                    3281 __xinit__user_code:
+   0004 35 35 35 35        3282 	.ascii "5555"
+   0008                    3283 __xinit__xbuffer:
+   0008 30                 3284 	.db #0x30
+   0009 00                 3285 	.db 0x00
+   000A 00                 3286 	.db 0x00
+   000B 00                 3287 	.db 0x00
+   000C 00                 3288 	.db 0x00
+   000D 00                 3289 	.db 0x00
+   000E 00                 3290 	.db 0x00
+   000F 00                 3291 	.db 0x00
+   0010 00                 3292 	.db 0x00
+   0011 00                 3293 	.db 0x00
+   0012 00                 3294 	.db 0x00
+   0013 00                 3295 	.db 0x00
+   0014 00                 3296 	.db 0x00
+   0015 00                 3297 	.db 0x00
+   0016 00                 3298 	.db 0x00
+   0017 00                 3299 	.db 0x00
+   0018 00                 3300 	.db 0x00
+   0019 00                 3301 	.db 0x00
+   001A 00                 3302 	.db 0x00
+   001B 00                 3303 	.db 0x00
+   001C 00                 3304 	.db 0x00
+   001D 00                 3305 	.db 0x00
+   001E 00                 3306 	.db 0x00
+   001F 00                 3307 	.db 0x00
+   0020 00                 3308 	.db 0x00
+   0021 00                 3309 	.db 0x00
+   0022 00                 3310 	.db 0x00
+   0023 00                 3311 	.db 0x00
+   0024 00                 3312 	.db 0x00
+   0025 00                 3313 	.db 0x00
+   0026 00                 3314 	.db 0x00
+   0027 00                 3315 	.db 0x00
+   0028 00                 3316 	.db 0x00
+   0029 00                 3317 	.db 0x00
+   002A 00                 3318 	.db 0x00
+   002B 00                 3319 	.db 0x00
+   002C 00                 3320 	.db 0x00
+   002D 00                 3321 	.db 0x00
+   002E 00                 3322 	.db 0x00
+   002F 00                 3323 	.db 0x00
+   0030 00                 3324 	.db 0x00
+   0031 00                 3325 	.db 0x00
+   0032 00                 3326 	.db 0x00
+   0033 00                 3327 	.db 0x00
+   0034 00                 3328 	.db 0x00
+   0035 00                 3329 	.db 0x00
+   0036 00                 3330 	.db 0x00
+   0037 00                 3331 	.db 0x00
+   0038 00                 3332 	.db 0x00
+   0039 00                 3333 	.db 0x00
+   003A 00                 3334 	.db 0x00
+   003B 00                 3335 	.db 0x00
+   003C 00                 3336 	.db 0x00
+   003D 00                 3337 	.db 0x00
+   003E 00                 3338 	.db 0x00
+   003F 00                 3339 	.db 0x00
+   0040 00                 3340 	.db 0x00
+   0041 00                 3341 	.db 0x00
+   0042 00                 3342 	.db 0x00
+   0043 00                 3343 	.db 0x00
+   0044 00                 3344 	.db 0x00
+   0045 00                 3345 	.db 0x00
+   0046 00                 3346 	.db 0x00
+   0047 00                 3347 	.db 0x00
+   0048 00                 3348 	.db 0x00
+   0049 00                 3349 	.db 0x00
+   004A 00                 3350 	.db 0x00
+   004B 00                 3351 	.db 0x00
+   004C 00                 3352 	.db 0x00
+   004D 00                 3353 	.db 0x00
+   004E 00                 3354 	.db 0x00
+   004F 00                 3355 	.db 0x00
+   0050 00                 3356 	.db 0x00
+   0051 00                 3357 	.db 0x00
+   0052 00                 3358 	.db 0x00
+   0053 00                 3359 	.db 0x00
+   0054 00                 3360 	.db 0x00
+   0055 00                 3361 	.db 0x00
+   0056 00                 3362 	.db 0x00
+   0057 00                 3363 	.db 0x00
+   0058 00                 3364 	.db 0x00
+   0059 00                 3365 	.db 0x00
+   005A 00                 3366 	.db 0x00
+   005B 00                 3367 	.db 0x00
+   005C 00                 3368 	.db 0x00
+   005D 00                 3369 	.db 0x00
+   005E 00                 3370 	.db 0x00
+   005F 00                 3371 	.db 0x00
+   0060 00                 3372 	.db 0x00
+   0061 00                 3373 	.db 0x00
+   0062 00                 3374 	.db 0x00
+   0063 00                 3375 	.db 0x00
+   0064 00                 3376 	.db 0x00
+   0065 00                 3377 	.db 0x00
+   0066 00                 3378 	.db 0x00
+   0067 00                 3379 	.db 0x00
+   0068 00                 3380 	.db 0x00
+   0069 00                 3381 	.db 0x00
+   006A 00                 3382 	.db 0x00
+   006B 00                 3383 	.db 0x00
+   006C 00                 3384 	.db 0x00
+   006D 00                 3385 	.db 0x00
+   006E 00                 3386 	.db 0x00
+   006F 00                 3387 	.db 0x00
+   0070 00                 3388 	.db 0x00
+   0071 00                 3389 	.db 0x00
+   0072 00                 3390 	.db 0x00
+   0073 00                 3391 	.db 0x00
+   0074 00                 3392 	.db 0x00
+   0075 00                 3393 	.db 0x00
+   0076 00                 3394 	.db 0x00
+   0077 00                 3395 	.db 0x00
+   0078 00                 3396 	.db 0x00
+   0079 00                 3397 	.db 0x00
+   007A 00                 3398 	.db 0x00
+   007B 00                 3399 	.db 0x00
+   007C 00                 3400 	.db 0x00
+   007D 00                 3401 	.db 0x00
+   007E 00                 3402 	.db 0x00
+   007F 00                 3403 	.db 0x00
+   0080 00                 3404 	.db 0x00
+   0081 00                 3405 	.db 0x00
+   0082 00                 3406 	.db 0x00
+   0083 00                 3407 	.db 0x00
+   0084 00                 3408 	.db 0x00
+   0085 00                 3409 	.db 0x00
+   0086 00                 3410 	.db 0x00
+   0087 00                 3411 	.db 0x00
+                           3412 	.area CABS    (ABS,CODE)

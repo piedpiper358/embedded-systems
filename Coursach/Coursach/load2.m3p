@@ -1,0 +1,1 @@
+: WAIT CR CR ." Включите питание и нажмите кнопку RESET на стенде SDK." CR CR ." Ожидание перезапуска... " BEGIN RSIO DUP EMIT 109 == UNTIL ." Ok" CR CR ; TERMINATEONERROR 9600 OPENCHANNEL com3 WAIT T_RAM 0x2100       WRITE lab4.bin 0x2100       JMP CLOSECHANNEL ECHO com3_log.txt 1200 OPENCHANNEL com3 +ECHO 3 TERM -ECHO \ECHO BYE 
